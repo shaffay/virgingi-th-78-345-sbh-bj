@@ -2,14 +2,15 @@
 
 import { useState } from "react";
 import {
-  MessageCircle,
-  Sparkles,
-  Headphones,
-  FileText,
-  Users,
-  BarChart3,
+  LayoutGrid,
   Building2,
+  Magnet,
+  MessageCircle,
+  Home,
+  Megaphone,
+  Brain,
   ArrowRight,
+  Sparkles,
   type LucideIcon,
 } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -21,102 +22,127 @@ interface Module {
   icon: LucideIcon;
   badge?: string;
   title: string;
-  subtitle: string;
+  headline: string;
+  description: string;
   features: string[];
 }
 
 const modules: Module[] = [
   {
+    id: "crm-pipeline",
+    icon: LayoutGrid,
+    title: "CRM & Leads Pipeline",
+    headline: "Your Entire Pipeline, Visible in One Board",
+    description:
+      "Every lead from every source — Bayut, Property Finder, Meta Ads, WhatsApp walk-ins — on a single Kanban board with 7 deal stages: New · Contacted · Qualified · Viewing · Negotiating · Won · Lost. Red SLA alerts fire automatically. Lead cards colour-code by age. Every team member sees the same truth.",
+    features: [
+      "Full activity timeline: calls, WhatsApp, viewings, stage changes",
+      "Buyer profile: budget, areas, unit types, language, nationality",
+      "AI Co-pilot: lead score, 5-sec brief, next best action, draft message",
+      "Task management with overdue flags and due dates",
+      "Source trace: which campaign, which ad, which platform",
+      "15-minute SLA enforcement with red alerts on cold leads",
+    ],
+  },
+  {
+    id: "off-plan",
+    icon: Building2,
+    badge: "Flagship",
+    title: "Off-Plan Pillar",
+    headline: "The Smartest Off-Plan Toolkit in the UAE",
+    description:
+      "Every off-plan project your brokerage sells, on one intelligent screen — map view, grid view, live availability board, and an AI that tells your agents exactly which project to pitch. Full reservation lifecycle from inquiry to completed.",
+    features: [
+      "Project Catalogue: map + grid, brochures, unit breakdown, prices",
+      "AI Project Match: GPT-4o ranks projects against the buyer's brief",
+      "AI Compare: 2–4 projects side-by-side with AI verdict",
+      "Command Center: live KPIs, commission projections, availability",
+      "Reservation lifecycle: inquiry → holding → reserved → booked",
+      "Oqood + escrow capture, per-project document vault",
+    ],
+  },
+  {
+    id: "sourcing",
+    icon: Magnet,
+    title: "Lead Sourcing — 11 Connectors",
+    headline: "Every Lead. Every Platform. One Inbox.",
+    description:
+      "If a buyer is looking in the UAE, they're on Bayut, Property Finder, or Dubizzle — running a Google search, seeing your Meta ad, or browsing JamesEdition. WIYO connects natively to all of them. Every lead is validated, normalized, and deduplicated before entering your pipeline.",
+    features: [
+      "Bayut webhook · Property Finder webhook · Dubizzle webhook",
+      "Meta Lead Ads (auto-enriched via Graph API)",
+      "Google Ads lead forms · Google Forms · Google Sheets sync",
+      "JamesEdition luxury · Zapier · Custom Landing Pages",
+      "Your Company Website (WordPress + Webflow plugin)",
+      "30-day deduplication window — no duplicate contacts",
+    ],
+  },
+  {
     id: "whatsapp",
     icon: MessageCircle,
-    title: "Intelligent WhatsApp Engine",
-    subtitle: "Your always-on messaging command centre.",
+    badge: "AI",
+    title: "Intelligent WhatsApp",
+    headline: "WhatsApp, Finally Working for Your Business",
+    description:
+      "WhatsApp is how Dubai does business. But most agencies manage it from a personal phone, miss messages when agents are off, and have zero record of what was said. WIYO connects to WhatsApp Business API — giving your entire team a shared, managed, professional inbox.",
     features: [
-      "Real-time inbox — every WhatsApp message, instantly visible",
-      "Send images, documents, audio, video, contact cards & polls",
-      "Delivery receipts and read-status tracking per message",
-      "Simple QR code connection — no expensive WhatsApp API fees",
-      "Connection status always visible at a glance",
+      "Every WhatsApp message syncs to the lead's activity timeline",
+      "AI drafts the perfect reply based on lead history and stage",
+      "Pre-approved templates: first contact, viewing, follow-up, offer",
+      "No expensive per-message API fees hidden in your bill",
+      "Full audit trail: who sent what, when, and to which lead",
+      "One-tap approve and send from the CRM",
     ],
   },
   {
-    id: "ai",
-    icon: Sparkles,
-    badge: "AI-Powered",
-    title: "AI Lead Qualification Engine",
-    subtitle: "Qualifies leads while you sleep. Powered by GPT-4o.",
+    id: "listings",
+    icon: Home,
+    badge: "AI",
+    title: "Listings & Inventory",
+    headline: "Add a Listing in Minutes, Not Hours",
+    description:
+      "Uploading a listing used to mean manually typing every detail from a Title Deed — one typo and your DLD submission bounces. WIYO's Add Listing wizard changes that with GPT-4o Vision and an AI-generated description engine.",
     features: [
-      "GPT-4o & GPT-4o Mini — choose your AI power level",
-      "Custom AI personality — trained on your business, tone & rules",
-      "Qualifies leads BEFORE a human ever speaks to them",
-      "Runs 24/7 — never misses a hot lead, never takes a break",
-      "Full conversation handover when a human is needed",
-    ],
-  },
-  {
-    id: "livechat",
-    icon: Headphones,
-    title: "Live Chat Command Centre",
-    subtitle: "Every conversation, always in control.",
-    features: [
-      "Real-time live chat inbox — zero delay, fully synced",
-      "Quick-send templates — reply perfectly in a single tap",
-      "Full media sharing: images, audio, documents & video",
-      "Complete chat history and message thread visibility",
-      "Instant sound notifications for incoming messages",
-    ],
-  },
-  {
-    id: "templates",
-    icon: FileText,
-    title: "Smart Templates System",
-    subtitle: "6 message types. Say more, type less, convert more.",
-    features: [
-      "6 template types: Message, Media, Audio, Poll, Attachment, Contact",
-      "Dynamic variables: {{name}}, {{phone}}, {{date}}, {{company}}",
-      "Quick reply buttons — guide contacts to the right response",
-      "Up to 40 reusable templates per account",
-      "One-click send from live chat or AI bot replies",
-    ],
-  },
-  {
-    id: "contacts",
-    icon: Users,
-    title: "Contact & Group Intelligence",
-    subtitle: "Your entire audience, organised and segmented.",
-    features: [
-      "Full contact database with instant search and filtering",
-      "Group management — segment your audience any way you want",
-      "Import contacts in bulk — get running in minutes, not days",
-      "Export your data anytime — your contacts are always yours",
-      "Direct link from contacts into campaigns and live chat",
-      "Built to scale — from 100 contacts to 100,000",
+      "Drop the Title Deed PDF — GPT-4o Vision auto-fills every DLD field",
+      "Passport / Emirates ID OCR for RERA-compliant owner verification",
+      "AI-generated titles + descriptions tuned to vibe (luxury, family, etc.)",
+      "Live completion meter guides agents through all 9 steps",
+      "Status pipeline: draft → active → sold",
+      "Bulk upload for teams managing large portfolios",
     ],
   },
   {
     id: "marketing",
-    icon: BarChart3,
-    title: "Marketing Intelligence Hub",
-    subtitle: "Instagram + Meta Ads, unified.",
+    icon: Megaphone,
+    badge: "AI",
+    title: "Marketing Hub",
+    headline: "Your Agency's Marketing, Running on Autopilot",
+    description:
+      "Stop posting manually and hoping for the best. The WIYO Marketing Hub gives your team a professional broadcast and content engine — every new listing becomes a marketing opportunity automatically.",
     features: [
-      "Instagram analytics: followers, reach, impressions, profile views",
-      "Per-post performance — likes, comments, saves, shares, views",
-      "Reel tracking — plays, watch time, engagement rate",
-      "AI content analysis — know what content wins and why",
-      "Best day & hour to post — data-driven, not guesswork",
-      "Meta Ads spend, ROAS, CTR, CPC, CPM in one place",
+      "Schedule and publish across Meta, LinkedIn, and TikTok",
+      "AI content generation with your agency's brand voice",
+      "WhatsApp broadcast campaigns to segmented lead lists",
+      "Drip sequences that nurture cold leads over days or weeks",
+      "Content quality scoring before publish",
+      "Team approval workflow: agents draft, managers approve",
     ],
   },
   {
-    id: "realestate",
-    icon: Building2,
-    title: "Real Estate Operating System",
-    subtitle: "Built for UAE agents, brokers, developers.",
+    id: "ai-copilot",
+    icon: Brain,
+    badge: "GPT-4o",
+    title: "AI Co-pilot",
+    headline: "Every Agent Gets a Personal AI Strategist",
+    description:
+      "WIYO's AI Co-pilot is powered by GPT-4o and embedded directly in the platform — not a separate tab, not a chatbot, not an add-on. Native intelligence on every lead, every project, every action.",
     features: [
-      "Automate lead follow-ups across WhatsApp + Instagram",
-      "Qualify buyers before they waste your agents' time",
-      "Close more deals with fewer people on payroll",
-      "Built-in templates tuned for Dubai property workflows",
+      "Lead Score (0–100) — is this buyer serious?",
+      "5-Second Brief — everything an agent needs before calling",
+      "Next Best Action — call, WhatsApp, viewing, or project pitch",
+      "Draft Message — personalised per stage, channel, history",
+      "Off-Plan AI Match — buyer brief vs your catalogue",
+      "AI Compare — side-by-side project comparison with verdict",
     ],
   },
 ];
@@ -129,26 +155,26 @@ export default function Features() {
   return (
     <section id="features" className="section-y relative">
       <div className="container-x">
-        <div className="text-center max-w-[860px] mx-auto">
+        <div className="text-center max-w-[880px] mx-auto">
           <Reveal variant="fade">
             <Overline>The Modules</Overline>
           </Reveal>
           <Reveal>
             <h2 className="h2 mt-6">
-              Seven engines.{" "}
-              <span className="text-gradient">One operating system.</span>
+              Seven Engines.{" "}
+              <span className="text-gradient">One Operating System.</span>
             </h2>
           </Reveal>
           <Reveal variant="fade" delay={0.1}>
-            <p className="body-lg mt-6 max-w-[720px] mx-auto">
-              Each module is built to replace a tool, a process, or a hire
-              you'd otherwise need. Together, they run your business.
+            <p className="body-lg mt-6 max-w-[760px] mx-auto">
+              Most CRMs are built for generic sales teams, then awkwardly
+              adapted for real estate. WIYO was designed from day one for UAE
+              property professionals.
             </p>
           </Reveal>
         </div>
 
         <div className="mt-16 grid lg:grid-cols-12 gap-8 lg:gap-10">
-          {/* Sticky module nav */}
           <aside className="lg:col-span-4">
             <div className="lg:sticky lg:top-24 flex flex-col gap-1.5">
               {modules.map((mod, i) => {
@@ -159,7 +185,9 @@ export default function Features() {
                     key={mod.id}
                     onClick={() => setActive(i)}
                     className={`relative w-full text-left flex items-center gap-3.5 px-4 py-3.5 rounded-lg transition-all duration-200 ease-pomelo ${
-                      isActive ? "text-text-primary" : "text-text-secondary hover:text-text-primary"
+                      isActive
+                        ? "text-text-primary"
+                        : "text-text-secondary hover:text-text-primary"
                     }`}
                     style={
                       isActive
@@ -168,9 +196,7 @@ export default function Features() {
                             borderLeft: "3px solid var(--accent-primary)",
                             paddingLeft: "13px",
                           }
-                        : {
-                            borderLeft: "3px solid transparent",
-                          }
+                        : { borderLeft: "3px solid transparent" }
                     }
                   >
                     <span
@@ -201,7 +227,7 @@ export default function Features() {
                           border: "1px solid rgba(var(--spotlight),0.3)",
                         }}
                       >
-                        AI
+                        {mod.badge}
                       </span>
                     )}
                   </button>
@@ -210,7 +236,6 @@ export default function Features() {
             </div>
           </aside>
 
-          {/* Active panel */}
           <div className="lg:col-span-8">
             <AnimatePresence mode="wait">
               <motion.div
@@ -240,9 +265,9 @@ export default function Features() {
                 </div>
 
                 <h3 className="text-[28px] md:text-[34px] font-semibold tracking-tight leading-[1.05]">
-                  {m.title}
+                  {m.headline}
                 </h3>
-                <p className="body-lg mt-3">{m.subtitle}</p>
+                <p className="body-lg mt-4">{m.description}</p>
 
                 <div className="mt-8 grid sm:grid-cols-2 gap-x-6 gap-y-3">
                   {m.features.map((f, j) => (
@@ -261,7 +286,6 @@ export default function Features() {
                   ))}
                 </div>
 
-                {/* Decorative mock preview */}
                 <div
                   className="mt-10 rounded-2xl border p-1 overflow-hidden"
                   style={{ borderColor: "var(--border-subtle)" }}

@@ -1,6 +1,6 @@
 "use client";
 
-import { Clock, RefreshCw, DollarSign } from "lucide-react";
+import { Clock, LayoutGrid, Sparkles, Inbox } from "lucide-react";
 import { motion } from "framer-motion";
 import Overline from "../ui/Overline";
 import Spotlight from "../motion/Spotlight";
@@ -10,23 +10,30 @@ const items = [
   {
     n: "01",
     icon: Clock,
-    title: "Leads go cold in minutes — you reply in hours.",
+    title: "The 15-Minute Rule",
     body:
-      "78% of customers buy from the first business that responds. Every minute you wait is a customer your competitor just won.",
+      "78% of buyers sign with the first agent who responds. In Dubai's market, that window is 15 minutes — not hours. WIYO's pipeline puts a red SLA alert on every lead that hasn't been contacted in 15 minutes. No lead goes cold on your watch.",
   },
   {
     n: "02",
-    icon: RefreshCw,
-    title: "Your team is drowning in repetitive messages.",
+    icon: LayoutGrid,
+    title: "The Tool-Juggling Tax",
     body:
-      "Answering the same questions a hundred times a day. Burnt-out staff. Slow replies. Lost deals. There is a better way.",
+      "Your agents open Bayut. Then Property Finder. Then WhatsApp. Then your CRM. Then they update a spreadsheet. That's 45 minutes of admin before a single deal is worked. WIYO collapses all of it into one screen.",
   },
   {
     n: "03",
-    icon: DollarSign,
-    title: "You're leaving money on the table every single day.",
+    icon: Sparkles,
+    title: "Off-Plan is Won or Lost on Data",
     body:
-      "Without proactive follow-ups and 24/7 qualification, leads quietly slip away. You'll never even know which deals you lost.",
+      "When a buyer asks \"which project is best for me?\" — your agent shouldn't be guessing. WIYO's AI scans every off-plan project in your catalogue, scores it against the buyer's budget and brief, and tells your agent exactly what to pitch. In seconds.",
+  },
+  {
+    n: "04",
+    icon: Inbox,
+    title: "Leads That Vanish Without a Trace",
+    body:
+      "Leads from Meta Ads land in one place. Property Finder leads in another. WhatsApp leads in a different chat. WIYO pulls from 11 sources — Bayut, Property Finder, Dubizzle, Meta, Google, JamesEdition, and more — and lands them all in one pipeline. Zero lead leakage.",
   },
 ];
 
@@ -35,45 +42,54 @@ export default function PainPoints() {
     <Spotlight radius={900}>
       <section className="section-y relative">
         <div className="container-x">
-          <div className="text-center max-w-[820px] mx-auto">
+          <div className="text-center max-w-[860px] mx-auto">
             <Reveal variant="fade">
-              <Overline>The Hard Truth</Overline>
+              <Overline>The Problem</Overline>
             </Reveal>
             <Reveal>
               <h2 className="h2 mt-6">
-                Your competitors are{" "}
-                <span className="text-gradient">moving faster.</span> Are you?
+                UAE Real Estate Runs on{" "}
+                <span className="text-gradient">6 Separate Tools.</span>
+                <br className="hidden sm:block" /> That Ends Now.
               </h2>
             </Reveal>
             <Reveal variant="fade" delay={0.1}>
-              <p className="body-lg mt-6 max-w-[640px] mx-auto">
-                Every day without the right tools is another day your leads, your
-                customers, and your revenue slip through the cracks.
+              <p className="body-lg mt-6 max-w-[720px] mx-auto">
+                The average Dubai brokerage pays for Bayut leads, a Property
+                Finder subscription, a WhatsApp tool, a CRM, a marketing
+                platform, and something just to handle invoices. That's six
+                passwords, six support teams, six monthly bills — and six
+                places for your leads to fall through the cracks.{" "}
+                <span className="text-text-primary font-medium">
+                  WIYO replaces all of them.
+                </span>
               </p>
             </Reveal>
           </div>
 
-          <StaggerGroup className="mt-16 grid md:grid-cols-3 gap-5">
+          <StaggerGroup className="mt-16 grid md:grid-cols-2 gap-5">
             {items.map((item, i) => {
               const Icon = item.icon;
               return (
                 <motion.div
                   key={i}
                   variants={slideInVariant}
-                  className="card group flex flex-col gap-6 min-h-[340px]"
+                  className="card group flex flex-col gap-5 min-h-[260px]"
                 >
                   <div className="flex items-start justify-between">
                     <div className="icon-square">
                       <Icon size={20} strokeWidth={1.6} />
                     </div>
                     <span
-                      className="text-[56px] font-bold leading-none tracking-tight text-gradient mono"
+                      className="text-[44px] font-bold leading-none tracking-tight text-gradient mono"
                       style={{ fontFeatureSettings: '"tnum"' }}
                     >
                       {item.n}
                     </span>
                   </div>
-                  <h3 className="h3 leading-tight">{item.title}</h3>
+                  <h3 className="text-[22px] md:text-[24px] font-semibold tracking-tight leading-tight">
+                    {item.title}
+                  </h3>
                   <p className="body-md">{item.body}</p>
                 </motion.div>
               );

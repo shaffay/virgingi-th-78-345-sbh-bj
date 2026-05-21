@@ -5,30 +5,33 @@ import StatCounter from "../motion/StatCounter";
 import { Reveal } from "../motion/Reveal";
 
 const stats = [
-  { value: 7, label: "Core Modules" },
-  { value: 40, suffix: "+", label: "Built-in Capabilities" },
-  { value: 24, display: "24/7", label: "Always Running" },
-  { value: 0, label: "Extra Staff Needed" },
+  { value: 7, label: "Core Modules", sub: "One operating system" },
+  { value: 11, label: "Native Lead Sources", sub: "Bayut, PF, Meta, Google & more" },
+  { value: 15, display: "15 min", label: "SLA Enforcement", sub: "No lead goes cold" },
+  { value: 2650, display: "AED 2,650", label: "Starting Price", sub: "Per month, all inclusive" },
+  { value: 4, display: "GPT-4o", label: "AI Engine", sub: "Native intelligence" },
+  { value: 0, display: "UAE 🇦🇪", label: "Where We're Built", sub: "And where your data stays" },
 ];
 
 export default function PlatformStats() {
   return (
     <section className="section-y relative">
       <div className="container-x">
-        <div className="text-center max-w-[860px] mx-auto">
+        <div className="text-center max-w-[880px] mx-auto">
           <Reveal variant="fade">
-            <Overline>Inside WIYO</Overline>
+            <Overline>By The Numbers</Overline>
           </Reveal>
           <Reveal>
             <h2 className="h2 mt-6">
-              One platform. <span className="text-gradient">Infinite leverage.</span>
+              One platform.{" "}
+              <span className="text-gradient">Infinite leverage.</span>
             </h2>
           </Reveal>
           <Reveal variant="fade" delay={0.1}>
             <p className="body-lg mt-6 max-w-[720px] mx-auto">
-              WIYO isn't a single tool. It's 7 complete modules, 40+ capabilities,
-              all working together — so your business operates at full capacity
-              without an army of employees.
+              WIYO isn't a single tool. It's seven engines, eleven native lead
+              sources, and a real-time SLA — all running together for UAE real
+              estate agencies.
             </p>
           </Reveal>
         </div>
@@ -59,30 +62,42 @@ export default function PlatformStats() {
               />
             </div>
 
-            <div className="relative grid grid-cols-2 md:grid-cols-4">
-              {stats.map((s, i) => (
-                <div
-                  key={i}
-                  className={`p-10 md:p-12 text-center ${
-                    i < stats.length - 1 ? "md:border-r" : ""
-                  } ${i < 2 ? "border-b md:border-b-0" : ""}`}
-                  style={{ borderColor: "var(--border-subtle)" }}
-                >
+            <div className="relative grid grid-cols-2 md:grid-cols-3">
+              {stats.map((s, i) => {
+                const isLastCol = (i + 1) % 3 === 0;
+                const isLastRow = i >= stats.length - 3;
+                return (
                   <div
-                    className="text-[64px] md:text-[88px] font-bold leading-none tracking-tight text-gradient mono"
-                    style={{ fontFeatureSettings: '"tnum"' }}
+                    key={i}
+                    className="p-8 md:p-10 text-center"
+                    style={{
+                      borderRight: !isLastCol
+                        ? "1px solid var(--border-subtle)"
+                        : "none",
+                      borderBottom: !isLastRow
+                        ? "1px solid var(--border-subtle)"
+                        : "none",
+                    }}
                   >
-                    {s.display ? (
-                      <span>{s.display}</span>
-                    ) : (
-                      <StatCounter to={s.value} suffix={s.suffix} />
-                    )}
+                    <div
+                      className="text-[40px] md:text-[56px] font-bold leading-none tracking-tight text-gradient mono"
+                      style={{ fontFeatureSettings: '"tnum"' }}
+                    >
+                      {s.display ? (
+                        <span>{s.display}</span>
+                      ) : (
+                        <StatCounter to={s.value} />
+                      )}
+                    </div>
+                    <p className="mt-4 caption uppercase tracking-[0.16em] font-semibold">
+                      {s.label}
+                    </p>
+                    <p className="mt-2 text-[12.5px] text-text-muted">
+                      {s.sub}
+                    </p>
                   </div>
-                  <p className="mt-4 caption uppercase tracking-[0.18em] font-semibold">
-                    {s.label}
-                  </p>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </Reveal>

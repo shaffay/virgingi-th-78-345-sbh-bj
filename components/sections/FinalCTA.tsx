@@ -1,84 +1,248 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
+import { useState } from "react";
+import { ArrowRight, Check } from "lucide-react";
 import Overline from "../ui/Overline";
 import { Reveal, StaggerGroup, slideInVariant } from "../motion/Reveal";
 import { motion } from "framer-motion";
 
 export default function FinalCTA() {
+  const [submitted, setSubmitted] = useState(false);
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    agency: "",
+    agents: "",
+    challenge: "",
+  });
+
+  function onSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!form.email || !form.name) return;
+    setSubmitted(true);
+  }
+
   return (
     <section id="cta" className="section-y relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none" aria-hidden>
         <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] rounded-full"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[900px] rounded-full"
           style={{
             background:
-              "radial-gradient(closest-side, rgba(var(--spotlight),0.28), transparent 70%)",
+              "radial-gradient(closest-side, rgba(var(--spotlight),0.22), transparent 70%)",
             filter: "blur(60px)",
             animation: "spotlight-pulse 4s ease-in-out infinite alternate",
-          }}
-        />
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full"
-          style={{
-            background:
-              "radial-gradient(closest-side, rgba(var(--spotlight),0.18), transparent)",
-            filter: "blur(30px)",
           }}
         />
       </div>
 
       <div className="container-x relative">
-        <StaggerGroup className="text-center max-w-[920px] mx-auto">
-          <motion.div variants={slideInVariant}>
-            <Overline>Last call</Overline>
-          </motion.div>
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+          <StaggerGroup className="lg:col-span-6">
+            <motion.div variants={slideInVariant}>
+              <Overline>Book a Live Demo</Overline>
+            </motion.div>
 
-          <motion.h2 variants={slideInVariant} className="h2 mt-7">
-            This is what your competitors{" "}
-            <span className="text-gradient">don't have yet.</span>
-          </motion.h2>
+            <motion.h2 variants={slideInVariant} className="h2 mt-7">
+              See WIYO in action —{" "}
+              <span className="text-gradient">in 30 minutes.</span>
+            </motion.h2>
 
-          <motion.p
-            variants={slideInVariant}
-            className="body-lg mt-7 max-w-[640px] mx-auto"
-          >
-            And once 100 founders lock in — the price goes up. Forever.
-          </motion.p>
+            <motion.p
+              variants={slideInVariant}
+              className="body-lg mt-6 max-w-[560px]"
+            >
+              We'll show you how Bayut, Property Finder, and Dubizzle leads
+              flow into your pipeline live — and how the AI Co-pilot scores,
+              briefs, and drafts replies on every one of them.
+            </motion.p>
 
-          <motion.p
-            variants={slideInVariant}
-            className="mt-3 text-[20px] md:text-[24px] font-semibold tracking-tight text-text-primary"
-          >
-            Don't be the one who waited.
-          </motion.p>
+            <motion.ul
+              variants={slideInVariant}
+              className="mt-8 flex flex-col gap-3 max-w-[480px]"
+            >
+              {[
+                "30-minute personalised walkthrough",
+                "Live data flow from your existing portals",
+                "Off-Plan AI Match on real buyer briefs",
+                "Custom pricing for your agency size",
+              ].map((b) => (
+                <li
+                  key={b}
+                  className="flex items-start gap-3 text-[15px] text-text-secondary"
+                >
+                  <span
+                    className="mt-0.5 w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
+                    style={{
+                      background: "var(--cta-gradient)",
+                      color: "white",
+                      boxShadow: "0 0 10px rgba(var(--spotlight),0.4)",
+                    }}
+                  >
+                    <Check size={11} strokeWidth={3} />
+                  </span>
+                  {b}
+                </li>
+              ))}
+            </motion.ul>
 
-          <motion.div
-            variants={slideInVariant}
-            className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
-          >
-            <a href="#pricing" className="btn-primary btn-primary-lg">
-              Get Early Access — 60% Off
-              <ArrowRight size={18} strokeWidth={1.8} />
-            </a>
-            <a href="#faq" className="btn-ghost">
-              Read the FAQ
-            </a>
-          </motion.div>
+            <motion.div
+              variants={slideInVariant}
+              className="mt-10 flex flex-wrap gap-2"
+            >
+              <span className="pill">
+                <span className="dot" />
+                Same-day onboarding
+              </span>
+              <span className="pill">No commitment</span>
+              <span className="pill">UAE 🇦🇪</span>
+            </motion.div>
+          </StaggerGroup>
 
-          <motion.div
-            variants={slideInVariant}
-            className="mt-10 flex flex-wrap justify-center gap-3"
-          >
-            <span className="pill">
-              <span className="dot" />
-              14 of 100 spots left
-            </span>
-            <span className="pill">No charge until launch</span>
-            <span className="pill">Cancel anytime</span>
-          </motion.div>
-        </StaggerGroup>
+          <Reveal variant="fade" delay={0.15}>
+            <div
+              className="lg:col-span-6 card p-7 md:p-9"
+              style={{ minHeight: "100%" }}
+            >
+              {submitted ? (
+                <div className="flex flex-col items-center text-center py-10">
+                  <div
+                    className="w-14 h-14 rounded-full flex items-center justify-center"
+                    style={{
+                      background: "var(--cta-gradient)",
+                      boxShadow: "0 0 30px rgba(var(--spotlight),0.5)",
+                    }}
+                  >
+                    <Check size={26} strokeWidth={2.5} color="white" />
+                  </div>
+                  <h3 className="mt-5 text-[22px] font-semibold tracking-tight">
+                    Demo request received.
+                  </h3>
+                  <p className="body-md mt-3 max-w-[360px]">
+                    Our team will reach out within one business day to
+                    schedule your live walkthrough.
+                  </p>
+                </div>
+              ) : (
+                <form onSubmit={onSubmit} className="flex flex-col gap-4">
+                  <h3 className="text-[22px] font-semibold tracking-tight">
+                    Book Your Live Demo
+                  </h3>
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <Field
+                      label="Name"
+                      value={form.name}
+                      required
+                      onChange={(v) => setForm({ ...form, name: v })}
+                    />
+                    <Field
+                      label="Email"
+                      type="email"
+                      value={form.email}
+                      required
+                      onChange={(v) => setForm({ ...form, email: v })}
+                    />
+                    <Field
+                      label="Phone (UAE)"
+                      value={form.phone}
+                      placeholder="+971 ..."
+                      onChange={(v) => setForm({ ...form, phone: v })}
+                    />
+                    <Field
+                      label="Agency Name"
+                      value={form.agency}
+                      onChange={(v) => setForm({ ...form, agency: v })}
+                    />
+                    <Field
+                      label="Number of Agents"
+                      value={form.agents}
+                      placeholder="e.g. 8"
+                      onChange={(v) => setForm({ ...form, agents: v })}
+                    />
+                  </div>
+                  <Field
+                    label="What's your biggest challenge right now? (optional)"
+                    value={form.challenge}
+                    textarea
+                    onChange={(v) => setForm({ ...form, challenge: v })}
+                  />
+                  <button
+                    type="submit"
+                    className="btn-primary justify-center w-full mt-2"
+                  >
+                    Book My Demo
+                    <ArrowRight size={16} strokeWidth={1.8} />
+                  </button>
+                  <p
+                    className="caption text-center"
+                    style={{ color: "var(--text-muted)" }}
+                  >
+                    No credit card required · We'll reach out within one
+                    business day
+                  </p>
+                </form>
+              )}
+            </div>
+          </Reveal>
+        </div>
       </div>
     </section>
+  );
+}
+
+function Field({
+  label,
+  value,
+  onChange,
+  required,
+  type,
+  placeholder,
+  textarea,
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  required?: boolean;
+  type?: string;
+  placeholder?: string;
+  textarea?: boolean;
+}) {
+  return (
+    <label className="flex flex-col gap-1.5">
+      <span className="caption uppercase tracking-[0.14em] font-semibold">
+        {label}
+        {required && (
+          <span style={{ color: "var(--text-accent)" }}> *</span>
+        )}
+      </span>
+      {textarea ? (
+        <textarea
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          placeholder={placeholder}
+          required={required}
+          rows={3}
+          className="px-4 py-3 rounded-lg text-[14px] text-text-primary outline-none transition-colors resize-none"
+          style={{
+            background: "var(--bg-subtle)",
+            border: "1px solid var(--border-subtle)",
+          }}
+        />
+      ) : (
+        <input
+          type={type ?? "text"}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          placeholder={placeholder}
+          required={required}
+          className="px-4 py-3 rounded-lg text-[14px] text-text-primary outline-none transition-colors"
+          style={{
+            background: "var(--bg-subtle)",
+            border: "1px solid var(--border-subtle)",
+          }}
+        />
+      )}
+    </label>
   );
 }

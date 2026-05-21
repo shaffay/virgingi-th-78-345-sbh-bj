@@ -1,9 +1,24 @@
 "use client";
 
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronDown, Check } from "lucide-react";
 import Spotlight from "../motion/Spotlight";
 import Particles from "../motion/Particles";
 import Overline from "../ui/Overline";
+
+const proofPoints = [
+  "Bayut + Property Finder + Dubizzle, connected natively",
+  "GPT-4o AI built in — not bolted on",
+  "Off-plan & secondary inventory in one view",
+  "Built in UAE 🇦🇪 · Data stays in UAE 🇦🇪",
+];
+
+const trustBadges = [
+  "Dubai Real Estate",
+  "UAE-Built",
+  "GPT-4o Powered",
+  "RERA-Aware",
+  "WhatsApp API Certified",
+];
 
 export default function Hero() {
   return (
@@ -12,13 +27,9 @@ export default function Hero() {
         id="top"
         className="relative min-h-[100svh] flex items-center justify-center overflow-hidden pt-28 pb-24"
       >
-        {/* Layer 1: base solid (inherited) */}
-        {/* Layer 2: radial spotlight + breathing glow */}
         <div className="hero-glow" />
-        {/* Layer 3: grid pattern */}
         <div className="grid-pattern" />
 
-        {/* Layer 4: floating card shapes */}
         <div
           aria-hidden
           className="floating-shape hidden md:block"
@@ -57,14 +68,13 @@ export default function Hero() {
           }}
         />
 
-        {/* Layer 5: particles */}
         <Particles count={26} />
 
         <div className="container-x relative z-10 text-center flex flex-col items-center">
           <div className="opacity-0 animate-[fade-in-up_0.35s_ease-out_both]">
             <Overline>
               <span className="mono normal-case tracking-[0.12em]">
-                Launching Soon · Only 100 Founder Spots
+                The Real Estate Operating System · UAE
               </span>
             </Overline>
           </div>
@@ -76,79 +86,83 @@ export default function Hero() {
               animationDelay: "0.15s",
             }}
           >
-            Business Communication.
+            The Real Estate Operating System
             <br />
-            <span className="text-gradient">Reimagined</span>{" "}
-            <span>for Those Who Won't Settle.</span>
+            <span className="text-gradient">Built for the UAE.</span>
           </h1>
 
           <p
-            className="body-lg max-w-[680px] mt-7 opacity-0"
+            className="body-lg max-w-[760px] mt-7 opacity-0"
             style={{
               animation: "fade-in-up 0.35s ease-out both",
               animationDelay: "0.45s",
             }}
           >
-            Decades of traditional methods. Expensive CRMs with no clear ROI.
-            Teams doing what software should handle. WIYO is here — so your
-            people can finally rest, and your business never stops.
+            Stop juggling Bayut, Property Finder, WhatsApp, your CRM, and your
+            marketing tools as five separate bills. WIYO is one login, one
+            platform, one source of truth — powered by AI that never sleeps.
           </p>
-
-          <div
-            className="mt-7 opacity-0"
-            style={{
-              animation: "fade-in-up 0.35s ease-out both",
-              animationDelay: "0.6s",
-            }}
-          >
-            <span className="pill">
-              <span className="dot" />
-              <span className="mono text-[12.5px] tracking-[0.04em]">
-                14 / 100 Founder spots remaining
-              </span>
-            </span>
-          </div>
 
           <div
             className="mt-9 flex flex-col sm:flex-row items-center gap-4 opacity-0"
             style={{
               animation: "fade-in-up 0.35s ease-out both",
-              animationDelay: "0.75s",
+              animationDelay: "0.6s",
             }}
           >
-            <a href="#pricing" className="btn-primary btn-primary-lg">
-              Claim Your Founder Discount
+            <a href="#cta" className="btn-primary btn-primary-lg">
+              Book a Live Demo
               <ArrowRight size={17} strokeWidth={1.8} />
             </a>
             <a href="#features" className="btn-ghost">
-              See What's Coming
+              See How It Works
               <ChevronDown size={16} strokeWidth={1.8} />
             </a>
           </div>
 
+          <ul
+            className="mt-10 grid sm:grid-cols-2 gap-x-8 gap-y-2.5 text-left max-w-[700px] opacity-0"
+            style={{
+              animation: "fade-in-up 0.35s ease-out both",
+              animationDelay: "0.75s",
+            }}
+          >
+            {proofPoints.map((p) => (
+              <li
+                key={p}
+                className="flex items-start gap-2.5 text-[14px] text-text-secondary"
+              >
+                <span
+                  className="mt-0.5 w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0"
+                  style={{
+                    background: "var(--cta-gradient)",
+                    color: "white",
+                    boxShadow: "0 0 10px rgba(var(--spotlight),0.4)",
+                  }}
+                >
+                  <Check size={9} strokeWidth={3} />
+                </span>
+                {p}
+              </li>
+            ))}
+          </ul>
+
           <div
-            className="mt-14 flex flex-wrap justify-center gap-3 opacity-0"
+            className="mt-12 flex flex-wrap justify-center gap-2 opacity-0"
             style={{
               animation: "fade-in-up 0.35s ease-out both",
               animationDelay: "0.9s",
             }}
           >
-            <span className="pill">
-              <span className="dot" />
-              Building in UAE 🇦🇪
-            </span>
-            <span className="pill">
-              <span className="dot" />
-              AI-Powered
-            </span>
-            <span className="pill">
-              <span className="dot" />
-              Launching 2026
-            </span>
+            {trustBadges.map((b) => (
+              <span key={b} className="pill">
+                <span className="dot" />
+                {b}
+              </span>
+            ))}
           </div>
         </div>
 
-        {/* bleed bottom */}
         <div
           aria-hidden
           className="absolute inset-x-0 bottom-0 h-24 pointer-events-none"
@@ -160,7 +174,10 @@ export default function Hero() {
 
         <div
           className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center text-text-muted text-[11px] opacity-0"
-          style={{ animation: "fade-in-up 0.35s ease-out both", animationDelay: "1.4s" }}
+          style={{
+            animation: "fade-in-up 0.35s ease-out both",
+            animationDelay: "1.4s",
+          }}
         >
           <span className="uppercase tracking-[0.2em] mb-2">Scroll</span>
           <ChevronDown size={14} className="animate-bounce" />

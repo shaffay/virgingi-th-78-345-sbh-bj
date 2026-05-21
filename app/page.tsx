@@ -2,15 +2,19 @@ import Navbar from "@/components/sections/Navbar";
 import Hero from "@/components/sections/Hero";
 import LogoMarquee from "@/components/sections/LogoMarquee";
 import PainPoints from "@/components/sections/PainPoints";
-import Solution from "@/components/sections/Solution";
-import PlatformStats from "@/components/sections/PlatformStats";
+import HowItWorks from "@/components/sections/HowItWorks";
 import Features from "@/components/sections/Features";
-import SocialProof from "@/components/sections/SocialProof";
+import Comparison from "@/components/sections/Comparison";
+import PlatformStats from "@/components/sections/PlatformStats";
+import ForEveryRole from "@/components/sections/ForEveryRole";
 import FounderStory from "@/components/sections/FounderStory";
+import SocialProof from "@/components/sections/SocialProof";
 import Pricing from "@/components/sections/Pricing";
 import FAQ from "@/components/sections/FAQ";
 import FinalCTA from "@/components/sections/FinalCTA";
 import Footer from "@/components/sections/Footer";
+import WhatsAppButton from "@/components/cro/WhatsAppButton";
+import MobileCTABar from "@/components/cro/MobileCTABar";
 
 export default function Home() {
   return (
@@ -19,15 +23,19 @@ export default function Home() {
       <Hero />
       <LogoMarquee />
       <PainPoints />
-      <Solution />
-      <PlatformStats />
+      <HowItWorks />
       <Features />
-      <SocialProof />
+      <Comparison />
+      <PlatformStats />
+      <ForEveryRole />
       <FounderStory />
+      <SocialProof />
       <Pricing />
       <FAQ />
       <FinalCTA />
       <Footer />
+      <WhatsAppButton />
+      <MobileCTABar />
     </main>
   );
 }

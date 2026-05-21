@@ -1,6 +1,14 @@
 "use client";
 
-import { Check, ArrowRight, Building2, Users, Sparkles, Megaphone, type LucideIcon } from "lucide-react";
+import {
+  Check,
+  ArrowRight,
+  User,
+  Users,
+  Rocket,
+  Building,
+  type LucideIcon,
+} from "lucide-react";
 import { motion } from "framer-motion";
 import Overline from "../ui/Overline";
 import { Reveal, StaggerGroup, slideInVariant } from "../motion/Reveal";
@@ -10,79 +18,105 @@ interface Plan {
   tag: string;
   icon: LucideIcon;
   price: string;
+  originalPrice?: string;
+  discount?: string;
   unit: string;
-  setupFee: string;
+  description: string;
   features: string[];
+  perfectFor: string;
   cta: string;
   highlight?: boolean;
+  badge?: string;
 }
 
-const corePlans: Plan[] = [
+const plans: Plan[] = [
   {
-    name: "Company Base Account",
-    tag: "Core Revenue Engine",
-    icon: Building2,
+    name: "WIYO SOLO",
+    tag: "Early-bird",
+    icon: User,
     price: "AED 1,000",
-    unit: "per company / month",
-    setupFee: "+ AED 2,500 one-time setup",
-    highlight: true,
+    unit: "per month",
+    description: "For the independent agent who wants a professional edge.",
     features: [
-      "Full platform access for the agency",
-      "WhatsApp AI automation included",
-      "Unified Inbox across all channels",
-      "Basic CRM and pipeline management",
+      "1 Agent Login",
+      "Unlimited Leads",
+      "Unlimited Listings & Inventory",
+      "CRM Pipeline (all 7 stages)",
+      "Off-Plan Project Access",
+      "AI Lead Scoring & Co-pilot",
+      "WhatsApp Activity Sync",
     ],
-    cta: "Get Started",
+    perfectFor:
+      "Freelance agents and solo operators in Dubai and across the UAE.",
+    cta: "Start Solo",
   },
   {
-    name: "Agent Seat",
-    tag: "Per-Agent License",
+    name: "WIYO STARTER",
+    tag: "Most Common",
     icon: Users,
-    price: "AED 100",
-    unit: "per agent / month",
-    setupFee: "+ AED 250 setup per seat",
+    price: "AED 2,650",
+    originalPrice: "AED 3,500",
+    unit: "per month",
+    description: "For growing teams ready to replace the tools stack.",
     features: [
-      "Individual agent login and pipeline",
-      "Personal WhatsApp AI automation access",
-      "Lead assignment and tracking",
-      "Scales with every new hire",
+      "5 Agent Seats",
+      "Unlimited Leads & Inventory",
+      "Full CRM Pipeline + 15-min SLA",
+      "11 Lead Source Connectors",
+      "Off-Plan Pillar (AI Match + Compare)",
+      "Intelligent WhatsApp Engine",
+      "AI Co-pilot on every lead",
+      "Listings with Title Deed OCR",
+      "1 Team Workspace",
     ],
-    cta: "Add Seats",
-  },
-];
-
-const addOnPlans: Plan[] = [
-  {
-    name: "Sourcing AI",
-    tag: "Add-On",
-    icon: Sparkles,
-    price: "AED 800",
-    unit: "per company / month",
-    setupFee: "No setup fee",
-    features: [
-      "AI lead scoring and prioritization",
-      "Property-to-buyer matching engine",
-      "Predictive deal-close probability",
-      "Advanced deduplication and enrichment",
-      "Ideal for agencies with 10+ active leads daily",
-    ],
-    cta: "Add to Plan",
+    perfectFor: "Small-to-mid Dubai and UAE brokerages (2–5 agents).",
+    cta: "Book a Demo",
   },
   {
-    name: "Marketing Hub",
-    tag: "Add-On",
-    icon: Megaphone,
-    price: "AED 3,000",
-    unit: "per company / month",
-    setupFee: "No setup fee",
+    name: "WIYO PRO",
+    tag: "Best Value",
+    icon: Rocket,
+    price: "AED 5,500",
+    originalPrice: "AED 7,500",
+    discount: "−27% Limited Time",
+    unit: "per month",
+    description: "For established agencies scaling aggressively.",
     features: [
-      "AI content generation with brand voice",
-      "Multi-platform post scheduling",
-      "Content quality scoring before publish",
-      "Team approval workflow",
-      "Ideal for agencies running social media actively",
+      "15 Agent Seats",
+      "Everything in Starter, plus:",
+      "Marketing Hub (broadcast, drip, social)",
+      "AI Content Generation (brand voice)",
+      "Advanced Campaign Routing",
+      "Priority Support",
+      "Team Performance Analytics",
     ],
-    cta: "Add to Plan",
+    perfectFor:
+      "Mid-to-large Dubai agencies with active marketing and 5–15 agents.",
+    cta: "Book a Demo",
+    highlight: true,
+    badge: "Most Popular",
+  },
+  {
+    name: "WIYO ENTERPRISE",
+    tag: "For market leaders",
+    icon: Building,
+    price: "AED 9,900",
+    originalPrice: "AED 15,000",
+    discount: "−34%",
+    unit: "per month",
+    description: "For the agencies that dominate their market.",
+    features: [
+      "50 Agent Seats",
+      "Everything in Pro, plus:",
+      "Multi-team workspaces",
+      "Dedicated Onboarding Manager",
+      "Custom SLA agreements",
+      "White-glove integration support",
+      "API access",
+    ],
+    perfectFor:
+      "Large brokerages and developer sales teams across Dubai, Abu Dhabi, and the UAE.",
+    cta: "Talk to Sales",
   },
 ];
 
@@ -96,71 +130,83 @@ function PlanCard({ plan }: { plan: Plan }) {
       }`}
       style={plan.highlight ? { padding: "32px" } : undefined}
     >
-      {plan.highlight && (
-        <div className="absolute -top-3 left-6">
+      {plan.badge && (
+        <div className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap">
           <span
-            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-pill text-white text-[10px] uppercase tracking-[0.18em] font-bold mono"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-pill text-white text-[10.5px] uppercase tracking-[0.18em] font-bold mono"
             style={{
               background: "var(--cta-gradient)",
               boxShadow: "0 0 24px rgba(var(--spotlight),0.55)",
             }}
           >
-            Recommended
+            {plan.badge}
           </span>
         </div>
       )}
 
       <div className="relative flex flex-col h-full">
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <div className="flex items-center gap-2.5">
-              <span
-                className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
-                style={{
-                  background: plan.highlight
-                    ? "var(--cta-gradient)"
-                    : "var(--bg-subtle)",
-                  color: plan.highlight ? "white" : "var(--text-accent)",
-                  border: plan.highlight
-                    ? "none"
-                    : "1px solid var(--border-subtle)",
-                  boxShadow: plan.highlight
-                    ? "0 0 18px rgba(var(--spotlight),0.45)"
-                    : "none",
-                }}
-              >
-                <Icon size={17} strokeWidth={1.8} />
-              </span>
-              <span
-                className="caption uppercase tracking-[0.16em] font-semibold mono"
-                style={{ color: "var(--text-muted)" }}
-              >
-                {plan.tag}
-              </span>
-            </div>
-            <h3 className="mt-4 text-[22px] font-semibold tracking-tight text-text-primary">
-              {plan.name}
-            </h3>
-          </div>
+        <div className="flex items-center gap-2.5">
+          <span
+            className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
+            style={{
+              background: plan.highlight
+                ? "var(--cta-gradient)"
+                : "var(--bg-subtle)",
+              color: plan.highlight ? "white" : "var(--text-accent)",
+              border: plan.highlight ? "none" : "1px solid var(--border-subtle)",
+              boxShadow: plan.highlight
+                ? "0 0 18px rgba(var(--spotlight),0.45)"
+                : "none",
+            }}
+          >
+            <Icon size={16} strokeWidth={1.8} />
+          </span>
+          <span
+            className="caption uppercase tracking-[0.16em] font-semibold mono"
+            style={{ color: "var(--text-muted)" }}
+          >
+            {plan.tag}
+          </span>
         </div>
 
-        <div className="mt-6">
+        <h3 className="mt-4 text-[20px] font-semibold tracking-tight text-text-primary">
+          {plan.name}
+        </h3>
+        <p className="caption mt-1.5">{plan.description}</p>
+
+        <div className="mt-5">
+          {plan.originalPrice && (
+            <div className="flex items-center gap-2 mb-1">
+              <span
+                className="text-[14px] line-through mono"
+                style={{ color: "var(--text-muted)" }}
+              >
+                {plan.originalPrice}
+              </span>
+              {plan.discount && (
+                <span
+                  className="text-[10.5px] uppercase tracking-[0.14em] font-bold mono px-2 py-0.5 rounded-pill"
+                  style={{
+                    background: "rgba(var(--spotlight),0.15)",
+                    color: "var(--text-accent)",
+                    border: "1px solid rgba(var(--spotlight),0.3)",
+                  }}
+                >
+                  {plan.discount}
+                </span>
+              )}
+            </div>
+          )}
           <div className="flex items-baseline gap-2">
-            <span className="text-[36px] font-semibold tracking-tight text-text-primary">
+            <span className="text-[32px] font-semibold tracking-tight text-text-primary">
               {plan.price}
             </span>
           </div>
           <p className="caption mt-1">{plan.unit}</p>
-          <p
-            className="caption mt-2 mono"
-            style={{ color: "var(--text-muted)" }}
-          >
-            {plan.setupFee}
-          </p>
         </div>
 
         <div
-          className="my-7 h-px"
+          className="my-6 h-px"
           style={{ background: "var(--border-subtle)" }}
         />
 
@@ -168,7 +214,7 @@ function PlanCard({ plan }: { plan: Plan }) {
           {plan.features.map((f, j) => (
             <li
               key={j}
-              className="flex items-start gap-3 text-[14.5px] text-text-primary"
+              className="flex items-start gap-3 text-[14px] text-text-primary"
             >
               <span
                 className="mt-0.5 w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0"
@@ -185,7 +231,19 @@ function PlanCard({ plan }: { plan: Plan }) {
           ))}
         </ul>
 
-        <div className="mt-8">
+        <div
+          className="mt-6 pt-5"
+          style={{ borderTop: "1px solid var(--border-subtle)" }}
+        >
+          <p
+            className="caption mb-5"
+            style={{ color: "var(--text-muted)" }}
+          >
+            <span className="font-semibold" style={{ color: "var(--text-secondary)" }}>
+              Perfect for:
+            </span>{" "}
+            {plan.perfectFor}
+          </p>
           <a
             href="#cta"
             className={
@@ -200,27 +258,6 @@ function PlanCard({ plan }: { plan: Plan }) {
         </div>
       </div>
     </motion.div>
-  );
-}
-
-function SectionLabel({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="flex items-center gap-4 mb-8">
-      <div
-        className="h-px flex-1"
-        style={{ background: "var(--border-subtle)" }}
-      />
-      <span
-        className="caption uppercase tracking-[0.22em] font-semibold mono"
-        style={{ color: "var(--text-muted)" }}
-      >
-        {children}
-      </span>
-      <div
-        className="h-px flex-1"
-        style={{ background: "var(--border-subtle)" }}
-      />
-    </div>
   );
 }
 
@@ -239,53 +276,35 @@ export default function Pricing() {
       </div>
 
       <div className="container-x relative">
-        <div className="text-center max-w-[860px] mx-auto">
+        <div className="text-center max-w-[880px] mx-auto">
           <Reveal variant="fade">
             <Overline>Pricing</Overline>
           </Reveal>
           <Reveal>
             <h2 className="h2 mt-6">
-              Built for scale.{" "}
-              <span className="text-gradient">Priced for growth.</span>
+              Transparent Pricing.{" "}
+              <span className="text-gradient">
+                Built for UAE Agencies of Every Size.
+              </span>
             </h2>
           </Reveal>
           <Reveal variant="fade" delay={0.1}>
             <p className="body-lg mt-6 max-w-[680px] mx-auto">
-              A modular platform — the core engine plus premium add-ons.
-              <br className="hidden sm:block" />
-              Pay only for what your agency actually needs.
+              No hidden fees. No per-lead charges. No surprise API bills. Pay
+              for your plan — and your entire team runs on WIYO.
             </p>
           </Reveal>
         </div>
 
-        {/* Core Platform */}
-        <div className="mt-20">
-          <Reveal variant="fade">
-            <SectionLabel>Core Platform</SectionLabel>
-          </Reveal>
-          <StaggerGroup className="grid md:grid-cols-2 gap-5 items-stretch">
-            {corePlans.map((plan) => (
-              <PlanCard key={plan.name} plan={plan} />
-            ))}
-          </StaggerGroup>
-        </div>
+        <StaggerGroup className="mt-16 grid md:grid-cols-2 xl:grid-cols-4 gap-5 items-stretch">
+          {plans.map((plan) => (
+            <PlanCard key={plan.name} plan={plan} />
+          ))}
+        </StaggerGroup>
 
-        {/* Premium Add-Ons */}
-        <div className="mt-20">
-          <Reveal variant="fade">
-            <SectionLabel>Premium Add-Ons</SectionLabel>
-          </Reveal>
-          <StaggerGroup className="grid md:grid-cols-2 gap-5 items-stretch">
-            {addOnPlans.map((plan) => (
-              <PlanCard key={plan.name} plan={plan} />
-            ))}
-          </StaggerGroup>
-        </div>
-
-        {/* Enterprise CTA */}
         <Reveal variant="fade" delay={0.2}>
           <div
-            className="mt-20 rounded-xl p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6"
+            className="mt-16 rounded-xl p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6"
             style={{
               background: "var(--bg-subtle)",
               border: "1px solid var(--border-subtle)",
@@ -296,18 +315,19 @@ export default function Pricing() {
                 className="caption uppercase tracking-[0.18em] font-semibold mono"
                 style={{ color: "var(--text-accent)" }}
               >
-                Enterprise
+                Enterprise+
               </div>
               <h3 className="mt-2 text-[22px] font-semibold tracking-tight text-text-primary">
-                Running 50+ agents or multiple offices?
+                Running 50+ agents, multiple offices, or a developer's in-house
+                sales team?
               </h3>
-              <p className="caption mt-2 max-w-[520px]">
-                Custom pricing, dedicated onboarding, SLAs, and white-glove
-                integration with your existing stack.
+              <p className="caption mt-2 max-w-[560px]">
+                Talk to us about custom pricing, dedicated infrastructure, and
+                white-label options.
               </p>
             </div>
             <a href="#cta" className="btn-primary whitespace-nowrap">
-              Talk to Sales
+              Talk to Enterprise Sales
               <ArrowRight size={15} strokeWidth={1.8} />
             </a>
           </div>
@@ -318,7 +338,8 @@ export default function Pricing() {
             className="mt-10 text-center text-[13px] mono"
             style={{ color: "var(--text-muted)" }}
           >
-            All prices in AED · Billed monthly · No long-term contracts
+            All prices in AED · Billed monthly · No lock-in contracts · Cancel
+            anytime · UAE VAT may apply
           </p>
         </Reveal>
       </div>

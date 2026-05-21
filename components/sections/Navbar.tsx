@@ -9,9 +9,11 @@ import ThemeToggle from "../ThemeToggle";
 import { useTheme } from "../ThemeProvider";
 
 const links = [
-  { href: "#features", label: "Features" },
-  { href: "#pricing", label: "Pricing" },
-  { href: "#faq", label: "FAQ" },
+  { href: "/#features", label: "Features" },
+  { href: "/off-plan-crm-uae", label: "Off-Plan" },
+  { href: "/bayut-property-finder-crm", label: "Integrations" },
+  { href: "/#pricing", label: "Pricing" },
+  { href: "/blog", label: "Blog" },
 ];
 
 export default function Navbar() {
@@ -101,13 +103,13 @@ export default function Navbar() {
             <ThemeToggle />
           </motion.div>
           <motion.a
-            href="#cta"
+            href="/#cta"
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35, delay: 0.45 }}
             className="btn-primary text-[14px] py-3 px-5"
           >
-            Join Waitlist
+            Book a Demo
             <ArrowRight size={15} strokeWidth={1.8} />
           </motion.a>
         </div>
@@ -150,11 +152,11 @@ export default function Navbar() {
               <div className="flex items-center justify-between gap-3 pt-2">
                 <ThemeToggle />
                 <a
-                  href="#cta"
+                  href="/#cta"
                   onClick={() => setOpen(false)}
                   className="btn-primary flex-1 justify-center"
                 >
-                  Join Waitlist <ArrowRight size={16} />
+                  Book a Demo <ArrowRight size={16} />
                 </a>
               </div>
             </div>
