@@ -1,0 +1,759 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================================================
+   WIYO Design System — 3 Themes
+   Pomelo.la DNA mapped to WIYO violet/indigo brand
+   ========================================================= */
+
+:root,
+[data-theme="dark"] {
+  --bg-base: #080c21;
+  --bg-elevated: #0e1130;
+  --bg-overlay: #12162b;
+  --bg-subtle: rgba(255, 255, 255, 0.04);
+
+  --accent-primary: #7b5cf0;
+  --accent-mid: #6d4cf5;
+  --accent-soft: #9b7ff8;
+  --accent-ultra: #c084fc;
+  --accent-deep: #7e22ce;
+
+  --cta-gradient: linear-gradient(289deg, #6d4cf5 30%, #4f46e5 137%);
+
+  --glow-primary: rgba(123, 92, 240, 0.4);
+  --glow-magenta: rgba(230, 30, 102, 0.3);
+  --spotlight: 123, 92, 240;
+
+  --text-primary: #ffffff;
+  --text-secondary: #ada1a5;
+  --text-muted: #7b6f73;
+  --text-accent: #9b7ff8;
+
+  --border-card: rgba(255, 228, 255, 0.082);
+  --border-accent: rgba(123, 92, 240, 0.4);
+  --border-subtle: rgba(255, 255, 255, 0.06);
+
+  --divider-glow: linear-gradient(
+    to right in oklab,
+    transparent,
+    #7b5cf0 50%,
+    transparent
+  );
+
+  --overline-bg: rgba(217, 217, 217, 0.008);
+  --overline-border: rgba(255, 228, 255, 0.082);
+
+  --shadow-card: 0 2px 20px rgba(0, 0, 0, 0.18);
+  --shadow-card-hover: 0 20px 60px rgba(123, 92, 240, 0.18);
+
+  --radius-sharp: 2px;
+  --radius-sm: 5px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 18px;
+  --radius-2xl: 20px;
+  --radius-3xl: 32px;
+  --radius-pill: 9999px;
+
+  --ease-pomelo: cubic-bezier(0.85, 0.09, 0.15, 0.91);
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --duration-fast: 0.15s;
+  --duration-base: 0.35s;
+  --duration-slow: 0.7s;
+  --duration-spring: 2s;
+}
+
+[data-theme="mild"] {
+  --bg-base: #161328;
+  --bg-elevated: #1e1a35;
+  --bg-overlay: #251f40;
+  --bg-subtle: rgba(123, 92, 240, 0.06);
+
+  --accent-primary: #8b6ff7;
+  --accent-mid: #7b5cf0;
+  --accent-soft: #a98bf9;
+  --accent-ultra: #c084fc;
+  --accent-deep: #6d4cf5;
+
+  --cta-gradient: linear-gradient(289deg, #7b5cf0 30%, #5b50f0 137%);
+
+  --glow-primary: rgba(139, 111, 247, 0.35);
+  --spotlight: 139, 111, 247;
+
+  --text-primary: #f0eeff;
+  --text-secondary: #b8b0d8;
+  --text-muted: #7a7299;
+  --text-accent: #a98bf9;
+
+  --border-card: rgba(139, 111, 247, 0.15);
+  --border-accent: rgba(139, 111, 247, 0.4);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+
+  --divider-glow: linear-gradient(
+    to right in oklab,
+    transparent,
+    #8b6ff7 50%,
+    transparent
+  );
+
+  --overline-bg: rgba(139, 111, 247, 0.05);
+  --overline-border: rgba(139, 111, 247, 0.2);
+
+  --shadow-card: 0 2px 24px rgba(0, 0, 0, 0.22);
+  --shadow-card-hover: 0 24px 64px rgba(139, 111, 247, 0.18);
+}
+
+[data-theme="light"] {
+  --bg-base: #f8f6ff;
+  --bg-elevated: #ffffff;
+  --bg-overlay: #f0edff;
+  --bg-subtle: rgba(123, 92, 240, 0.04);
+
+  --accent-primary: #6d4cf5;
+  --accent-mid: #7b5cf0;
+  --accent-soft: #9b7ff8;
+  --accent-ultra: #7e22ce;
+  --accent-deep: #4f46e5;
+
+  --cta-gradient: linear-gradient(289deg, #6d4cf5 30%, #4f46e5 137%);
+
+  --glow-primary: rgba(109, 76, 245, 0.15);
+  --spotlight: 109, 76, 245;
+
+  --text-primary: #0d0a1f;
+  --text-secondary: #4a4560;
+  --text-muted: #8b84a8;
+  --text-accent: #6d4cf5;
+
+  --border-card: rgba(123, 92, 240, 0.12);
+  --border-accent: rgba(123, 92, 240, 0.3);
+  --border-subtle: rgba(0, 0, 0, 0.07);
+
+  --divider-glow: linear-gradient(
+    to right in oklab,
+    transparent,
+    #7b5cf0 50%,
+    transparent
+  );
+
+  --overline-bg: rgba(109, 76, 245, 0.04);
+  --overline-border: rgba(109, 76, 245, 0.18);
+
+  --shadow-card: 0 2px 20px rgba(0, 0, 0, 0.06);
+  --shadow-card-hover: 0 12px 40px rgba(123, 92, 240, 0.12);
+}
+
+/* =========================================================
+   Base
+   ========================================================= */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-geist), "Geist Fallback", system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  transition: background-color 0.4s var(--ease-standard);
+}
+
+.theme-transitioning,
+.theme-transitioning * {
+  transition: background-color 0.4s var(--ease-standard),
+    border-color 0.4s var(--ease-standard),
+    color 0.4s var(--ease-standard);
+}
+
+::selection {
+  background: rgba(var(--spotlight), 0.35);
+  color: var(--text-primary);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(var(--spotlight), 0.35);
+  border-radius: 100px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(var(--spotlight), 0.6);
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Focus ring — Pomelo style */
+:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* =========================================================
+   Layout helpers
+   ========================================================= */
+@layer components {
+  .wrapper {
+    width: 95%;
+    max-width: 1320px;
+    margin-inline: auto;
+  }
+
+  .container-x {
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+    padding-left: clamp(20px, 5vw, 64px);
+    padding-right: clamp(20px, 5vw, 64px);
+  }
+
+  .section-y {
+    padding-top: clamp(80px, 10vw, 160px);
+    padding-bottom: clamp(80px, 10vw, 160px);
+  }
+
+  /* =====================================================
+     Typography helpers
+     ===================================================== */
+  .h1 {
+    font-size: clamp(48px, 7vw, 96px);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+  }
+
+  .h2 {
+    font-size: clamp(32px, 4vw, 64px);
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    color: var(--text-primary);
+  }
+
+  .h3 {
+    font-size: clamp(20px, 2vw, 24px);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+  }
+
+  .body-lg {
+    font-size: clamp(17px, 1.4vw, 20px);
+    line-height: 1.625;
+    color: var(--text-secondary);
+    font-weight: 400;
+  }
+
+  .body-md {
+    font-size: 15.5px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+
+  .caption {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text-muted);
+  }
+
+  .mono {
+    font-family: var(--font-geist-mono), "Geist Mono Fallback", ui-monospace,
+      monospace;
+  }
+
+  /* Text gradient accent — signature */
+  .text-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--accent-primary),
+      var(--accent-ultra)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  .text-gradient-shimmer {
+    background: linear-gradient(
+      90deg,
+      var(--accent-primary) 0%,
+      var(--accent-soft) 25%,
+      var(--accent-ultra) 50%,
+      var(--accent-soft) 75%,
+      var(--accent-primary) 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer-sweep 4s linear infinite;
+  }
+
+  /* =====================================================
+     Overline pill — Pomelo exact
+     ===================================================== */
+  .overline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 15px;
+    border-radius: 9999px;
+    background: var(--overline-bg);
+    border: 1px solid var(--overline-border);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-accent);
+    backdrop-filter: blur(8px);
+  }
+
+  /* Status pill (subtle, used in hero strip) */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: 9999px;
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #4ade80;
+    box-shadow: 0 0 12px #4ade80;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  /* =====================================================
+     Buttons
+     ===================================================== */
+  .btn-primary {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-size: 15px;
+    color: #ffffff;
+    background: var(--cta-gradient);
+    background-size: 180% auto;
+    box-shadow: 0 0 32px rgba(var(--spotlight), 0.4);
+    transition: transform var(--duration-fast) var(--ease-standard),
+      box-shadow var(--duration-fast) var(--ease-standard),
+      background-position 0.5s var(--ease-standard);
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 0 48px rgba(var(--spotlight), 0.6);
+    background-position: right center;
+  }
+  .btn-primary:active {
+    transform: scale(0.98);
+  }
+  .btn-primary::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(255, 255, 255, 0.28),
+      transparent
+    );
+    transform: translateX(-100%);
+    transition: transform 0.6s var(--ease-out);
+    z-index: -1;
+  }
+  .btn-primary:hover::after {
+    transform: translateX(100%);
+  }
+
+  .btn-primary-lg {
+    padding: 18px 40px;
+    font-size: 16px;
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 26px;
+    border-radius: 9999px;
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--text-primary);
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-subtle);
+    transition: all var(--duration-fast) var(--ease-standard);
+  }
+  .btn-ghost:hover {
+    background: var(--bg-elevated);
+    border-color: var(--border-accent);
+    transform: translateY(-2px);
+  }
+
+  /* =====================================================
+     Cards
+     ===================================================== */
+  .card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-xl);
+    padding: 28px;
+    transition: transform var(--duration-base) var(--ease-pomelo),
+      border-color var(--duration-base) var(--ease-pomelo),
+      box-shadow var(--duration-base) var(--ease-pomelo),
+      background var(--duration-base) var(--ease-pomelo);
+    box-shadow: var(--shadow-card);
+  }
+  .card:hover {
+    border-color: var(--border-accent);
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  /* Featured card — animated gradient border */
+  .card-featured {
+    position: relative;
+    background: linear-gradient(
+      135deg,
+      rgba(var(--spotlight), 0.1),
+      rgba(var(--spotlight), 0.03)
+    );
+    border-radius: var(--radius-xl);
+    padding: 28px;
+    box-shadow: 0 0 60px rgba(var(--spotlight), 0.18),
+      inset 0 0 40px rgba(var(--spotlight), 0.04);
+  }
+  .card-featured::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1.5px;
+    border-radius: inherit;
+    background: conic-gradient(
+      from var(--gradient-angle, 0deg),
+      var(--accent-primary),
+      var(--accent-ultra),
+      var(--accent-deep),
+      var(--accent-primary)
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: border-glow-rotate 6s linear infinite;
+    pointer-events: none;
+  }
+
+  /* =====================================================
+     Module icon container
+     ===================================================== */
+  .icon-square {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-lg);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(var(--spotlight), 0.15);
+    border: 1px solid rgba(var(--spotlight), 0.25);
+    color: var(--text-accent);
+    transition: box-shadow var(--duration-fast) var(--ease-standard);
+  }
+  .icon-square-lg {
+    width: 56px;
+    height: 56px;
+  }
+  .icon-square:hover,
+  .group:hover .icon-square {
+    box-shadow: 0 0 24px rgba(var(--spotlight), 0.45);
+  }
+
+  /* =====================================================
+     Divider — Pomelo glow line
+     ===================================================== */
+  .divider-glow {
+    height: 1px;
+    width: 100%;
+    background: var(--divider-glow);
+    opacity: 0.6;
+  }
+
+  /* =====================================================
+     Spotlight effect (mousemove)
+     ===================================================== */
+  .spotlight-host {
+    position: relative;
+    --glow-x: 50%;
+    --glow-y: 50%;
+    --glow-intensity: 0;
+    --glow-radius: 600px;
+  }
+  .spotlight-host::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+      circle var(--glow-radius) at var(--glow-x) var(--glow-y),
+      rgba(var(--spotlight), calc(var(--glow-intensity) * 0.12)),
+      transparent 60%
+    );
+    transition: opacity var(--duration-base) var(--ease-standard);
+    z-index: 0;
+  }
+  .spotlight-host > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Hero pattern shapes (floating cards) */
+  .floating-shape {
+    position: absolute;
+    border-radius: var(--radius-3xl);
+    background: linear-gradient(
+      135deg,
+      rgba(var(--spotlight), 0.18),
+      rgba(var(--spotlight), 0.04)
+    );
+    border: 1px solid rgba(var(--spotlight), 0.18);
+    backdrop-filter: blur(20px);
+    animation: float-gentle 12s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  /* Hero radial spotlight base */
+  .hero-glow {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+        50% 45% at 50% 35%,
+        rgba(var(--spotlight), 0.32) 0%,
+        transparent 70%
+      ),
+      radial-gradient(
+        40% 40% at 80% 70%,
+        rgba(var(--spotlight), 0.12) 0%,
+        transparent 70%
+      );
+    animation: spotlight-pulse 8s ease-in-out infinite alternate;
+  }
+
+  /* Subtle grid pattern overlay */
+  .grid-pattern {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.04;
+    background-image: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.5) 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: radial-gradient(circle at 50% 50%, #000, transparent 80%);
+  }
+
+  [data-theme="light"] .grid-pattern {
+    background-image: linear-gradient(
+        to right,
+        rgba(13, 10, 31, 0.4) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        rgba(13, 10, 31, 0.4) 1px,
+        transparent 1px
+      );
+    opacity: 0.05;
+  }
+}
+
+/* =========================================================
+   Keyframes — Pomelo exact + WIYO extensions
+   ========================================================= */
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer-sweep {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes spotlight-pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.08);
+  }
+}
+
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes border-glow-rotate {
+  0% {
+    --gradient-angle: 0deg;
+  }
+  100% {
+    --gradient-angle: 360deg;
+  }
+}
+
+@keyframes marquee-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes float-gentle {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-8px) rotate(0.5deg);
+  }
+  66% {
+    transform: translateY(-4px) rotate(-0.5deg);
+  }
+}
+
+@keyframes particle-drift {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.45;
+  }
+  80% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-140px) translateX(30px);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.55;
+    transform: scale(0.82);
+  }
+}
+
+@keyframes glow-breathe {
+  0% {
+    box-shadow: 0 0 60px rgba(var(--spotlight), 0.25);
+  }
+  100% {
+    box-shadow: 0 0 160px rgba(var(--spotlight), 0.55);
+  }
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
