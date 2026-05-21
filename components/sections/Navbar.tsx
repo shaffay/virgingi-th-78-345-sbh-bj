@@ -26,7 +26,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const logoSrc = theme === "light" ? "/logo-dark.png" : "/logo-light.png";
+  const logoSrc = "/logo-dark.png";
 
   return (
     <header

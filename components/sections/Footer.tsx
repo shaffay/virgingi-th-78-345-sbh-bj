@@ -11,7 +11,7 @@ export default function Footer() {
   const { theme } = useTheme();
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const logoSrc = theme === "light" ? "/logo-dark.png" : "/logo-light.png";
+  const logoSrc = "/logo-dark.png";
 
   function onSubscribe(e: React.FormEvent) {
     e.preventDefault();
