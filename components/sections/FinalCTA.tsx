@@ -100,9 +100,9 @@ export default function FinalCTA() {
             </motion.div>
           </StaggerGroup>
 
-          <Reveal variant="fade" delay={0.15}>
+          <Reveal variant="fade" delay={0.15} className="lg:col-span-6">
             <div
-              className="lg:col-span-6 card p-7 md:p-9"
+              className="card p-6 sm:p-7 md:p-9"
               style={{ minHeight: "100%" }}
             >
               {submitted ? (
@@ -129,7 +129,7 @@ export default function FinalCTA() {
                   <h3 className="text-[22px] font-semibold tracking-tight">
                     Book Your Live Demo
                   </h3>
-                  <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="grid md:grid-cols-2 gap-4">
                     <Field
                       label="Name"
                       value={form.name}
@@ -209,8 +209,8 @@ function Field({
   textarea?: boolean;
 }) {
   return (
-    <label className="flex flex-col gap-1.5">
-      <span className="caption uppercase tracking-[0.14em] font-semibold">
+    <label className="flex flex-col gap-1.5 min-w-0">
+      <span className="caption uppercase tracking-[0.12em] font-semibold leading-snug">
         {label}
         {required && (
           <span style={{ color: "var(--text-accent)" }}> *</span>
