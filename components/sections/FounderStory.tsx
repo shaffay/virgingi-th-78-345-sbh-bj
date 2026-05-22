@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Volume2, VolumeX } from "lucide-react";
 import { motion } from "framer-motion";
 import Overline from "../ui/Overline";
 import { Reveal, StaggerGroup, slideInVariant } from "../motion/Reveal";
@@ -14,6 +15,7 @@ const credentials = [
 
 function StoryVideo() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [muted, setMuted] = useState(true);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -23,9 +25,17 @@ function StoryVideo() {
       (entries) => {
         const entry = entries[0];
         if (entry.isIntersecting) {
-          video.play().catch(() => {
-            // Autoplay may be blocked — fail silently.
-          });
+          // Try unmuted first; if the browser blocks (no user activation),
+          // fall back to muted autoplay so the video still plays.
+          video.muted = false;
+          video
+            .play()
+            .then(() => setMuted(false))
+            .catch(() => {
+              video.muted = true;
+              setMuted(true);
+              video.play().catch(() => {});
+            });
         } else {
           video.pause();
         }
@@ -37,18 +47,48 @@ function StoryVideo() {
     return () => observer.disconnect();
   }, []);
 
+  function toggleMute() {
+    const video = videoRef.current;
+    if (!video) return;
+    const next = !video.muted;
+    video.muted = next;
+    setMuted(next);
+    if (!next) {
+      video.play().catch(() => {});
+    }
+  }
+
   return (
-    <video
-      ref={videoRef}
-      className="absolute inset-0 w-full h-full object-cover"
-      src="/wiyo-story.mp4"
-      poster="/shaffay.png"
-      muted
-      loop
-      playsInline
-      preload="metadata"
-      aria-label="The WIYO story — from chaos to clarity"
-    />
+    <>
+      <video
+        ref={videoRef}
+        className="absolute inset-0 w-full h-full object-cover"
+        src="/wiyo-story.mp4"
+        poster="/shaffay.png"
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-label="The WIYO story — from chaos to clarity"
+      />
+      <button
+        type="button"
+        onClick={toggleMute}
+        aria-label={muted ? "Unmute video" : "Mute video"}
+        className="absolute top-4 right-4 w-10 h-10 rounded-full flex items-center justify-center backdrop-blur-md transition-all hover:scale-105 z-10"
+        style={{
+          background: "rgba(8,12,33,0.55)",
+          border: "1px solid rgba(255,255,255,0.18)",
+          color: "white",
+        }}
+      >
+        {muted ? (
+          <VolumeX size={16} strokeWidth={1.8} />
+        ) : (
+          <Volume2 size={16} strokeWidth={1.8} />
+        )}
+      </button>
+    </>
   );
 }
 
