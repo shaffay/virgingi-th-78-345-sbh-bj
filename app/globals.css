@@ -344,6 +344,7 @@ html.lenis body {
     text-transform: uppercase;
     color: var(--text-accent);
     backdrop-filter: blur(8px);
+    text-decoration-line: none;
   }
 
   /* Status pill (subtle, used in hero strip) */
