@@ -6,6 +6,7 @@ const config: Config = {
     "./components/**/*.{ts,tsx}",
     "./lib/**/*.{ts,tsx}",
   ],
+  blocklist: ["overline"],
   theme: {
     extend: {
       colors: {
