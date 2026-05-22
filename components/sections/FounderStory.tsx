@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import Overline from "../ui/Overline";
 import { Reveal, StaggerGroup, slideInVariant } from "../motion/Reveal";
@@ -11,6 +11,46 @@ const credentials = [
   "UAE Support Team",
   "UAE-first Roadmap",
 ];
+
+function StoryVideo() {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (entry.isIntersecting) {
+          video.play().catch(() => {
+            // Autoplay may be blocked — fail silently.
+          });
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.4 }
+    );
+
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <video
+      ref={videoRef}
+      className="absolute inset-0 w-full h-full object-cover"
+      src="/wiyo-story.mp4"
+      poster="/shaffay.png"
+      muted
+      loop
+      playsInline
+      preload="metadata"
+      aria-label="The WIYO story — from chaos to clarity"
+    />
+  );
+}
 
 export default function FounderStory() {
   return (
@@ -29,21 +69,12 @@ export default function FounderStory() {
                 background: "var(--bg-elevated)",
               }}
             >
-              <div className="absolute inset-0">
-                <Image
-                  src="/shaffay.png"
-                  alt="Shaffay Bajwa — Founder of WIYO, the UAE Real Estate CRM"
-                  fill
-                  priority
-                  className="object-cover object-top"
-                  sizes="(min-width: 1024px) 40vw, 100vw"
-                />
-              </div>
+              <StoryVideo />
               <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
                   background:
-                    "linear-gradient(to top, var(--bg-base) 0%, transparent 40%)",
+                    "linear-gradient(to top, var(--bg-base) 0%, transparent 45%)",
                 }}
               />
               <div className="absolute inset-x-0 bottom-0 p-6 flex flex-col gap-1">
