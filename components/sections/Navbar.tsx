@@ -53,7 +53,7 @@ export default function Navbar() {
           : undefined
       }
     >
-      <div className="container-x flex items-center justify-between h-16">
+      <div className="container-x flex items-center justify-between h-20">
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
@@ -67,10 +67,10 @@ export default function Navbar() {
             <Image
               src={logoSrc}
               alt="WIYO"
-              width={120}
-              height={32}
+              width={180}
+              height={48}
               priority
-              className="h-7 w-auto object-contain"
+              className="h-10 md:h-11 w-auto object-contain"
             />
           </Link>
         </motion.div>

@@ -72,9 +72,9 @@ export default function Footer() {
             <Image
               src={logoSrc}
               alt="WIYO — Real Estate CRM UAE"
-              width={130}
-              height={36}
-              className="h-8 w-auto object-contain"
+              width={200}
+              height={56}
+              className="h-12 w-auto object-contain"
             />
           </Link>
           <p className="mt-5 body-md max-w-[380px]">

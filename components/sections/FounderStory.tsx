@@ -29,25 +29,16 @@ export default function FounderStory() {
                 background: "var(--bg-elevated)",
               }}
             >
-              <motion.div
-                initial={{ clipPath: "inset(100% 0 0 0)" }}
-                whileInView={{ clipPath: "inset(0% 0 0 0)" }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{
-                  duration: 1.4,
-                  ease: [0.16, 1, 0.3, 1],
-                  delay: 0.1,
-                }}
-                className="absolute inset-0"
-              >
+              <div className="absolute inset-0">
                 <Image
                   src="/shaffay.png"
                   alt="Shaffay Bajwa — Founder of WIYO, the UAE Real Estate CRM"
                   fill
+                  priority
                   className="object-cover object-top"
                   sizes="(min-width: 1024px) 40vw, 100vw"
                 />
-              </motion.div>
+              </div>
               <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
