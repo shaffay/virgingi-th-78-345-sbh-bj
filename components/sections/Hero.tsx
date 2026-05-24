@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import { ArrowRight, ChevronDown, Check } from "lucide-react";
 import Spotlight from "../motion/Spotlight";
 import Particles from "../motion/Particles";
@@ -31,6 +32,7 @@ export default function Hero() {
         <div className="grid-pattern" />
 
         <HeroVideoCard
+          startAt={0}
           style={{
             top: "12%",
             left: "6%",
@@ -41,6 +43,7 @@ export default function Hero() {
           }}
         />
         <HeroVideoCard
+          startAt={12}
           style={{
             top: "18%",
             right: "7%",
@@ -52,6 +55,7 @@ export default function Hero() {
         />
         <HeroVideoCard
           lgOnly
+          startAt={24}
           style={{
             bottom: "10%",
             right: "12%",
@@ -185,10 +189,27 @@ export default function Hero() {
 function HeroVideoCard({
   style,
   lgOnly,
+  startAt = 0,
 }: {
   style: React.CSSProperties;
   lgOnly?: boolean;
+  startAt?: number;
 }) {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  function handleLoadedMetadata() {
+    const video = videoRef.current;
+    if (!video || startAt <= 0) return;
+    const duration = video.duration;
+    if (!duration || !isFinite(duration)) return;
+    try {
+      video.currentTime = startAt % duration;
+      video.play().catch(() => {});
+    } catch {
+      // currentTime can throw before the video is fully ready; ignored.
+    }
+  }
+
   return (
     <div
       aria-hidden
@@ -198,6 +219,7 @@ function HeroVideoCard({
       style={style}
     >
       <video
+        ref={videoRef}
         className="absolute inset-0 w-full h-full object-cover"
         src="/wiyo-story.mp4"
         autoPlay
@@ -205,6 +227,7 @@ function HeroVideoCard({
         loop
         playsInline
         preload="auto"
+        onLoadedMetadata={handleLoadedMetadata}
       />
       <div
         className="absolute inset-0 pointer-events-none"
