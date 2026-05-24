@@ -30,9 +30,7 @@ export default function Hero() {
         <div className="hero-glow" />
         <div className="grid-pattern" />
 
-        <div
-          aria-hidden
-          className="floating-shape hidden md:block"
+        <HeroVideoCard
           style={{
             top: "12%",
             left: "6%",
@@ -42,9 +40,7 @@ export default function Hero() {
             transform: "rotate(-8deg)",
           }}
         />
-        <div
-          aria-hidden
-          className="floating-shape hidden md:block"
+        <HeroVideoCard
           style={{
             top: "18%",
             right: "7%",
@@ -54,9 +50,8 @@ export default function Hero() {
             transform: "rotate(6deg)",
           }}
         />
-        <div
-          aria-hidden
-          className="floating-shape hidden lg:block"
+        <HeroVideoCard
+          lgOnly
           style={{
             bottom: "10%",
             right: "12%",
@@ -184,5 +179,40 @@ export default function Hero() {
         </div>
       </section>
     </Spotlight>
+  );
+}
+
+function HeroVideoCard({
+  style,
+  lgOnly,
+}: {
+  style: React.CSSProperties;
+  lgOnly?: boolean;
+}) {
+  return (
+    <div
+      aria-hidden
+      className={`floating-shape overflow-hidden ${
+        lgOnly ? "hidden lg:block" : "hidden md:block"
+      }`}
+      style={style}
+    >
+      <video
+        className="absolute inset-0 w-full h-full object-cover"
+        src="/wiyo-story.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+      />
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(135deg, rgba(var(--spotlight),0.18), rgba(var(--spotlight),0.04))",
+        }}
+      />
+    </div>
   );
 }
