@@ -6,6 +6,14 @@ export interface BlogPost {
   date: string;
   readingMins: number;
   category: string;
+  /** Full-bleed cover image URL (Unsplash CDN). */
+  coverImage: string;
+  /** Short alt text describing the cover photo. */
+  coverAlt: string;
+  /** Hex gradient pair used as a fallback / accent under the photo. */
+  accent: [string, string];
+  /** Featured (1) shown as the lead card on the blog index. */
+  featured?: boolean;
 }
 
 export const blogPosts: BlogPost[] = [
@@ -18,6 +26,11 @@ export const blogPosts: BlogPost[] = [
     date: "2026-05-01",
     readingMins: 11,
     category: "CRM Buying Guide",
+    coverImage:
+      "https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=2000&q=80",
+    coverAlt: "Dubai Marina skyline at golden hour",
+    accent: ["#7B5CF0", "#5B7CFA"],
+    featured: true,
   },
   {
     slug: "bayut-property-finder-crm-integration-guide",
@@ -28,6 +41,10 @@ export const blogPosts: BlogPost[] = [
     date: "2026-04-22",
     readingMins: 9,
     category: "Integrations",
+    coverImage:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=2000&q=80",
+    coverAlt: "Analytics dashboard on a laptop showing lead pipelines",
+    accent: ["#FE6B6B", "#FFA64D"],
   },
   {
     slug: "off-plan-real-estate-crm-uae",
@@ -38,6 +55,10 @@ export const blogPosts: BlogPost[] = [
     date: "2026-04-15",
     readingMins: 8,
     category: "Off-Plan",
+    coverImage:
+      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=2000&q=80",
+    coverAlt: "Modern residential tower architecture",
+    accent: ["#1D4ED8", "#22D3EE"],
   },
   {
     slug: "whatsapp-real-estate-dubai-agents",
@@ -48,6 +69,10 @@ export const blogPosts: BlogPost[] = [
     date: "2026-04-08",
     readingMins: 8,
     category: "WhatsApp",
+    coverImage:
+      "https://images.unsplash.com/photo-1611605698335-8b1569810432?auto=format&fit=crop&w=2000&q=80",
+    coverAlt: "Smartphone screen showing messaging app",
+    accent: ["#22C55E", "#16A34A"],
   },
   {
     slug: "ai-real-estate-crm-uae",
@@ -58,9 +83,17 @@ export const blogPosts: BlogPost[] = [
     date: "2026-04-01",
     readingMins: 12,
     category: "AI",
+    coverImage:
+      "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=2000&q=80",
+    coverAlt: "Abstract AI / neural network visualization",
+    accent: ["#A855F7", "#EC4899"],
   },
 ];
 
 export function getPost(slug: string) {
   return blogPosts.find((p) => p.slug === slug);
+}
+
+export function getRelatedPosts(slug: string, limit = 3) {
+  return blogPosts.filter((p) => p.slug !== slug).slice(0, limit);
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import BlogLayout from "@/components/blog/BlogLayout";
+import Figure from "@/components/blog/Figure";
 import { articleJsonLd } from "@/lib/seo";
 import { getPost } from "@/lib/blog";
 
@@ -16,8 +17,17 @@ export const metadata: Metadata = {
     url: `https://www.wiyo.ae/blog/${post.slug}`,
     type: "article",
     publishedTime: post.date,
+    images: [post.coverImage],
   },
 };
+
+const toc = [
+  { id: "opportunity", text: "The off-plan opportunity" },
+  { id: "why-generic-fails", text: "Why generic CRMs fail" },
+  { id: "must-have", text: "Must-have features" },
+  { id: "wiyo-built-for", text: "How WIYO is built for it" },
+  { id: "workflow", text: "Real reservation workflow" },
+];
 
 export default function Page() {
   return (
@@ -26,7 +36,7 @@ export default function Page() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd(post)) }}
       />
-      <BlogLayout post={post}>
+      <BlogLayout post={post} toc={toc}>
         <p>
           Off-plan is the biggest commission opportunity in the UAE property
           market — and it's also where most generic CRMs fall flat. If your
@@ -35,17 +45,23 @@ export default function Page() {
           see.
         </p>
 
-        <h2>The Off-Plan Opportunity in Dubai</h2>
+        <h2 id="opportunity">The Off-Plan Opportunity in Dubai</h2>
         <p>
           Dubai's pipeline of new projects keeps expanding. Developers offer
           4–6% commission per booking. Layered payment plans. Multiple unit
           types. Phase-by-phase availability. Reservation deadlines. Oqood
           paperwork. Escrow procedures. The mechanics are genuinely
-          complicated — and a CRM that wasn't designed for them adds friction
-          to every step.
+          complicated — and a CRM that wasn't designed for them adds
+          friction to every step.
         </p>
 
-        <h2>Why Salesforce and Zoho Fail for Off-Plan</h2>
+        <Figure
+          src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=2000&q=80"
+          alt="Modern off-plan residential tower under blue sky"
+          caption="Every off-plan project carries its own pricing, availability, and document workflow"
+        />
+
+        <h2 id="why-generic-fails">Why Salesforce and Zoho Fail for Off-Plan</h2>
         <p>
           Generic CRMs model the world as accounts, contacts, and deals.
           That's fine for SaaS. For UAE off-plan, you need:
@@ -80,7 +96,13 @@ export default function Page() {
           actually do.
         </p>
 
-        <h2>Key Features Every Off-Plan CRM Must Have</h2>
+        <blockquote>
+          Off-plan teams don't lose deals because their agents aren't
+          working hard enough. They lose deals because their CRM forces a
+          square workflow into a round model.
+        </blockquote>
+
+        <h2 id="must-have">Key Features Every Off-Plan CRM Must Have</h2>
         <p>
           If you're evaluating a CRM and these aren't on the page within the
           first scroll, it isn't built for off-plan:
@@ -95,7 +117,13 @@ export default function Page() {
           <li>Phase + unit availability heatmaps</li>
         </ul>
 
-        <h2>How WIYO Was Built Specifically for This Segment</h2>
+        <Figure
+          src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&w=2000&q=80"
+          alt="Aerial view of Dubai cityscape with modern high-rises"
+          caption="A purpose-built off-plan CRM treats projects, units, and reservations as native objects"
+        />
+
+        <h2 id="wiyo-built-for">How WIYO Was Built Specifically for This Segment</h2>
         <p>
           WIYO's Off-Plan Pillar is the flagship module — designed by
           interviewing Dubai off-plan sales managers about what actually
@@ -123,10 +151,8 @@ export default function Page() {
           </li>
         </ul>
 
-        <h2>Real Workflow: From Inquiry to Completed Reservation</h2>
-        <p>
-          Here's how a typical off-plan deal moves through WIYO:
-        </p>
+        <h2 id="workflow">Real Workflow: From Inquiry to Completed Reservation</h2>
+        <p>Here's how a typical off-plan deal moves through WIYO:</p>
         <ol>
           <li>
             <strong>Inquiry</strong> arrives from Bayut / Meta / walk-in.
@@ -168,23 +194,9 @@ export default function Page() {
 
         <p>
           Want to see this in action with your own developer catalogue?{" "}
-          <Link
-            href="/off-plan-crm-uae"
-            className="font-semibold hover:underline"
-            style={{ color: "var(--text-accent)" }}
-          >
-            See the Off-Plan CRM page
-          </Link>{" "}
-          or{" "}
-          <Link
-            href="/#cta"
-            className="font-semibold hover:underline"
-            style={{ color: "var(--text-accent)" }}
-          >
-            book a demo
-          </Link>{" "}
-          and we'll match a real buyer brief against a sample catalogue
-          during the call.
+          <Link href="/off-plan-crm-uae">See the Off-Plan CRM page</Link> or{" "}
+          <Link href="/#cta">book a demo</Link> and we'll match a real buyer
+          brief against a sample catalogue during the call.
         </p>
       </BlogLayout>
     </>

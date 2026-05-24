@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import BlogLayout from "@/components/blog/BlogLayout";
+import Figure from "@/components/blog/Figure";
 import { articleJsonLd } from "@/lib/seo";
 import { getPost } from "@/lib/blog";
 
@@ -16,8 +17,18 @@ export const metadata: Metadata = {
     url: `https://www.wiyo.ae/blog/${post.slug}`,
     type: "article",
     publishedTime: post.date,
+    images: [post.coverImage],
   },
 };
+
+const toc = [
+  { id: "lost-leads", text: "Why portal leads get lost" },
+  { id: "manual-vs-webhook", text: "Manual vs webhook" },
+  { id: "step-by-step", text: "Step-by-step connection" },
+  { id: "dedupe", text: "Lead deduplication" },
+  { id: "response-time", text: "Response time stats" },
+  { id: "sla", text: "The 15-minute SLA" },
+];
 
 export default function Page() {
   return (
@@ -26,7 +37,7 @@ export default function Page() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd(post)) }}
       />
-      <BlogLayout post={post}>
+      <BlogLayout post={post} toc={toc}>
         <p>
           The single most expensive operational mistake a Dubai brokerage can
           make is letting Bayut, Property Finder, and Dubizzle leads sit in
@@ -40,7 +51,7 @@ export default function Page() {
           deduplication, and with a real 15-minute SLA on every lead.
         </p>
 
-        <h2>Why Your Leads from Portals Are Getting Lost</h2>
+        <h2 id="lost-leads">Why Your Leads from Portals Are Getting Lost</h2>
         <p>
           The common setup looks like this: Bayut sends new leads to a shared
           email address. Property Finder sends them to a different inbox.
@@ -50,16 +61,17 @@ export default function Page() {
           routinely 30 to 90 minutes.
         </p>
         <p>
-          In Dubai's market, that's catastrophic. The Lead Response Management
-          Study found contacting a lead within 5 minutes is 100x more
-          effective than at 30 minutes. Buyers actively browse multiple
-          agencies in parallel. First-mover wins.
+          In Dubai's market, that's catastrophic. Buyers actively browse
+          multiple agencies in parallel. First-mover wins.
         </p>
 
-        <h2>Manual vs Webhook Integration — Why Webhooks Win</h2>
-        <p>
-          There are three ways to get portal leads into a CRM:
-        </p>
+        <blockquote>
+          Every 15 minutes you take to respond is roughly one more
+          competitor your buyer has already called.
+        </blockquote>
+
+        <h2 id="manual-vs-webhook">Manual vs Webhook Integration — Why Webhooks Win</h2>
+        <p>There are three ways to get portal leads into a CRM:</p>
         <ul>
           <li>
             <strong>Manual email forwarding:</strong> 30–60 minute delay.
@@ -81,41 +93,44 @@ export default function Page() {
           and Zapier (as a fallback for the long tail of sources).
         </p>
 
-        <h2>Step-by-Step: Connecting Your Portals to WIYO</h2>
+        <Figure
+          src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=2000&q=80"
+          alt="Two developers reviewing data integrations on a screen"
+          caption="A webhook fires the moment a buyer submits a form — milliseconds, not minutes"
+        />
+
+        <h2 id="step-by-step">Step-by-Step: Connecting Your Portals to WIYO</h2>
         <p>
           We've built the flow to be self-serve, but our team will walk you
           through it on a demo call if you'd prefer.
         </p>
         <ol>
           <li>
-            <strong>Step 1:</strong> Add your Bayut, Property Finder, and
-            Dubizzle account references in WIYO settings.
+            Add your Bayut, Property Finder, and Dubizzle account references
+            in WIYO settings.
           </li>
           <li>
-            <strong>Step 2:</strong> WIYO generates a unique webhook URL per
-            portal, per workspace.
+            WIYO generates a unique webhook URL per portal, per workspace.
           </li>
           <li>
-            <strong>Step 3:</strong> Paste each webhook URL into the portal's
-            "lead delivery" or "API" settings. (For Bayut and PF this is
-            usually in the agency admin panel; for Dubizzle it's in the
-            agent settings.)
+            Paste each webhook URL into the portal's "lead delivery" or "API"
+            settings.
           </li>
           <li>
-            <strong>Step 4:</strong> Submit a test lead. It should appear in
-            your WIYO pipeline within 1–2 seconds.
+            Submit a test lead. It should appear in your WIYO pipeline within
+            1–2 seconds.
           </li>
           <li>
-            <strong>Step 5:</strong> Configure auto-assignment rules — by
-            area, by language, by agent specialty, or round-robin.
+            Configure auto-assignment rules — by area, by language, by agent
+            specialty, or round-robin.
           </li>
           <li>
-            <strong>Step 6:</strong> Done. Every new lead now lands in your
-            pipeline automatically with a 15-minute SLA timer running.
+            Done. Every new lead now lands in your pipeline automatically
+            with a 15-minute SLA timer running.
           </li>
         </ol>
 
-        <h2>Lead Deduplication — Why It Matters</h2>
+        <h2 id="dedupe">Lead Deduplication — Why It Matters</h2>
         <p>
           A common scenario: a buyer who's serious about, say, a 2BR
           apartment in Business Bay submits inquiries on Bayut, PF, and
@@ -134,7 +149,13 @@ export default function Page() {
           channels are double-spending.
         </p>
 
-        <h2>Response Time Statistics in UAE Property</h2>
+        <Figure
+          src="https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=2000&q=80"
+          alt="Modern Dubai high-rise residential towers at twilight"
+          caption="One buyer, multiple portals — your CRM should see them as one person"
+        />
+
+        <h2 id="response-time">Response Time Statistics in UAE Property</h2>
         <p>
           The numbers are sobering. In published research across multiple
           markets, calling a lead within the first 5 minutes results in a
@@ -147,7 +168,7 @@ export default function Page() {
           who picks up usually wins the relationship for the entire search.
         </p>
 
-        <h2>WIYO's 15-Minute SLA Explained</h2>
+        <h2 id="sla">WIYO's 15-Minute SLA Explained</h2>
         <p>
           When a new lead lands in your WIYO pipeline, a 15-minute timer
           starts. If no agent has logged a contact action (call, WhatsApp,
@@ -163,16 +184,10 @@ export default function Page() {
         </p>
 
         <p>
-          Ready to plug your portals into a CRM that respects the
-          15-minute rule?{" "}
-          <Link
-            href="/#cta"
-            className="font-semibold hover:underline"
-            style={{ color: "var(--text-accent)" }}
-          >
-            Book a live demo
-          </Link>{" "}
-          and we'll connect a test Bayut webhook during the call.
+          Ready to plug your portals into a CRM that respects the 15-minute
+          rule?{" "}
+          <Link href="/#cta">Book a live demo</Link> and we'll connect a
+          test Bayut webhook during the call.
         </p>
       </BlogLayout>
     </>

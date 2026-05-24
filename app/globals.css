@@ -609,6 +609,203 @@ html.lenis body {
   [data-theme="light"] .grid-pattern {
     display: none;
   }
+
+  /* =====================================================
+     Long-form prose — used in blog post body
+     ===================================================== */
+  .prose-wiyo {
+    color: var(--text-secondary);
+    font-size: 17.5px;
+    line-height: 1.75;
+    max-width: 720px;
+  }
+
+  .prose-wiyo > p {
+    margin-bottom: 1.45em;
+  }
+
+  .prose-wiyo > p:first-of-type::first-letter {
+    float: left;
+    font-family: var(--font-geist), sans-serif;
+    font-weight: 600;
+    font-size: 4.2em;
+    line-height: 0.85;
+    padding: 4px 12px 0 0;
+    background: var(--cta-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  .prose-wiyo h2 {
+    color: var(--text-primary);
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-top: 2.2em;
+    margin-bottom: 0.65em;
+    line-height: 1.2;
+    scroll-margin-top: 100px;
+  }
+
+  .prose-wiyo h3 {
+    color: var(--text-primary);
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    margin-top: 1.8em;
+    margin-bottom: 0.5em;
+    line-height: 1.3;
+  }
+
+  .prose-wiyo ul,
+  .prose-wiyo ol {
+    margin: 1em 0 1.6em;
+    padding-left: 1.3em;
+  }
+
+  .prose-wiyo ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .prose-wiyo ul > li {
+    position: relative;
+    padding-left: 1.6em;
+    margin-bottom: 0.55em;
+  }
+
+  .prose-wiyo ul > li::before {
+    content: "";
+    position: absolute;
+    left: 0.2em;
+    top: 0.7em;
+    width: 6px;
+    height: 6px;
+    border-radius: 9999px;
+    background: var(--cta-gradient);
+    box-shadow: 0 0 8px rgba(var(--spotlight), 0.4);
+  }
+
+  .prose-wiyo ol {
+    counter-reset: prose-step;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .prose-wiyo ol > li {
+    counter-increment: prose-step;
+    position: relative;
+    padding-left: 2.4em;
+    margin-bottom: 0.8em;
+  }
+
+  .prose-wiyo ol > li::before {
+    content: counter(prose-step);
+    position: absolute;
+    left: 0;
+    top: 0.05em;
+    width: 1.7em;
+    height: 1.7em;
+    border-radius: 9999px;
+    background: var(--cta-gradient);
+    color: white;
+    font-size: 12.5px;
+    font-weight: 700;
+    font-family: var(--font-geist-mono), monospace;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba(var(--spotlight), 0.4);
+  }
+
+  .prose-wiyo strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .prose-wiyo a {
+    color: var(--text-accent);
+    text-decoration: underline;
+    text-decoration-color: rgba(var(--spotlight), 0.4);
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1.5px;
+    transition: text-decoration-color 0.2s ease;
+  }
+
+  .prose-wiyo a:hover {
+    text-decoration-color: rgba(var(--spotlight), 1);
+  }
+
+  .prose-wiyo blockquote {
+    margin: 2em 0;
+    padding: 1.2em 1.6em;
+    border-left: 3px solid;
+    border-image: var(--cta-gradient) 1;
+    background: rgba(var(--spotlight), 0.04);
+    border-radius: 0 12px 12px 0;
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--text-primary);
+    font-style: italic;
+  }
+
+  .prose-wiyo blockquote p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Figure / inline image */
+  .prose-figure {
+    margin: 2.4em 0;
+  }
+
+  .prose-figure .prose-figure-frame {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid var(--border-card);
+    background: var(--bg-elevated);
+    aspect-ratio: 16 / 9;
+  }
+
+  .prose-figure figcaption {
+    margin-top: 0.9em;
+    font-size: 13px;
+    color: var(--text-muted);
+    font-family: var(--font-geist-mono), monospace;
+    text-align: center;
+    letter-spacing: 0.02em;
+  }
+
+  /* Pull quote (decorated) */
+  .prose-pullquote {
+    margin: 2.8em -10% 2.8em 0;
+    font-size: clamp(22px, 3.2vw, 30px);
+    line-height: 1.3;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    color: var(--text-primary);
+    background: var(--cta-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  @media (max-width: 768px) {
+    .prose-pullquote {
+      margin-right: 0;
+    }
+    .prose-wiyo {
+      font-size: 16.5px;
+    }
+    .prose-wiyo h2 {
+      font-size: 24px;
+    }
+    .prose-wiyo h3 {
+      font-size: 19px;
+    }
+  }
 }
 
 /* =========================================================

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import BlogLayout from "@/components/blog/BlogLayout";
+import Figure from "@/components/blog/Figure";
 import { articleJsonLd } from "@/lib/seo";
 import { getPost } from "@/lib/blog";
 
@@ -16,8 +17,18 @@ export const metadata: Metadata = {
     url: `https://www.wiyo.ae/blog/${post.slug}`,
     type: "article",
     publishedTime: post.date,
+    images: [post.coverImage],
   },
 };
+
+const toc = [
+  { id: "uae-numbers", text: "WhatsApp in the UAE — the numbers" },
+  { id: "personal-fails", text: "Why personal numbers fail" },
+  { id: "api-vs-app", text: "Business API vs Business App" },
+  { id: "team-inbox", text: "Running a team inbox" },
+  { id: "wiyo-module", text: "WIYO's WhatsApp module" },
+  { id: "benchmarks", text: "Response time benchmarks" },
+];
 
 export default function Page() {
   return (
@@ -26,7 +37,7 @@ export default function Page() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd(post)) }}
       />
-      <BlogLayout post={post}>
+      <BlogLayout post={post} toc={toc}>
         <p>
           In the UAE, WhatsApp isn't a channel. It's <em>the</em> channel.
           Roughly 90%+ of property buyer conversations happen there. And yet
@@ -36,7 +47,7 @@ export default function Page() {
           awake.
         </p>
 
-        <h2>WhatsApp in the UAE — The Numbers</h2>
+        <h2 id="uae-numbers">WhatsApp in the UAE — The Numbers</h2>
         <p>
           UAE smartphone penetration is over 95%. WhatsApp is the most-used
           messaging app across all age groups and nationalities. For
@@ -49,7 +60,13 @@ export default function Page() {
           losing deals to agencies that are.
         </p>
 
-        <h2>Why a Personal Number Isn't Good Enough</h2>
+        <Figure
+          src="https://images.unsplash.com/photo-1611605698335-8b1569810432?auto=format&fit=crop&w=2000&q=80"
+          alt="Person using a smartphone showing a messaging app"
+          caption="The first touchpoint with a UAE buyer is almost always WhatsApp"
+        />
+
+        <h2 id="personal-fails">Why a Personal Number Isn't Good Enough</h2>
         <p>
           The default setup — agents using their personal WhatsApp on their
           own number — fails on every dimension that matters for a real
@@ -78,10 +95,14 @@ export default function Page() {
           </li>
         </ul>
 
-        <h2>WhatsApp Business API vs WhatsApp Business App</h2>
-        <p>
-          There are three tiers:
-        </p>
+        <blockquote>
+          When an agent leaves your brokerage carrying every buyer
+          conversation in their personal phone, you didn't just lose an
+          agent — you lost a book of relationships.
+        </blockquote>
+
+        <h2 id="api-vs-app">WhatsApp Business API vs WhatsApp Business App</h2>
+        <p>There are three tiers:</p>
         <ul>
           <li>
             <strong>Personal WhatsApp:</strong> the default for individuals.
@@ -104,7 +125,7 @@ export default function Page() {
           subscription, no third-party middleware.
         </p>
 
-        <h2>How to Manage a Team Inbox Professionally</h2>
+        <h2 id="team-inbox">How to Manage a Team Inbox Professionally</h2>
         <p>
           A few principles separate teams that win on WhatsApp from teams
           that don't:
@@ -138,7 +159,13 @@ export default function Page() {
           </li>
         </ul>
 
-        <h2>WIYO's Intelligent WhatsApp Module</h2>
+        <Figure
+          src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=2000&q=80"
+          alt="Team collaborating around a desk with laptops"
+          caption="A shared WhatsApp inbox lets a whole team back up a single buyer relationship"
+        />
+
+        <h2 id="wiyo-module">WIYO's Intelligent WhatsApp Module</h2>
         <p>
           WIYO connects to WhatsApp Business API and gives your brokerage a
           shared team inbox with AI drafting on every message. The AI reads
@@ -155,7 +182,7 @@ export default function Page() {
           we'll always tell you transparently before anything exceeds them.
         </p>
 
-        <h2>Response Time Benchmarks in Dubai</h2>
+        <h2 id="benchmarks">Response Time Benchmarks in Dubai</h2>
         <p>
           We've seen WIYO brokerages cut average first-reply time on
           WhatsApp from 45 minutes to under 5 minutes within the first
@@ -167,22 +194,9 @@ export default function Page() {
         <p>
           If WhatsApp is the channel that decides your deals, it's worth
           treating it like one.{" "}
-          <Link
-            href="/whatsapp-crm-dubai"
-            className="font-semibold hover:underline"
-            style={{ color: "var(--text-accent)" }}
-          >
-            See the WhatsApp CRM page
-          </Link>{" "}
-          or{" "}
-          <Link
-            href="/#cta"
-            className="font-semibold hover:underline"
-            style={{ color: "var(--text-accent)" }}
-          >
-            book a demo
-          </Link>{" "}
-          to see the shared inbox live.
+          <Link href="/whatsapp-crm-dubai">See the WhatsApp CRM page</Link>{" "}
+          or <Link href="/#cta">book a demo</Link> to see the shared inbox
+          live.
         </p>
       </BlogLayout>
     </>
