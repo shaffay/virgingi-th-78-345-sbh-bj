@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Instagram, Linkedin, Twitter, Mail } from "lucide-react";
 import Divider from "../ui/Divider";
+import { useTheme } from "../ThemeProvider";
 
 const columns = [
   {
@@ -50,9 +51,10 @@ const columns = [
 ];
 
 export default function Footer() {
+  const { theme } = useTheme();
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const logoSrc = "/logo-dark.png";
+  const logoSrc = theme === "light" ? "/logo-dark.png" : "/logo-light.png";
 
   function onSubscribe(e: React.FormEvent) {
     e.preventDefault();
@@ -72,9 +74,10 @@ export default function Footer() {
             <Image
               src={logoSrc}
               alt="WIYO — Real Estate CRM UAE"
-              width={200}
-              height={56}
-              className="h-12 w-auto object-contain"
+              key={logoSrc}
+              width={240}
+              height={64}
+              className="h-14 w-auto object-contain"
             />
           </Link>
           <p className="mt-5 body-md max-w-[380px]">

@@ -28,7 +28,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const logoSrc = "/logo-dark.png";
+  const logoSrc = theme === "light" ? "/logo-dark.png" : "/logo-light.png";
 
   return (
     <header
@@ -53,7 +53,7 @@ export default function Navbar() {
           : undefined
       }
     >
-      <div className="container-x flex items-center justify-between h-20">
+      <div className="container-x flex items-center justify-between h-24">
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
@@ -67,10 +67,11 @@ export default function Navbar() {
             <Image
               src={logoSrc}
               alt="WIYO"
-              width={180}
-              height={48}
+              key={logoSrc}
+              width={220}
+              height={60}
               priority
-              className="h-10 md:h-11 w-auto object-contain"
+              className="h-12 md:h-14 w-auto object-contain"
             />
           </Link>
         </motion.div>
