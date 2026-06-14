@@ -56,12 +56,26 @@ export default function Footer() {
   const [submitted, setSubmitted] = useState(false);
   const logoSrc = theme === "light" ? "/logo-dark.png" : "/logo-light.png";
 
-  function onSubscribe(e: React.FormEvent) {
+  async function onSubscribe(e: React.FormEvent) {
     e.preventDefault();
     if (!email) return;
+    const submittedEmail = email;
     setSubmitted(true);
     setEmail("");
     setTimeout(() => setSubmitted(false), 4000);
+    try {
+      await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: submittedEmail,
+          source: "wiyo.ae newsletter",
+        }),
+      });
+    } catch {
+      // Optimistic UI: the confirmation already showed. A failed insight
+      // signup shouldn't surface a scary error on a low-stakes form.
+    }
   }
 
   return (

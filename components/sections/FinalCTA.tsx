@@ -8,6 +8,8 @@ import { motion } from "framer-motion";
 
 export default function FinalCTA() {
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -17,10 +19,24 @@ export default function FinalCTA() {
     challenge: "",
   });
 
-  function onSubmit(e: React.FormEvent) {
+  async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!form.email || !form.name) return;
-    setSubmitted(true);
+    if (!form.email || !form.name || sending) return;
+    setSending(true);
+    setError("");
+    try {
+      const res = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...form, source: "wiyo.ae demo form" }),
+      });
+      if (!res.ok) throw new Error("Request failed");
+      setSubmitted(true);
+    } catch {
+      setError("Something went wrong. Please try again or email us directly.");
+    } finally {
+      setSending(false);
+    }
   }
 
   return (
@@ -169,11 +185,21 @@ export default function FinalCTA() {
                   />
                   <button
                     type="submit"
-                    className="btn-primary justify-center w-full mt-2"
+                    disabled={sending}
+                    className="btn-primary justify-center w-full mt-2 disabled:opacity-60"
                   >
-                    Book My Demo
+                    {sending ? "Sending…" : "Book My Demo"}
                     <ArrowRight size={16} strokeWidth={1.8} />
                   </button>
+                  {error && (
+                    <p
+                      className="caption text-center"
+                      style={{ color: "var(--text-accent)" }}
+                      role="alert"
+                    >
+                      {error}
+                    </p>
+                  )}
                   <p
                     className="caption text-center"
                     style={{ color: "var(--text-muted)" }}
