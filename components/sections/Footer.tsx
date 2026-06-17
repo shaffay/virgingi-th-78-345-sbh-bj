@@ -44,8 +44,8 @@ const columns = [
       { label: "About", href: "/#built-for-uae" },
       { label: "Blog", href: "/blog" },
       { label: "Contact", href: "mailto:hello@wiyo.ae" },
-      { label: "Privacy Policy", href: "#" },
-      { label: "Terms of Service", href: "#" },
+      { label: "Privacy Policy", href: "/privacy" },
+      { label: "Terms of Service", href: "/terms" },
     ],
   },
 ];
@@ -187,12 +187,14 @@ export default function Footer() {
             <div className="flex items-center gap-3">
               {[
                 { Icon: Instagram, href: "https://www.instagram.com/wiyo.ae", label: "Instagram" },
-                { Icon: Linkedin, href: "#", label: "LinkedIn" },
-                { Icon: Twitter, href: "#", label: "X / Twitter" },
+                { Icon: Linkedin, href: "https://www.linkedin.com/company/wiyo-ae", label: "LinkedIn" },
+                { Icon: Twitter, href: "https://twitter.com/wiyo_ae", label: "X / Twitter" },
               ].map((s, i) => (
                 <a
                   key={i}
                   href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={s.label}
                   className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 ease-standard"
                   style={{
