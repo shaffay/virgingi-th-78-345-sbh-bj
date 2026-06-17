@@ -11,14 +11,14 @@ interface Reel {
 
 const REELS: Reel[] = [
   {
-    src: "/reel-1.mp4",
-    handle: "wiyo.ae",
-    caption: "AI scores every lead the second it lands.",
-  },
-  {
     src: "/reel-2.mp4",
     handle: "wiyo.ae",
     caption: "From spreadsheet chaos to one live pipeline.",
+  },
+  {
+    src: "/reel-1.mp4",
+    handle: "wiyo.ae",
+    caption: "AI scores every lead the second it lands.",
   },
   {
     src: "/reel-3.mp4",
