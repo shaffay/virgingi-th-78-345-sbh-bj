@@ -44,14 +44,8 @@ export const metadata: Metadata = {
       "Replace 6 tools with one. AI-powered CRM built for UAE real estate agencies. Bayut + Property Finder + WhatsApp + Off-Plan, unified.",
     url: SITE_URL,
     siteName: "WIYO",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "WIYO — Real Estate CRM UAE",
-      },
-    ],
+    // og:image is provided by the file-based convention in app/opengraph-image.tsx,
+    // which Next wires into every route automatically (no hardcoded asset to 404 on).
     locale: "en_AE",
     type: "website",
   },
@@ -60,11 +54,13 @@ export const metadata: Metadata = {
     title: "WIYO — The Real Estate Operating System for UAE",
     description:
       "AI-powered CRM built for UAE real estate agencies. Bayut + Property Finder + WhatsApp + Off-Plan, unified.",
-    images: ["/og-image.jpg"],
     site: "@wiyo_ae",
     creator: "@wiyo_ae",
   },
-  icons: { icon: "/favicon.png" },
+  icons: {
+    icon: "/favicon.png",
+    apple: "/apple-touch-icon.png",
+  },
   authors: [{ name: "WIYO", url: SITE_URL }],
   creator: "WIYO",
   publisher: "WIYO",
@@ -145,7 +141,7 @@ const organizationSchema = {
     width: 512,
     height: 140,
   },
-  image: `${SITE_URL}/og-image.jpg`,
+  image: `${SITE_URL}/opengraph-image`,
   description:
     "WIYO is the Real Estate Operating System for the UAE — an AI-powered CRM built for Dubai brokerages with native Bayut, Property Finder and Dubizzle integration.",
   email: "hello@wiyo.ae",
@@ -196,7 +192,7 @@ const localBusinessSchema = {
     "AI-powered Real Estate CRM and Operating System built for UAE brokerages.",
   url: SITE_URL,
   email: "hello@wiyo.ae",
-  image: `${SITE_URL}/og-image.jpg`,
+  image: `${SITE_URL}/opengraph-image`,
   logo: `${SITE_URL}/logo-dark.png`,
   address: {
     "@type": "PostalAddress",
@@ -328,7 +324,11 @@ export default function RootLayout({
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeBootstrapScript }} />
-        <link rel="canonical" href={SITE_URL} />
+        {/*
+          Canonical URLs are emitted per-route via each page's
+          metadata.alternates.canonical (home falls back to the root metadata).
+          A hardcoded canonical here would point every sub-page at the homepage.
+        */}
         <link
           rel="sitemap"
           type="application/xml"
