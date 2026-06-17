@@ -164,8 +164,10 @@ body {
   overflow-x: hidden;
 }
 
-html {
-  scroll-behavior: smooth;
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
@@ -603,6 +605,7 @@ html.lenis body {
       ),
       linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 1px, transparent 1px);
     background-size: 64px 64px;
+    -webkit-mask-image: radial-gradient(circle at 50% 50%, #000, transparent 80%);
     mask-image: radial-gradient(circle at 50% 50%, #000, transparent 80%);
   }
 
@@ -806,6 +809,182 @@ html.lenis body {
       font-size: 19px;
     }
   }
+
+  /* =====================================================
+     Editorial OS hero — eye-pill, ask-pill, language
+     anchor, and background-video treatment layers
+     ===================================================== */
+
+  /* Inline insight "eye" pill — em-based so it scales with the .h1 clamp() */
+  .eye-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    width: 1.37em; /* fallback for Safari < 15 (no aspect-ratio support) */
+    height: 0.72em;
+    aspect-ratio: 1.9 / 1;
+    margin: 0 0.18em;
+    border-radius: 9999px;
+    border: 1.5px solid var(--border-accent);
+    background: rgba(var(--spotlight), 0.1);
+    box-shadow: inset 0 0 12px rgba(var(--spotlight), 0.3);
+    transform: translateY(-0.04em);
+  }
+  .eye-pill > .eye-pupil {
+    width: 0.3em;
+    height: 0.3em;
+    border-radius: 9999px;
+    background: var(--cta-gradient);
+    box-shadow: 0 0 10px rgba(var(--spotlight), 0.6);
+    animation: eye-breathe 3s var(--ease-standard) infinite;
+  }
+
+  /* AI assistant "Ask WIYO" capsule */
+  .ask-pill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 8px 8px 8px 18px;
+    border-radius: 9999px;
+    background: var(--bg-overlay);
+    border: 1px solid var(--border-card);
+    box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(10px) saturate(160%);
+    -webkit-backdrop-filter: blur(10px) saturate(160%);
+    transition: transform var(--duration-fast) var(--ease-standard),
+      border-color var(--duration-fast) var(--ease-standard),
+      box-shadow var(--duration-base) var(--ease-standard);
+  }
+  .ask-pill:focus-within {
+    transform: translateY(-2px);
+    border-color: var(--border-accent);
+    box-shadow: 0 0 0 1px var(--border-accent),
+      0 0 32px rgba(var(--spotlight), 0.32),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+  .ask-pill__input {
+    flex: 1 1 auto;
+    min-width: 0;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    color: var(--text-primary);
+    font-family: var(--font-geist), sans-serif;
+    font-size: 15.5px;
+  }
+  .ask-pill__input::placeholder {
+    color: var(--text-muted);
+  }
+  /* outline:0 above suppresses the mouse focus ring; restore a conformant
+     indicator on the input itself for keyboard users (WCAG 2.4.7 / 2.4.11). */
+  .ask-pill__input:focus-visible {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  .ask-pill__send {
+    flex: 0 0 auto;
+    width: 44px;
+    height: 44px;
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-accent);
+    transition: transform var(--duration-fast) var(--ease-standard),
+      box-shadow var(--duration-fast) var(--ease-standard);
+  }
+  .ask-pill__send:hover {
+    transform: scale(1.06);
+    box-shadow: 0 0 24px rgba(var(--spotlight), 0.45);
+  }
+  .ask-pill__send:active {
+    transform: scale(0.96);
+  }
+
+  /* Vertical glass language anchor */
+  .lang-anchor {
+    position: absolute;
+    writing-mode: vertical-rl;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 8px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-subtle);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--text-muted);
+    transition: border-color var(--duration-fast) var(--ease-standard),
+      box-shadow var(--duration-fast) var(--ease-standard);
+  }
+  .lang-anchor:hover {
+    border-color: var(--border-accent);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      0 0 24px rgba(var(--spotlight), 0.22);
+  }
+
+  /* Background video treatment layers (absolute inset-0, pointer-events-none) */
+  .hero-video-tint {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      135deg,
+      rgba(var(--spotlight), 0.22),
+      rgba(8, 12, 33, 0.5)
+    );
+  }
+  .hero-video-wash {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      100deg,
+      var(--bg-base) 0%,
+      rgba(8, 12, 33, 0.92) 40%,
+      rgba(8, 12, 33, 0.74) 100%
+    );
+  }
+  .hero-video-mask {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      to bottom,
+      var(--bg-base) 0%,
+      transparent 20%,
+      transparent 72%,
+      var(--bg-base) 100%
+    );
+  }
+  /* Background video element — fades in on canplay (set inline to 0.3). */
+  .hero-video-el {
+    opacity: 0;
+    transition: opacity 1.2s var(--ease-out);
+  }
+
+  /* Keyboard focus ring for the demo form the hero Ask pill routes into. */
+  #cta input:focus-visible,
+  #cta textarea:focus-visible {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 767px) {
+    .ask-pill {
+      padding: 6px 6px 6px 16px;
+    }
+    .ask-pill__send {
+      width: 40px;
+      height: 40px;
+    }
+  }
 }
 
 /* =========================================================
@@ -846,11 +1025,9 @@ html.lenis body {
   0%,
   100% {
     opacity: 0.5;
-    transform: scale(1);
   }
   50% {
     opacity: 0.85;
-    transform: scale(1.08);
   }
 }
 
@@ -932,6 +1109,27 @@ html.lenis body {
 @keyframes spin-slow {
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes eye-breathe {
+  0%,
+  100% {
+    transform: scale(0.9);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 

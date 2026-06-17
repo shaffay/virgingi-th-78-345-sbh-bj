@@ -3,6 +3,14 @@
 import { useEffect } from "react";
 import Lenis from "lenis";
 
+// Expose the active Lenis instance so components can drive programmatic scrolls
+// through Lenis's loop instead of fighting it with native scrollIntoView.
+declare global {
+  interface Window {
+    lenis?: Lenis;
+  }
+}
+
 export default function LenisProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const reduce =
@@ -16,6 +24,7 @@ export default function LenisProvider({ children }: { children: React.ReactNode 
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
     });
+    window.lenis = lenis;
 
     let rafId = 0;
     function raf(time: number) {
@@ -27,6 +36,9 @@ export default function LenisProvider({ children }: { children: React.ReactNode 
     return () => {
       cancelAnimationFrame(rafId);
       lenis.destroy();
+      if (window.lenis === lenis) {
+        delete window.lenis;
+      }
     };
   }, []);
 

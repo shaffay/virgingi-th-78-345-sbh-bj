@@ -1,5 +1,5 @@
 import Navbar from "@/components/sections/Navbar";
-import Hero from "@/components/sections/Hero";
+import HeroEditorial from "@/components/sections/HeroEditorial";
 import LogoMarquee from "@/components/sections/LogoMarquee";
 import PainPoints from "@/components/sections/PainPoints";
 import HowItWorks from "@/components/sections/HowItWorks";
@@ -20,7 +20,7 @@ export default function Home() {
   return (
     <main className="relative">
       <Navbar />
-      <Hero />
+      <HeroEditorial />
       <LogoMarquee />
       <PainPoints />
       <HowItWorks />
