@@ -64,7 +64,7 @@ function StoryVideo() {
         ref={videoRef}
         className="absolute inset-0 w-full h-full object-cover"
         src="/wiyo-story.mp4"
-        poster="/shaffay.png"
+        poster="/shaffay.jpg"
         muted
         loop
         playsInline
