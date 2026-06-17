@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import SeoPageLayout from "@/components/seo/SeoPageLayout";
 import { breadcrumbJsonLd } from "@/lib/seo";
+import { getPostsForPillar } from "@/lib/blog";
 
 const URL = "https://www.wiyo.ae/bayut-property-finder-crm";
 
@@ -35,6 +36,7 @@ export default function Page() {
       <SeoPageLayout
         eyebrow="Bayut + Property Finder Integration"
         breadcrumbs={breadcrumbs}
+        relatedPosts={getPostsForPillar("/bayut-property-finder-crm")}
         h1={
           <>
             Bayut + Property Finder Leads,{" "}

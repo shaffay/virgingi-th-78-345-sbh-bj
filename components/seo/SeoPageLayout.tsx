@@ -14,6 +14,7 @@ import WhatsAppButton from "../cro/WhatsAppButton";
 import MobileCTABar from "../cro/MobileCTABar";
 
 import type { Breadcrumb } from "@/lib/seo";
+import type { BlogPost } from "@/lib/blog";
 
 export interface Section {
   heading: string;
@@ -29,6 +30,7 @@ export interface SeoPageLayoutProps {
   cta: { label: string; href: string };
   breadcrumbs: Breadcrumb[];
   proofPoints?: string[];
+  relatedPosts?: BlogPost[];
 }
 
 export default function SeoPageLayout({
@@ -39,6 +41,7 @@ export default function SeoPageLayout({
   cta,
   breadcrumbs,
   proofPoints,
+  relatedPosts,
 }: SeoPageLayoutProps) {
   return (
     <main className="relative">
@@ -191,6 +194,48 @@ export default function SeoPageLayout({
           </Reveal>
         </div>
       </section>
+
+      {relatedPosts && relatedPosts.length > 0 && (
+        <section
+          className="section-y relative"
+          style={{ borderTop: "1px solid var(--border-subtle)" }}
+        >
+          <div className="container-x max-w-[920px]">
+            <div className="flex items-baseline justify-between mb-8">
+              <h2 className="text-[24px] md:text-[28px] font-semibold tracking-tight">
+                Guides &amp; resources
+              </h2>
+              <Link
+                href="/blog"
+                className="caption mono hover:underline"
+                style={{ color: "var(--text-accent)" }}
+              >
+                All articles →
+              </Link>
+            </div>
+            <div className="grid sm:grid-cols-2 gap-4">
+              {relatedPosts.map((p) => (
+                <Link
+                  key={p.slug}
+                  href={`/blog/${p.slug}`}
+                  className="card p-5 group hover:scale-[1.01] transition-transform"
+                >
+                  <span
+                    className="caption uppercase tracking-[0.14em] font-semibold mono"
+                    style={{ color: "var(--text-accent)" }}
+                  >
+                    {p.category}
+                  </span>
+                  <p className="mt-2.5 text-[15.5px] font-semibold leading-snug text-text-primary group-hover:opacity-90">
+                    {p.title}
+                  </p>
+                  <p className="caption mt-2 mono">{p.readingMins} min read</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <Footer />
       <WhatsAppButton />

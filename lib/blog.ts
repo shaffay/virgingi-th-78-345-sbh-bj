@@ -220,6 +220,72 @@ export function getPost(slug: string) {
   return blogPosts.find((p) => p.slug === slug);
 }
 
-export function getRelatedPosts(slug: string, limit = 3) {
-  return blogPosts.filter((p) => p.slug !== slug).slice(0, limit);
+/**
+ * Related posts for the "Continue reading" rail — same-category posts first,
+ * then most-recent others, so every article links out to genuinely relevant
+ * neighbours instead of always the three newest.
+ */
+export function getRelatedPosts(slug: string, limit = 3): BlogPost[] {
+  const current = blogPosts.find((p) => p.slug === slug);
+  const others = blogPosts.filter((p) => p.slug !== slug);
+  if (!current) return others.slice(0, limit);
+  const sameCategory = others.filter((p) => p.category === current.category);
+  const rest = others.filter((p) => p.category !== current.category);
+  return [...sameCategory, ...rest].slice(0, limit);
+}
+
+export interface PillarLink {
+  href: string;
+  label: string;
+}
+
+/** The landing page each blog category most directly supports (blog → pillar). */
+const CATEGORY_PILLAR: Record<string, PillarLink> = {
+  "CRM Buying Guide": { href: "/real-estate-crm-dubai", label: "Real Estate CRM in Dubai" },
+  "Buying Guide": { href: "/uae-real-estate-crm", label: "UAE Real Estate CRM" },
+  Integrations: { href: "/bayut-property-finder-crm", label: "Bayut + Property Finder CRM" },
+  "Off-Plan": { href: "/off-plan-crm-uae", label: "Off-Plan CRM UAE" },
+  WhatsApp: { href: "/whatsapp-crm-dubai", label: "WhatsApp CRM Dubai" },
+  Playbooks: { href: "/real-estate-crm-dubai", label: "Real Estate CRM in Dubai" },
+  "Pipeline & Operations": { href: "/off-plan-crm-uae", label: "Off-Plan CRM UAE" },
+  "Lead Response": { href: "/bayut-property-finder-crm", label: "Bayut + Property Finder CRM" },
+  AI: { href: "/uae-real-estate-crm", label: "UAE Real Estate CRM" },
+  "Tech Stack": { href: "/uae-real-estate-crm", label: "UAE Real Estate CRM" },
+  "Solo Agents": { href: "/real-estate-crm-dubai", label: "Real Estate CRM in Dubai" },
+  Compliance: { href: "/uae-real-estate-crm", label: "UAE Real Estate CRM" },
+};
+
+const DEFAULT_PILLAR: PillarLink = {
+  href: "/uae-real-estate-crm",
+  label: "UAE Real Estate CRM",
+};
+
+/** Best-matching landing page for a post's category. */
+export function getPillarFor(category: string): PillarLink {
+  return CATEGORY_PILLAR[category] ?? DEFAULT_PILLAR;
+}
+
+/** The blog categories most relevant to each landing page (pillar → blog). */
+const PILLAR_CATEGORIES: Record<string, string[]> = {
+  "/real-estate-crm-dubai": ["CRM Buying Guide", "Playbooks", "Solo Agents", "Lead Response"],
+  "/uae-real-estate-crm": ["CRM Buying Guide", "Buying Guide", "AI", "Tech Stack", "Compliance"],
+  "/off-plan-crm-uae": ["Off-Plan", "Pipeline & Operations"],
+  "/bayut-property-finder-crm": ["Integrations", "Lead Response", "Playbooks"],
+  "/whatsapp-crm-dubai": ["WhatsApp", "Lead Response"],
+};
+
+/**
+ * Posts to surface from a landing page (landing → blog). Falls back to filling
+ * with other recent posts so the section is always populated.
+ */
+export function getPostsForPillar(path: string, limit = 4): BlogPost[] {
+  const categories = PILLAR_CATEGORIES[path];
+  const matched = categories
+    ? blogPosts.filter((p) => categories.includes(p.category))
+    : [];
+  if (matched.length >= limit) return matched.slice(0, limit);
+  const fillers = blogPosts.filter(
+    (p) => !matched.some((m) => m.slug === p.slug),
+  );
+  return [...matched, ...fillers].slice(0, limit);
 }

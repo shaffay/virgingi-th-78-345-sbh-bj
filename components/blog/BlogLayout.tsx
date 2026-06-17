@@ -9,7 +9,7 @@ import Footer from "../sections/Footer";
 import { Reveal } from "../motion/Reveal";
 import WhatsAppButton from "../cro/WhatsAppButton";
 import MobileCTABar from "../cro/MobileCTABar";
-import { blogPosts, type BlogPost } from "@/lib/blog";
+import { getRelatedPosts, getPillarFor, type BlogPost } from "@/lib/blog";
 
 interface TocItem {
   id: string;
@@ -23,7 +23,8 @@ interface Props {
 }
 
 export default function BlogLayout({ post, toc, children }: Props) {
-  const related = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 3);
+  const related = getRelatedPosts(post.slug, 3);
+  const pillar = getPillarFor(post.category);
   const [progress, setProgress] = useState(0);
   const [activeId, setActiveId] = useState<string | null>(toc?.[0]?.id ?? null);
 
@@ -187,6 +188,27 @@ export default function BlogLayout({ post, toc, children }: Props) {
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-14">
             <article className="lg:col-span-8">
               <div className="prose-wiyo">{children}</div>
+
+              {/* CONTEXTUAL PILLAR LINK — strengthens the blog → landing crawl path */}
+              <div
+                className="mt-10 flex flex-wrap items-center gap-x-2 gap-y-1 rounded-xl px-5 py-4 text-[14.5px]"
+                style={{
+                  background: "var(--bg-elevated)",
+                  border: "1px solid var(--border-card)",
+                }}
+              >
+                <span style={{ color: "var(--text-muted)" }}>
+                  Relevant WIYO solution:
+                </span>
+                <Link
+                  href={pillar.href}
+                  className="font-semibold hover:underline inline-flex items-center gap-1"
+                  style={{ color: "var(--text-accent)" }}
+                >
+                  {pillar.label}
+                  <ArrowUpRight size={14} strokeWidth={1.8} />
+                </Link>
+              </div>
 
               {/* AUTHOR BIO */}
               <div

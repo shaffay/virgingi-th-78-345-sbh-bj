@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import SeoPageLayout from "@/components/seo/SeoPageLayout";
 import { breadcrumbJsonLd } from "@/lib/seo";
+import { getPostsForPillar } from "@/lib/blog";
 
 const URL = "https://www.wiyo.ae/real-estate-crm-dubai";
 
@@ -35,6 +36,7 @@ export default function Page() {
       <SeoPageLayout
         eyebrow="Real Estate CRM Dubai"
         breadcrumbs={breadcrumbs}
+        relatedPosts={getPostsForPillar("/real-estate-crm-dubai")}
         h1={
           <>
             The Real Estate CRM Dubai's{" "}
