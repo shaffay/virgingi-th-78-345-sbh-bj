@@ -32,7 +32,7 @@ export default function Hero() {
         <div className="grid-pattern" />
 
         <HeroVideoCard
-          startAt={0}
+          src="/hero-card.mp4"
           style={{
             top: "12%",
             left: "6%",
@@ -190,10 +190,12 @@ function HeroVideoCard({
   style,
   lgOnly,
   startAt = 0,
+  src = "/wiyo-story.mp4",
 }: {
   style: React.CSSProperties;
   lgOnly?: boolean;
   startAt?: number;
+  src?: string;
 }) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
@@ -221,7 +223,7 @@ function HeroVideoCard({
       <video
         ref={videoRef}
         className="absolute inset-0 w-full h-full object-cover"
-        src="/wiyo-story.mp4"
+        src={src}
         autoPlay
         muted
         loop
