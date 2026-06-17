@@ -1,17 +1,23 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Menu, X } from "lucide-react";
+import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import ThemeToggle from "../ThemeToggle";
 import { useTheme } from "../ThemeProvider";
 
+const solutions = [
+  { href: "/real-estate-crm-dubai", label: "Real Estate CRM Dubai" },
+  { href: "/uae-real-estate-crm", label: "UAE Real Estate CRM" },
+  { href: "/off-plan-crm-uae", label: "Off-Plan CRM" },
+  { href: "/bayut-property-finder-crm", label: "Bayut + Property Finder" },
+  { href: "/whatsapp-crm-dubai", label: "WhatsApp CRM" },
+];
+
 const links = [
   { href: "/#features", label: "Features" },
-  { href: "/off-plan-crm-uae", label: "Off-Plan" },
-  { href: "/bayut-property-finder-crm", label: "Integrations" },
   { href: "/#pricing", label: "Pricing" },
   { href: "/blog", label: "Blog" },
 ];
@@ -19,6 +25,9 @@ const links = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [solutionsOpen, setSolutionsOpen] = useState(false);
+  const solutionsRef = useRef<HTMLDivElement>(null);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { theme } = useTheme();
 
   useEffect(() => {
@@ -28,14 +37,42 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Close the Solutions menu on outside click or Escape.
+  useEffect(() => {
+    function onClick(e: MouseEvent) {
+      if (
+        solutionsRef.current &&
+        !solutionsRef.current.contains(e.target as Node)
+      ) {
+        setSolutionsOpen(false);
+      }
+    }
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setSolutionsOpen(false);
+    }
+    document.addEventListener("mousedown", onClick);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onClick);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, []);
+
+  function openSolutions() {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setSolutionsOpen(true);
+  }
+  function scheduleClose() {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => setSolutionsOpen(false), 140);
+  }
+
   const logoSrc = theme === "light" ? "/logo-dark.png" : "/logo-light.png";
 
   return (
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ease-standard ${
-        scrolled
-          ? "backdrop-blur-md border-b"
-          : "border-b border-transparent"
+        scrolled ? "backdrop-blur-md border-b" : "border-b border-transparent"
       }`}
       style={
         scrolled
@@ -60,7 +97,7 @@ export default function Navbar() {
           transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
         >
           <Link
-            href="#top"
+            href="/"
             aria-label="WIYO home"
             className="flex items-center gap-2.5 transition-transform duration-150 hover:scale-[1.03]"
           >
@@ -77,22 +114,105 @@ export default function Navbar() {
         </motion.div>
 
         <nav className="hidden md:flex items-center gap-9">
-          {links.map((l, i) => (
-            <motion.a
-              key={l.href}
-              href={l.href}
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.35, ease: "easeOut", delay: 0.15 + i * 0.06 }}
-              className="relative text-[14.5px] font-medium text-text-secondary hover:text-text-primary transition-colors duration-150 group"
+          <motion.a
+            href="/#features"
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.35, ease: "easeOut", delay: 0.15 }}
+            className="relative text-[14.5px] font-medium text-text-secondary hover:text-text-primary transition-colors duration-150 group"
+          >
+            Features
+            <span
+              className="absolute left-0 -bottom-1 h-px w-0 transition-all duration-300 ease-standard group-hover:w-full"
+              style={{ background: "var(--cta-gradient)" }}
+            />
+          </motion.a>
+
+          {/* Solutions dropdown */}
+          <motion.div
+            ref={solutionsRef}
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.35, ease: "easeOut", delay: 0.21 }}
+            className="relative"
+            onMouseEnter={openSolutions}
+            onMouseLeave={scheduleClose}
+          >
+            <button
+              type="button"
+              aria-haspopup="menu"
+              aria-expanded={solutionsOpen}
+              onClick={() => setSolutionsOpen((v) => !v)}
+              className="flex items-center gap-1.5 text-[14.5px] font-medium text-text-secondary hover:text-text-primary transition-colors duration-150"
             >
-              {l.label}
-              <span
-                className="absolute left-0 -bottom-1 h-px w-0 transition-all duration-300 ease-standard group-hover:w-full"
-                style={{ background: "var(--cta-gradient)" }}
+              Solutions
+              <ChevronDown
+                size={14}
+                strokeWidth={1.8}
+                className="transition-transform duration-200"
+                style={{ transform: solutionsOpen ? "rotate(180deg)" : "none" }}
               />
-            </motion.a>
-          ))}
+            </button>
+
+            <AnimatePresence>
+              {solutionsOpen && (
+                <motion.div
+                  role="menu"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 8 }}
+                  transition={{ duration: 0.18, ease: "easeOut" }}
+                  className="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-[280px]"
+                >
+                  <div
+                    className="rounded-xl p-2 shadow-xl"
+                    style={{
+                      background: "var(--bg-overlay)",
+                      border: "1px solid var(--border-subtle)",
+                      backdropFilter: "blur(12px) saturate(180%)",
+                      WebkitBackdropFilter: "blur(12px) saturate(180%)",
+                    }}
+                  >
+                    {solutions.map((s) => (
+                      <Link
+                        key={s.href}
+                        href={s.href}
+                        role="menuitem"
+                        onClick={() => setSolutionsOpen(false)}
+                        className="block rounded-lg px-3.5 py-2.5 text-[14px] font-medium text-text-secondary hover:text-text-primary transition-colors"
+                        style={{ background: "transparent" }}
+                      >
+                        {s.label}
+                      </Link>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+
+          {links
+            .filter((l) => l.label !== "Features")
+            .map((l, i) => (
+              <motion.a
+                key={l.href}
+                href={l.href}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.35,
+                  ease: "easeOut",
+                  delay: 0.27 + i * 0.06,
+                }}
+                className="relative text-[14.5px] font-medium text-text-secondary hover:text-text-primary transition-colors duration-150 group"
+              >
+                {l.label}
+                <span
+                  className="absolute left-0 -bottom-1 h-px w-0 transition-all duration-300 ease-standard group-hover:w-full"
+                  style={{ background: "var(--cta-gradient)" }}
+                />
+              </motion.a>
+            ))}
         </nav>
 
         <div className="hidden md:flex items-center gap-3">
@@ -140,16 +260,48 @@ export default function Navbar() {
             }}
           >
             <div className="container-x py-6 flex flex-col gap-4">
-              {links.map((l) => (
-                <a
-                  key={l.href}
-                  href={l.href}
-                  onClick={() => setOpen(false)}
-                  className="text-text-primary text-lg font-medium py-2"
+              <a
+                href="/#features"
+                onClick={() => setOpen(false)}
+                className="text-text-primary text-lg font-medium py-2"
+              >
+                Features
+              </a>
+
+              <div>
+                <p
+                  className="caption uppercase tracking-[0.16em] font-semibold mono mb-2"
+                  style={{ color: "var(--text-muted)" }}
                 >
-                  {l.label}
-                </a>
-              ))}
+                  Solutions
+                </p>
+                <div className="flex flex-col gap-1 pl-1">
+                  {solutions.map((s) => (
+                    <a
+                      key={s.href}
+                      href={s.href}
+                      onClick={() => setOpen(false)}
+                      className="text-text-secondary hover:text-text-primary text-[15px] font-medium py-1.5"
+                    >
+                      {s.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              {links
+                .filter((l) => l.label !== "Features")
+                .map((l) => (
+                  <a
+                    key={l.href}
+                    href={l.href}
+                    onClick={() => setOpen(false)}
+                    className="text-text-primary text-lg font-medium py-2"
+                  >
+                    {l.label}
+                  </a>
+                ))}
+
               <div className="flex items-center justify-between gap-3 pt-2">
                 <ThemeToggle />
                 <a

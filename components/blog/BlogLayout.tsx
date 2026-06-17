@@ -298,9 +298,11 @@ export default function BlogLayout({ post, toc, children }: Props) {
                   </p>
                   <ul className="flex flex-col gap-2 text-[13.5px]">
                     {[
-                      { href: "/#features", label: "All Features" },
+                      { href: "/real-estate-crm-dubai", label: "Real Estate CRM Dubai" },
+                      { href: "/uae-real-estate-crm", label: "UAE Real Estate CRM" },
                       { href: "/off-plan-crm-uae", label: "Off-Plan CRM" },
-                      { href: "/bayut-property-finder-crm", label: "Bayut + PF" },
+                      { href: "/bayut-property-finder-crm", label: "Bayut + Property Finder" },
+                      { href: "/whatsapp-crm-dubai", label: "WhatsApp CRM" },
                       { href: "/#pricing", label: "Pricing" },
                     ].map((l) => (
                       <li key={l.href}>
