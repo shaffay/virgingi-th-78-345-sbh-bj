@@ -1019,42 +1019,72 @@ html.lenis body {
   }
   .phone-frame {
     position: relative;
-    width: clamp(228px, 20.5vw, 282px);
+    width: clamp(300px, 25vw, 344px);
     aspect-ratio: 9 / 19.5;
-    padding: 11px;
-    border-radius: 52px;
-    background: linear-gradient(150deg, #45454c 0%, #18181d 42%, #34343b 100%);
-    box-shadow: 0 2px 2px rgba(255, 255, 255, 0.16) inset,
-      0 -3px 8px rgba(0, 0, 0, 0.6) inset,
-      0 44px 80px -24px rgba(0, 0, 0, 0.75),
-      0 0 0 1px rgba(255, 255, 255, 0.05),
-      0 0 60px -10px rgba(var(--spotlight), 0.3);
+    padding: 8px;
+    border-radius: 58px;
+    /* brushed-titanium rail — light catches the corners, dark through the middle */
+    background: linear-gradient(
+      145deg,
+      #6c6c75 0%,
+      #2c2c31 16%,
+      #161619 34%,
+      #121215 50%,
+      #161619 66%,
+      #2c2c31 84%,
+      #6c6c75 100%
+    );
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22),
+      inset 0 2px 1px rgba(255, 255, 255, 0.5),
+      inset 0 -2px 3px rgba(0, 0, 0, 0.72),
+      0 0 0 1px rgba(0, 0, 0, 0.55),
+      0 64px 110px -34px rgba(0, 0, 0, 0.88),
+      0 24px 46px -18px rgba(0, 0, 0, 0.55),
+      0 0 100px -10px rgba(var(--spotlight), 0.42);
   }
   .phone-screen {
     position: relative;
     width: 100%;
     height: 100%;
-    border-radius: 42px;
+    border-radius: 50px;
     overflow: hidden;
-    background: #050507;
+    background: #000;
+    /* thin black bezel between the titanium rail and the glass */
+    box-shadow: inset 0 0 0 3px #000, inset 0 0 0 4px rgba(255, 255, 255, 0.05);
   }
   .dynamic-island {
     position: absolute;
-    top: 11px;
+    top: 13px;
     left: 50%;
     transform: translateX(-50%);
-    width: 86px;
-    height: 26px;
+    width: 106px;
+    height: 28px;
     border-radius: 9999px;
     background: #000;
     z-index: 6;
-    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05),
+      inset 0 0 8px rgba(0, 0, 0, 0.9);
+  }
+  /* camera lens detail inside the Dynamic Island */
+  .dynamic-island::after {
+    content: "";
+    position: absolute;
+    right: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 38% 32%, #34415e 0%, #06070c 72%);
+    box-shadow: inset 0 0 2px rgba(90, 130, 255, 0.45);
   }
   .phone-btn {
     position: absolute;
     z-index: 1;
-    background: linear-gradient(#2a2a30, #141417);
+    background: linear-gradient(#5a5a62, #1a1a1e);
     border-radius: 2px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22),
+      0 1px 1px rgba(0, 0, 0, 0.5);
   }
   .phone-btn--power {
     right: -2px;
@@ -1186,11 +1216,12 @@ html.lenis body {
     inset: 0;
     z-index: 5;
     pointer-events: none;
-    border-radius: 42px;
+    border-radius: 50px;
     background: linear-gradient(
-      130deg,
-      rgba(255, 255, 255, 0.12) 0%,
-      transparent 26%
+      125deg,
+      rgba(255, 255, 255, 0.16) 0%,
+      rgba(255, 255, 255, 0.05) 12%,
+      transparent 30%
     );
   }
   .reel-dots {
@@ -1226,10 +1257,10 @@ html.lenis body {
       height: 40px;
     }
     .phone-frame {
-      width: clamp(272px, 80vw, 322px);
+      width: clamp(280px, 82vw, 340px);
     }
     .reel-dots {
-      right: -20px;
+      right: -18px;
     }
   }
 }
