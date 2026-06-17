@@ -21,7 +21,7 @@ const REELS: Reel[] = [
     caption: "From spreadsheet chaos to one live pipeline.",
   },
   {
-    src: "/wiyo-story.mp4",
+    src: "/reel-3.mp4",
     handle: "wiyo.ae",
     caption: "Built in Dubai, for the way the UAE sells.",
   },
@@ -124,7 +124,7 @@ export default function PhoneReels() {
                     muted
                     loop
                     playsInline
-                    preload={i === 0 ? "auto" : "metadata"}
+                    preload="auto"
                     className="reel-video"
                   />
                   <div className="reel-overlay" aria-hidden />

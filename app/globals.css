@@ -995,22 +995,26 @@ html.lenis body {
       transparent 70%
     );
     filter: blur(20px);
+    animation: phone-glow-pulse 7s var(--ease-standard) infinite alternate;
   }
+  /* Static 3D tilt (no continuous transform) so the playing video never
+     recomposites per frame — that was the source of audio/video stutter.
+     Tilts toward the viewer on hover; only the glow behind it animates. */
   .phone-3d {
     position: relative;
-    animation: phone-float 9s var(--ease-standard) infinite;
+    transform: rotateY(-12deg) rotateX(5deg);
+    transition: transform 0.7s var(--ease-spring);
     will-change: transform;
   }
   .phone-3d:hover {
-    animation-play-state: paused;
+    transform: rotateY(-5deg) rotateX(3deg) translateY(-6px);
   }
-  @keyframes phone-float {
-    0%,
-    100% {
-      transform: rotateY(-13deg) rotateX(6deg) translateY(0);
+  @keyframes phone-glow-pulse {
+    from {
+      opacity: 0.6;
     }
-    50% {
-      transform: rotateY(-9deg) rotateX(4deg) translateY(-12px);
+    to {
+      opacity: 1;
     }
   }
   .phone-frame {
@@ -1222,10 +1226,10 @@ html.lenis body {
       height: 40px;
     }
     .phone-frame {
-      width: clamp(236px, 68vw, 288px);
+      width: clamp(272px, 80vw, 322px);
     }
     .reel-dots {
-      right: -22px;
+      right: -20px;
     }
   }
 }
