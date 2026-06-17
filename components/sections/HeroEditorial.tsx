@@ -1,17 +1,15 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowRight, ChevronDown, Sparkles } from "lucide-react";
+import PhoneReels from "./PhoneReels";
 
 /**
- * Editorial OS hero — a restrained, magazine-grade hero on WIYO's dark violet
- * brand: a full-bleed background video drowned under brand masks, an offset
- * 12-col display headline with an inline "insight eye" pill, and an
- * "Ask WIYO anything" assistant pill that routes to the demo form.
- *
- * Entrance animations are CSS-driven (no JS dependency) so the <h1> — the LCP
- * element — renders immediately and is not gated behind hydration. The global
- * prefers-reduced-motion cap makes every animation instant for those users.
+ * Editorial hero — WIYO dark violet brand. Text on the left (offset display
+ * headline with an inline insight "eye" pill + an "Ask WIYO anything"
+ * assistant pill), and a 3D iPhone playing a scrollable reels feed on the
+ * right. Entrance animations are CSS-driven so the <h1> (LCP) renders without
+ * waiting on hydration; the global reduced-motion cap makes them instant.
  */
 
 function usePrefersReducedMotion(): boolean {
@@ -26,7 +24,6 @@ function usePrefersReducedMotion(): boolean {
   return reduce;
 }
 
-/** Inline CSS entrance: starts hidden, animates in via an existing keyframe. */
 function enter(animation: string, delay: number): React.CSSProperties {
   return { opacity: 0, animation: `${animation} ${delay}s both` };
 }
@@ -34,32 +31,7 @@ function enter(animation: string, delay: number): React.CSSProperties {
 export default function HeroEditorial() {
   const reduce = usePrefersReducedMotion();
   const [query, setQuery] = useState("");
-  const sectionRef = useRef<HTMLElement | null>(null);
-  const videoRef = useRef<HTMLVideoElement | null>(null);
 
-  // Pause the decorative background video when off-screen (protects INP + battery).
-  useEffect(() => {
-    const video = videoRef.current;
-    const section = sectionRef.current;
-    if (!video || !section) return;
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          video.play().catch(() => {});
-        } else {
-          video.pause();
-        }
-      },
-      { threshold: 0.05 },
-    );
-    io.observe(section);
-    return () => io.disconnect();
-  }, [reduce]);
-
-  // The Ask pill is not a real search backend — it stores intent and routes the
-  // visitor to the demo form. Uses the Lenis instance (exposed on window by
-  // LenisProvider) so the programmatic scroll runs through Lenis's loop instead
-  // of fighting it; falls back to native scroll when Lenis is absent.
   function handleAsk(e: React.FormEvent) {
     e.preventDefault();
     const q = query.trim();
@@ -87,58 +59,19 @@ export default function HeroEditorial() {
   return (
     <section
       id="top"
-      ref={sectionRef}
       className="relative min-h-screen min-h-[100svh] flex flex-col justify-center overflow-hidden"
       style={{
-        paddingTop: "clamp(96px, calc(96px + 4vw), 168px)",
-        paddingBottom: "clamp(72px, 9vw, 120px)",
+        paddingTop: "clamp(104px, calc(88px + 4vw), 156px)",
+        paddingBottom: "clamp(56px, 7vw, 104px)",
       }}
     >
-      {/* Background video + brand mask stack */}
-      <div className="absolute inset-0 z-0 pointer-events-none" aria-hidden>
-        {!reduce ? (
-          <video
-            ref={videoRef}
-            muted
-            loop
-            autoPlay
-            playsInline
-            tabIndex={-1}
-            preload="metadata"
-            className="hero-video-el absolute inset-0 w-full h-full object-cover"
-            style={{
-              objectPosition: "92% center",
-              filter: "saturate(0.6) brightness(0.6) contrast(1.06)",
-            }}
-            onCanPlay={(e) => {
-              e.currentTarget.style.opacity = "0.3";
-            }}
-          >
-            <source src="/hero-card-2.webm" type="video/webm" />
-            <source src="/hero-card-2.mp4" type="video/mp4" />
-          </video>
-        ) : (
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "radial-gradient(60% 50% at 35% 40%, rgba(var(--spotlight),0.18), transparent 70%)",
-            }}
-          />
-        )}
-        <div className="hero-video-tint" />
-        <div className="hero-video-wash" />
-        <div className="hero-video-mask" />
-      </div>
-
       <div className="hero-glow" />
       <div className="grid-pattern" />
 
-      {/* Content */}
       <div className="container-x relative z-10 w-full">
-        <div className="grid grid-cols-12 gap-x-6">
-          <div className="col-span-12 md:col-span-10 lg:col-span-8 lg:col-start-1 flex flex-col text-left">
-            {/* Overline */}
+        <div className="grid grid-cols-12 items-center gap-y-14 lg:gap-x-8">
+          {/* Left — copy */}
+          <div className="col-span-12 lg:col-span-6 flex flex-col text-left">
             <div
               className="flex items-center gap-2.5"
               style={enter("fade-in-up 0.5s var(--ease-out)", 0.05)}
@@ -161,11 +94,10 @@ export default function HeroEditorial() {
               </span>
             </div>
 
-            {/* Headline */}
             <h1
-              className="h1 mt-7 max-w-[22ch]"
+              className="h1 mt-7 max-w-[16ch]"
               style={{
-                fontSize: "clamp(2.4rem, 5vw, 4rem)",
+                fontSize: "clamp(2.3rem, 3.7vw, 3.6rem)",
                 lineHeight: 1.04,
                 ...enter("slide-in 0.8s var(--ease-spring)", 0.12),
               }}
@@ -184,9 +116,8 @@ export default function HeroEditorial() {
               <span className="text-gradient">Every deal, one pipeline.</span>
             </h1>
 
-            {/* Subhead */}
             <p
-              className="body-lg mt-6 max-w-[600px]"
+              className="body-lg mt-6 max-w-[540px]"
               style={enter("fade-in-up 0.6s var(--ease-out)", 0.28)}
             >
               Capture every{" "}
@@ -200,12 +131,11 @@ export default function HeroEditorial() {
               <span className="text-text-primary">data resident in the UAE</span>.
             </p>
 
-            {/* Ask WIYO pill */}
             <form
               onSubmit={handleAsk}
               role="search"
               aria-label="Ask WIYO"
-              className="mt-9 w-full max-w-[520px]"
+              className="mt-9 w-full max-w-[480px]"
               style={enter("fade-in-up 0.6s var(--ease-out)", 0.4)}
             >
               <div className="ask-pill">
@@ -235,7 +165,6 @@ export default function HeroEditorial() {
               </p>
             </form>
 
-            {/* CTA row */}
             <div
               className="mt-6 flex flex-wrap items-center gap-3 max-sm:flex-col"
               style={enter("fade-in-up 0.5s var(--ease-out)", 0.52)}
@@ -256,31 +185,23 @@ export default function HeroEditorial() {
               </a>
             </div>
           </div>
+
+          {/* Right — 3D iPhone reels */}
+          <div
+            className="col-span-12 lg:col-span-6 flex justify-center"
+            style={enter("fade-in-up 0.7s var(--ease-spring)", 0.3)}
+          >
+            <PhoneReels />
+          </div>
         </div>
       </div>
 
-      {/* Edge anchors (decorative, desktop only) */}
-      <div
-        className="lang-anchor z-20 hidden md:flex"
-        style={{
-          right: "clamp(12px,2vw,28px)",
-          top: "50%",
-          transform: "translateY(-50%)",
-          opacity: 0,
-          animation: "fade-in 0.6s var(--ease-out) 0.85s both",
-        }}
-        aria-hidden="true"
-      >
-        <span className="text-text-accent">EN</span>
-        <span>·</span>
-        <span className="text-text-muted">ع</span>
-      </div>
-
+      {/* Edge anchor (decorative, desktop only) */}
       <span
         className="mono uppercase tracking-[0.2em] text-text-muted z-20 hidden md:block"
         style={{
           position: "absolute",
-          bottom: "clamp(20px,3vw,32px)",
+          bottom: "clamp(18px,2.4vw,28px)",
           left: "clamp(20px,5vw,64px)",
           fontSize: 11,
           opacity: 0,
@@ -288,22 +209,7 @@ export default function HeroEditorial() {
         }}
         aria-hidden
       >
-        © 2026 — WIYO
-      </span>
-
-      <span
-        className="mono uppercase tracking-[0.2em] text-text-muted z-20 hidden md:block text-right"
-        style={{
-          position: "absolute",
-          bottom: "clamp(20px,3vw,32px)",
-          right: "clamp(20px,5vw,64px)",
-          fontSize: 11,
-          opacity: 0,
-          animation: "fade-in 0.6s var(--ease-out) 1.05s both",
-        }}
-        aria-hidden
-      >
-        REAL ESTATE, UNIFIED.
+        © 2026 — WIYO · real estate, unified.
       </span>
     </section>
   );
