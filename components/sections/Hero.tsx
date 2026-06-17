@@ -55,7 +55,7 @@ export default function Hero() {
         />
         <HeroVideoCard
           lgOnly
-          startAt={24}
+          src="/hero-card-2.mp4"
           style={{
             bottom: "10%",
             right: "12%",
