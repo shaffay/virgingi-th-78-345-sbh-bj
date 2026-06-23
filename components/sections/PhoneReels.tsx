@@ -25,6 +25,11 @@ const REELS: Reel[] = [
     handle: "wiyo.ae",
     caption: "Built in Dubai, for the way the UAE sells.",
   },
+  {
+    src: "/reel-4.mp4",
+    handle: "wiyo.ae",
+    caption: "Every deal, every agent — running as one.",
+  },
 ];
 
 /**
