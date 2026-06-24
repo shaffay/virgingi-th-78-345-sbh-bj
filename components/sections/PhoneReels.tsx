@@ -11,6 +11,11 @@ interface Reel {
 
 const REELS: Reel[] = [
   {
+    src: "/reel-5.mp4",
+    handle: "wiyo.ae",
+    caption: "This is WIYO — see it in motion.",
+  },
+  {
     src: "/reel-2.mp4",
     handle: "wiyo.ae",
     caption: "From spreadsheet chaos to one live pipeline.",
