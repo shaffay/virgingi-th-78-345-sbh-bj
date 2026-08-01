@@ -215,12 +215,23 @@ export default function Footer() {
               </a>
             </div>
           </div>
-          <p className="caption max-w-[440px] text-right">
-            WIYO · Built in Dubai, UAE 🇦🇪
+          {/* Registered entity details. A UAE free-zone company is expected to
+              show its licensed name, trade licence number and registered
+              address — it is also what enterprise buyers look for before they
+              sign. Taken from the Meydan FZ business licence. */}
+          <address className="caption max-w-[440px] text-right not-italic">
+            <span className="mono">WIYO L.L.C-FZ</span>
             <br />
-            Serving real estate agencies across Dubai, Abu Dhabi, Sharjah, and
-            the Emirates.
-          </p>
+            Meydan Grandstand, 6th Floor, Meydan Road,
+            <br />
+            Nad Al Sheba, Dubai, U.A.E.
+            <br />
+            <span className="mono">Trade Licence No. 2649536.01</span>
+            <br />
+            <span style={{ opacity: 0.75 }}>
+              Licensed by Meydan Free Zone, Government of Dubai
+            </span>
+          </address>
         </div>
       </div>
 
