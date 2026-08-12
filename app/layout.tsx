@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import LenisProvider from "@/components/LenisProvider";
+import { SOCIAL_URLS, X_HANDLE } from "@/lib/social";
 import { ThemeProvider, themeBootstrapScript } from "@/components/ThemeProvider";
 import "./globals.css";
 
@@ -54,8 +55,8 @@ export const metadata: Metadata = {
     title: "WIYO — The Real Estate Operating System for UAE",
     description:
       "AI-powered CRM built for UAE real estate agencies. Bayut + Property Finder + WhatsApp + Off-Plan, unified.",
-    site: "@wiyo_ae",
-    creator: "@wiyo_ae",
+    site: X_HANDLE,
+    creator: X_HANDLE,
   },
   icons: {
     icon: "/favicon.png",
@@ -99,13 +100,9 @@ export const viewport: Viewport = {
 // knowledge-graph eligibility, and rich results.
 // ---------------------------------------------------------------
 
-const SOCIAL_PROFILES = [
-  "https://www.instagram.com/wiyo.ae",
-  "https://www.linkedin.com/company/wiyo-ae",
-  "https://twitter.com/wiyo_ae",
-  "https://www.facebook.com/wiyo.ae",
-  "https://www.youtube.com/@wiyo-ae",
-];
+// Profile URLs live in lib/social so the footer, sitemap and this schema graph
+// can never drift apart.
+const SOCIAL_PROFILES = SOCIAL_URLS;
 
 const websiteSchema = {
   "@context": "https://schema.org",

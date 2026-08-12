@@ -7,6 +7,7 @@ import Overline from "@/components/ui/Overline";
 import WhatsAppButton from "@/components/cro/WhatsAppButton";
 import MobileCTABar from "@/components/cro/MobileCTABar";
 import { blogPosts } from "@/lib/blog";
+import { SOCIAL_PROFILES } from "@/lib/social";
 
 export const metadata: Metadata = {
   title: "Sitemap | WIYO — UAE Real Estate CRM",
@@ -71,8 +72,19 @@ const sections: SitemapSection[] = [
     description: "About WIYO and how to get in touch.",
     links: [
       { label: "Contact", href: "mailto:hello@wiyo.ae", description: "hello@wiyo.ae" },
-      { label: "Instagram", href: "https://www.instagram.com/wiyo.ae", description: "@wiyo.ae" },
+      { label: "Privacy Policy", href: "/privacy", description: "How WIYO handles your data." },
+      { label: "Terms of Service", href: "/terms", description: "Terms governing use of WIYO." },
+      { label: "Data Deletion", href: "/data-deletion", description: "Request deletion of your data." },
     ],
+  },
+  {
+    title: "Follow WIYO",
+    description: "Official WIYO profiles across social platforms.",
+    links: SOCIAL_PROFILES.map((profile) => ({
+      label: profile.name,
+      href: profile.href,
+      description: profile.handle,
+    })),
   },
 ];
 

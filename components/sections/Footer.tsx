@@ -3,9 +3,20 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Instagram, Linkedin, Twitter, Mail } from "lucide-react";
+import { ArrowRight, Facebook, Instagram, Linkedin, Mail } from "lucide-react";
 import Divider from "../ui/Divider";
 import { useTheme } from "../ThemeProvider";
+import { XIcon, TikTokIcon } from "../ui/SocialIcons";
+import { SOCIAL_PROFILES } from "@/lib/social";
+
+/** Glyph per profile name — lucide where it exists, brand SVG otherwise. */
+const SOCIAL_ICONS: Record<string, (size: number) => React.ReactNode> = {
+  Instagram: (size) => <Instagram size={size} strokeWidth={1.6} />,
+  Facebook: (size) => <Facebook size={size} strokeWidth={1.6} />,
+  LinkedIn: (size) => <Linkedin size={size} strokeWidth={1.6} />,
+  X: (size) => <XIcon size={size} />,
+  TikTok: (size) => <TikTokIcon size={size} />,
+};
 
 const columns = [
   {
@@ -185,25 +196,22 @@ export default function Footer() {
               Follow
             </p>
             <div className="flex items-center gap-3">
-              {[
-                { Icon: Instagram, href: "https://www.instagram.com/wiyo.ae", label: "Instagram" },
-                { Icon: Linkedin, href: "https://www.linkedin.com/company/wiyo-ae", label: "LinkedIn" },
-                { Icon: Twitter, href: "https://twitter.com/wiyo_ae", label: "X / Twitter" },
-              ].map((s, i) => (
+              {SOCIAL_PROFILES.map((s) => (
                 <a
-                  key={i}
+                  key={s.name}
                   href={s.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={s.label}
-                  className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 ease-standard"
+                  aria-label={`WIYO on ${s.name} — ${s.handle}`}
+                  title={s.name}
+                  className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 ease-standard hover:scale-105"
                   style={{
                     background: "var(--bg-elevated)",
                     border: "1px solid var(--border-subtle)",
                     color: "var(--text-secondary)",
                   }}
                 >
-                  <s.Icon size={16} strokeWidth={1.6} />
+                  {SOCIAL_ICONS[s.name]?.(16)}
                 </a>
               ))}
               <a
