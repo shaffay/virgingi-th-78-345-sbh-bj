@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { ArrowRight, Check } from "lucide-react";
 import Overline from "../ui/Overline";
 import { Reveal, StaggerGroup, slideInVariant } from "../motion/Reveal";
@@ -41,6 +42,29 @@ export default function FinalCTA() {
 
   return (
     <section id="cta" className="section-y relative overflow-hidden">
+      {/* Dubai skyline backdrop — heavily graded so it reads as atmosphere */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden>
+        <Image
+          src="/dubai-skyline.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          quality={70}
+          className="object-cover"
+          style={{
+            objectPosition: "center 62%",
+            filter: "brightness(2.1) saturate(1.2)",
+          }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, var(--bg-base) 0%, rgba(8,12,33,0.72) 30%, rgba(8,12,33,0.76) 68%, var(--bg-base) 100%)",
+          }}
+        />
+      </div>
+
       <div className="absolute inset-0 pointer-events-none" aria-hidden>
         <div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[900px] rounded-full"

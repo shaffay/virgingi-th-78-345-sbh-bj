@@ -5,6 +5,7 @@ import PainPoints from "@/components/sections/PainPoints";
 import HowItWorks from "@/components/sections/HowItWorks";
 import Features from "@/components/sections/Features";
 import Comparison from "@/components/sections/Comparison";
+import CinematicBand from "@/components/sections/CinematicBand";
 import PlatformStats from "@/components/sections/PlatformStats";
 import ForEveryRole from "@/components/sections/ForEveryRole";
 import FounderStory from "@/components/sections/FounderStory";
@@ -26,6 +27,7 @@ export default function Home() {
       <HowItWorks />
       <Features />
       <Comparison />
+      <CinematicBand />
       <PlatformStats />
       <ForEveryRole />
       <FounderStory />
