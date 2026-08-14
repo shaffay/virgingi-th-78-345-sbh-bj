@@ -979,157 +979,176 @@ html.lenis body {
   /* =====================================================
      3D iPhone reels showcase (hero right column)
      ===================================================== */
-  .phone-stage {
+  /* =====================================================
+     Film showcase — levitating cinematic monolith
+     ===================================================== */
+  .film-stage {
     position: relative;
     width: fit-content;
     margin-inline: auto;
-    perspective: 1800px;
+    perspective: 1600px;
   }
-  .phone-glow {
+  .film-ambient {
     position: absolute;
-    inset: -10% -6%;
+    inset: -14% -20%;
     pointer-events: none;
     background: radial-gradient(
-      48% 44% at 52% 46%,
+      46% 42% at 52% 46%,
       rgba(var(--spotlight), 0.42),
       transparent 70%
     );
-    filter: blur(20px);
-    animation: phone-glow-pulse 7s var(--ease-standard) infinite alternate;
+    filter: blur(22px);
+    animation: film-pulse 7s var(--ease-standard) infinite alternate;
   }
-  /* Static 3D tilt (no continuous transform) so the playing video never
-     recomposites per frame — that was the source of audio/video stutter.
-     Tilts toward the viewer on hover; only the glow behind it animates. */
-  .phone-3d {
+  /* Vertical editorial label riding the panel's right edge */
+  .film-side {
+    position: absolute;
+    right: -44px;
+    top: 50%;
+    transform: translateY(-50%);
+    writing-mode: vertical-rl;
+    font-family: var(--font-geist-mono), monospace;
+    font-size: 10px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    z-index: 2;
+  }
+  /* Keynote-style floor reflection (WebKit/Blink; harmless elsewhere) */
+  .film-reflect {
+    -webkit-box-reflect: below 16px
+      linear-gradient(transparent 62%, rgba(0, 0, 0, 0.3));
+  }
+  .film-tilt {
     position: relative;
-    transform: rotateY(-12deg) rotateX(5deg);
+    transform: rotateY(-10deg) rotateX(4deg);
     transition: transform 0.7s var(--ease-spring);
     will-change: transform;
   }
-  .phone-3d:hover {
-    transform: rotateY(-5deg) rotateX(3deg) translateY(-6px);
+  .film-stage:hover .film-tilt {
+    transform: rotateY(-3deg) rotateX(1.5deg) translateY(-4px);
   }
-  @keyframes phone-glow-pulse {
-    from {
-      opacity: 0.6;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  .phone-frame {
-    position: relative;
-    width: clamp(300px, 25vw, 344px);
-    aspect-ratio: 9 / 19.5;
-    padding: 8px;
-    border-radius: 58px;
-    /* brushed-titanium rail — light catches the corners, dark through the middle */
-    background: linear-gradient(
-      145deg,
-      #6c6c75 0%,
-      #2c2c31 16%,
-      #161619 34%,
-      #121215 50%,
-      #161619 66%,
-      #2c2c31 84%,
-      #6c6c75 100%
-    );
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22),
-      inset 0 2px 1px rgba(255, 255, 255, 0.5),
-      inset 0 -2px 3px rgba(0, 0, 0, 0.72),
-      0 0 0 1px rgba(0, 0, 0, 0.55),
-      0 64px 110px -34px rgba(0, 0, 0, 0.88),
-      0 24px 46px -18px rgba(0, 0, 0, 0.55),
-      0 0 100px -10px rgba(var(--spotlight), 0.42);
-  }
-  .phone-screen {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    border-radius: 50px;
-    overflow: hidden;
-    background: #000;
-    /* thin black bezel between the titanium rail and the glass */
-    box-shadow: inset 0 0 0 3px #000, inset 0 0 0 4px rgba(255, 255, 255, 0.05);
-  }
-  .dynamic-island {
+  /* Viewfinder brackets floating just off the panel corners */
+  .film-corner {
     position: absolute;
-    top: 13px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 106px;
-    height: 28px;
-    border-radius: 9999px;
-    background: #000;
-    z-index: 6;
-    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05),
-      inset 0 0 8px rgba(0, 0, 0, 0.9);
+    width: 22px;
+    height: 22px;
+    border: 1.5px solid rgba(var(--spotlight), 0.55);
+    z-index: 2;
+    pointer-events: none;
   }
-  /* camera lens detail inside the Dynamic Island */
-  .dynamic-island::after {
+  .film-corner--tl {
+    top: -13px;
+    left: -13px;
+    border-right: 0;
+    border-bottom: 0;
+    border-top-left-radius: 8px;
+  }
+  .film-corner--tr {
+    top: -13px;
+    right: -13px;
+    border-left: 0;
+    border-bottom: 0;
+    border-top-right-radius: 8px;
+  }
+  .film-corner--bl {
+    bottom: -13px;
+    left: -13px;
+    border-right: 0;
+    border-top: 0;
+    border-bottom-left-radius: 8px;
+  }
+  .film-corner--br {
+    bottom: -13px;
+    right: -13px;
+    border-left: 0;
+    border-top: 0;
+    border-bottom-right-radius: 8px;
+  }
+  /* Rotating light beam traced around the panel border */
+  .film-border {
+    position: relative;
+    padding: 2px;
+    border-radius: 30px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.07);
+    box-shadow: 0 60px 110px -30px rgba(0, 0, 0, 0.85),
+      0 24px 48px -20px rgba(0, 0, 0, 0.55),
+      0 0 90px -12px rgba(var(--spotlight), 0.45);
+  }
+  .film-border::before {
     content: "";
     position: absolute;
-    right: 13px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 38% 32%, #34415e 0%, #06070c 72%);
-    box-shadow: inset 0 0 2px rgba(90, 130, 255, 0.45);
+    inset: -45%;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      rgba(var(--spotlight), 0.95) 45deg,
+      rgba(129, 140, 248, 0.9) 85deg,
+      transparent 150deg,
+      transparent 210deg,
+      rgba(192, 132, 252, 0.75) 265deg,
+      transparent 330deg
+    );
+    animation: film-beam 7s linear infinite;
   }
-  .phone-btn {
-    position: absolute;
+  .film-panel {
+    position: relative;
     z-index: 1;
-    background: linear-gradient(#5a5a62, #1a1a1e);
-    border-radius: 2px;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22),
-      0 1px 1px rgba(0, 0, 0, 0.5);
+    width: clamp(252px, 23vw, 324px);
+    aspect-ratio: 9 / 16;
+    border-radius: 28px;
+    overflow: hidden;
+    background: #050507;
   }
-  .phone-btn--power {
-    right: -2px;
-    top: 32%;
-    width: 3px;
-    height: 66px;
-  }
-  .phone-btn--volup {
-    left: -2px;
-    top: 27%;
-    width: 3px;
-    height: 44px;
-  }
-  .phone-btn--voldn {
-    left: -2px;
-    top: 39%;
-    width: 3px;
-    height: 44px;
-  }
-  .phone-btn--action {
-    left: -2px;
-    top: 19%;
-    width: 3px;
-    height: 26px;
-  }
-  .reel-video {
+  .film-video {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
-  .reel-overlay {
+  .film-overlay {
     position: absolute;
     inset: 0;
     pointer-events: none;
     background: linear-gradient(
       to bottom,
-      rgba(0, 0, 0, 0.28) 0%,
+      rgba(0, 0, 0, 0.2) 0%,
       transparent 22%,
-      transparent 52%,
-      rgba(0, 0, 0, 0.72) 100%
+      transparent 60%,
+      rgba(0, 0, 0, 0.55) 100%
     );
   }
-  .reel-mute {
+  .film-chip {
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 13px;
+    border-radius: 9999px;
+    background: rgba(8, 12, 33, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    font-family: var(--font-geist-mono), monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .film-chip__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--cta-gradient);
+    box-shadow: 0 0 10px rgba(var(--spotlight), 0.8);
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+  .film-mute {
     position: absolute;
     top: 13px;
     right: 13px;
@@ -1148,12 +1167,12 @@ html.lenis body {
     transition: transform var(--duration-fast) var(--ease-standard),
       background var(--duration-fast) var(--ease-standard);
   }
-  .reel-mute:hover {
+  .film-mute:hover {
     transform: scale(1.08);
     background: rgba(0, 0, 0, 0.6);
   }
-  /* Mobile tap-to-play overlay — nothing is fetched until this is pressed */
-  .phone-play {
+  /* Mobile tap-to-play overlay — nothing is fetched until pressed */
+  .film-play {
     position: absolute;
     inset: 0;
     z-index: 7;
@@ -1174,7 +1193,7 @@ html.lenis body {
     color: var(--text-primary);
     cursor: pointer;
   }
-  .phone-play__btn {
+  .film-play__btn {
     position: relative;
     z-index: 2;
     width: 72px;
@@ -1190,11 +1209,10 @@ html.lenis body {
       inset 0 1px 0 rgba(255, 255, 255, 0.28);
     transition: transform var(--duration-fast) var(--ease-spring);
   }
-  .phone-play:active .phone-play__btn {
+  .film-play:active .film-play__btn {
     transform: scale(0.93);
   }
-  /* Expanding halo that reads as "live" without costing layout */
-  .phone-play__ring {
+  .film-play__ring {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -1205,7 +1223,7 @@ html.lenis body {
     border: 2px solid rgba(var(--spotlight), 0.55);
     animation: play-halo 2.4s var(--ease-standard) infinite;
   }
-  .phone-play__label {
+  .film-play__label {
     position: relative;
     z-index: 2;
     display: flex;
@@ -1217,7 +1235,7 @@ html.lenis body {
     letter-spacing: -0.01em;
     text-shadow: 0 1px 6px rgba(0, 0, 0, 0.55);
   }
-  .phone-play__meta {
+  .film-play__meta {
     font-family: var(--font-geist-mono), monospace;
     font-size: 11px;
     font-weight: 500;
@@ -1225,7 +1243,7 @@ html.lenis body {
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.66);
   }
-  .phone-play__spinner {
+  .film-spinner {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -1239,19 +1257,6 @@ html.lenis body {
     animation: spin-slow 0.8s linear infinite;
   }
 
-  .phone-gloss {
-    position: absolute;
-    inset: 0;
-    z-index: 5;
-    pointer-events: none;
-    border-radius: 50px;
-    background: linear-gradient(
-      125deg,
-      rgba(255, 255, 255, 0.16) 0%,
-      rgba(255, 255, 255, 0.05) 12%,
-      transparent 30%
-    );
-  }
   @media (max-width: 767px) {
     .ask-pill {
       padding: 6px 6px 6px 16px;
@@ -1260,8 +1265,14 @@ html.lenis body {
       width: 40px;
       height: 40px;
     }
-    .phone-frame {
-      width: clamp(280px, 82vw, 340px);
+    .film-panel {
+      width: clamp(248px, 76vw, 320px);
+    }
+    .film-reflect {
+      -webkit-box-reflect: none;
+    }
+    .film-side {
+      display: none;
     }
   }
 }
@@ -1434,5 +1445,20 @@ html.lenis body {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes film-beam {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes film-pulse {
+  from {
+    opacity: 0.6;
+  }
+  to {
+    opacity: 1;
   }
 }
