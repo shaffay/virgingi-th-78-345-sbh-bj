@@ -1110,25 +1110,6 @@ html.lenis body {
     width: 3px;
     height: 26px;
   }
-  .reels-scroller {
-    position: absolute;
-    inset: 0;
-    overflow-y: auto;
-    scroll-snap-type: y mandatory;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior: contain;
-  }
-  .reels-scroller::-webkit-scrollbar {
-    display: none;
-  }
-  .reel {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    scroll-snap-align: center;
-    scroll-snap-stop: always;
-  }
   .reel-video {
     position: absolute;
     inset: 0;
@@ -1147,46 +1128,6 @@ html.lenis body {
       transparent 52%,
       rgba(0, 0, 0, 0.72) 100%
     );
-  }
-  .reel-rail {
-    position: absolute;
-    right: 9px;
-    bottom: 26px;
-    z-index: 3;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    align-items: center;
-    color: #fff;
-  }
-  .reel-rail__btn {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3px;
-    font-size: 10px;
-    font-weight: 600;
-    opacity: 0.92;
-    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.5));
-  }
-  .reel-caption {
-    position: absolute;
-    left: 14px;
-    right: 50px;
-    bottom: 18px;
-    z-index: 3;
-    color: #fff;
-    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.55));
-  }
-  .reel-handle {
-    font-size: 12px;
-    font-weight: 700;
-  }
-  .reel-caption p {
-    margin-top: 4px;
-    font-size: 13px;
-    line-height: 1.34;
-    font-weight: 500;
   }
   .reel-mute {
     position: absolute;
@@ -1211,6 +1152,93 @@ html.lenis body {
     transform: scale(1.08);
     background: rgba(0, 0, 0, 0.6);
   }
+  /* Mobile tap-to-play overlay — nothing is fetched until this is pressed */
+  .phone-play {
+    position: absolute;
+    inset: 0;
+    z-index: 7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    border: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(8, 12, 33, 0.42) 0%,
+      rgba(8, 12, 33, 0.28) 45%,
+      rgba(8, 12, 33, 0.78) 100%
+    );
+    backdrop-filter: blur(1.5px);
+    -webkit-backdrop-filter: blur(1.5px);
+    color: var(--text-primary);
+    cursor: pointer;
+  }
+  .phone-play__btn {
+    position: relative;
+    z-index: 2;
+    width: 72px;
+    height: 72px;
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 4px;
+    color: #fff;
+    background: var(--cta-gradient);
+    box-shadow: 0 0 34px rgba(var(--spotlight), 0.75),
+      inset 0 1px 0 rgba(255, 255, 255, 0.28);
+    transition: transform var(--duration-fast) var(--ease-spring);
+  }
+  .phone-play:active .phone-play__btn {
+    transform: scale(0.93);
+  }
+  /* Expanding halo that reads as "live" without costing layout */
+  .phone-play__ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 72px;
+    height: 72px;
+    margin: -36px 0 0 -36px;
+    border-radius: 9999px;
+    border: 2px solid rgba(var(--spotlight), 0.55);
+    animation: play-halo 2.4s var(--ease-standard) infinite;
+  }
+  .phone-play__label {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.55);
+  }
+  .phone-play__meta {
+    font-family: var(--font-geist-mono), monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.66);
+  }
+  .phone-play__spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 34px;
+    height: 34px;
+    margin: -17px 0 0 -17px;
+    z-index: 7;
+    border-radius: 9999px;
+    border: 2px solid rgba(255, 255, 255, 0.18);
+    border-top-color: var(--accent-primary);
+    animation: spin-slow 0.8s linear infinite;
+  }
+
   .phone-gloss {
     position: absolute;
     inset: 0;
@@ -1224,30 +1252,6 @@ html.lenis body {
       transparent 30%
     );
   }
-  .reel-dots {
-    position: absolute;
-    right: -26px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 8;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .reel-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 9999px;
-    background: var(--bg-subtle);
-    border: 1px solid var(--border-subtle);
-    transition: all var(--duration-base) var(--ease-spring);
-  }
-  .reel-dot.is-active {
-    height: 22px;
-    background: var(--cta-gradient);
-    border-color: transparent;
-  }
-
   @media (max-width: 767px) {
     .ask-pill {
       padding: 6px 6px 6px 16px;
@@ -1258,9 +1262,6 @@ html.lenis body {
     }
     .phone-frame {
       width: clamp(280px, 82vw, 340px);
-    }
-    .reel-dots {
-      right: -18px;
     }
   }
 }
@@ -1408,6 +1409,21 @@ html.lenis body {
   }
   to {
     opacity: 1;
+  }
+}
+
+@keyframes play-halo {
+  0% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  70% {
+    transform: scale(1.75);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.75);
+    opacity: 0;
   }
 }
 

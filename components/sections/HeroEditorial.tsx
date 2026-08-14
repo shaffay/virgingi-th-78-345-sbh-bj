@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { ArrowRight, ChevronDown, Sparkles } from "lucide-react";
-import PhoneReels from "./PhoneReels";
+import PhoneShowcase from "./PhoneShowcase";
 
 /**
  * Editorial hero — WIYO dark violet brand. Text on the left (offset display
@@ -191,7 +191,7 @@ export default function HeroEditorial() {
             className="col-span-12 lg:col-span-6 flex justify-center"
             style={enter("fade-in-up 0.7s var(--ease-spring)", 0.3)}
           >
-            <PhoneReels />
+            <PhoneShowcase />
           </div>
         </div>
       </div>
