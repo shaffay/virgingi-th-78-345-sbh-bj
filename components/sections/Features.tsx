@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import {
   LayoutGrid,
   Building2,
@@ -153,8 +154,32 @@ export default function Features() {
   const Icon = m.icon;
 
   return (
-    <section id="features" className="section-y relative">
-      <div className="container-x">
+    <section id="features" className="section-y relative overflow-hidden">
+      {/* Abstract light-field texture — pure atmosphere behind the modules */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden>
+        <Image
+          src="/ai-field.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          quality={65}
+          className="object-cover"
+          style={{
+            opacity: 0.9,
+            objectPosition: "center 40%",
+            filter: "brightness(1.35) saturate(1.2)",
+          }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, var(--bg-base) 0%, rgba(8,12,33,0.74) 20%, rgba(8,12,33,0.80) 70%, var(--bg-base) 100%)",
+          }}
+        />
+      </div>
+
+      <div className="container-x relative">
         <div className="text-center max-w-[880px] mx-auto">
           <Reveal variant="fade">
             <Overline>The Modules</Overline>
