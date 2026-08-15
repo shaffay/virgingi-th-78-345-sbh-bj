@@ -1014,6 +1014,12 @@ html.lenis body {
     color: var(--text-muted);
     z-index: 2;
   }
+  /* Scroll-parallax carrier. preserve-3d keeps the child's tilt in the
+     stage's perspective instead of flattening it into this element. */
+  .film-parallax {
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
   /* Keynote-style floor reflection (WebKit/Blink; harmless elsewhere) */
   .film-reflect {
     -webkit-box-reflect: below 16px

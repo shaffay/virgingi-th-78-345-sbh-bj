@@ -19,6 +19,7 @@ const DURATION_LABEL = "37s";
  */
 export default function FilmShowcase() {
   const panelRef = useRef<HTMLDivElement | null>(null);
+  const parallaxRef = useRef<HTMLDivElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
@@ -32,6 +33,44 @@ export default function FilmShowcase() {
     mq.addEventListener("change", sync);
     return () => mq.removeEventListener("change", sync);
   }, []);
+
+  // Scroll parallax — the panel drifts a little slower than the copy beside
+  // it, which reads as depth. Transform-only and rAF-throttled, and it only
+  // moves while the page is actually scrolling, so playback stays smooth.
+  useEffect(() => {
+    const el = parallaxRef.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const maxShift = isMobile ? 26 : 56;
+    let frame = 0;
+    let queued = false;
+
+    const update = () => {
+      queued = false;
+      const rect = el.getBoundingClientRect();
+      const viewport = window.innerHeight || 1;
+      // -1 (below the fold) → 0 (centred) → 1 (scrolled past)
+      const progress = (rect.top + rect.height / 2 - viewport / 2) / viewport;
+      const shift = Math.max(-1, Math.min(1, -progress)) * maxShift;
+      el.style.transform = `translate3d(0, ${shift.toFixed(2)}px, 0)`;
+    };
+
+    const onScroll = () => {
+      if (queued) return;
+      queued = true;
+      frame = requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      cancelAnimationFrame(frame);
+    };
+  }, [isMobile]);
 
   // Dropping to a mobile viewport hands control back to the play overlay.
   useEffect(() => {
@@ -92,8 +131,9 @@ export default function FilmShowcase() {
         WIYO — THE FILM · MMXXVI
       </span>
 
-      <div className="film-reflect">
-        <div className="film-tilt" ref={panelRef}>
+      <div className="film-parallax" ref={parallaxRef}>
+        <div className="film-reflect">
+          <div className="film-tilt" ref={panelRef}>
           <span className="film-corner film-corner--tl" aria-hidden />
           <span className="film-corner film-corner--tr" aria-hidden />
           <span className="film-corner film-corner--bl" aria-hidden />
@@ -163,6 +203,7 @@ export default function FilmShowcase() {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
