@@ -8,11 +8,12 @@ import { NextResponse } from "next/server";
  * cross-origin (CORS) issues between www.wiyo.ae and beta.wiyo.ae and keeps
  * the webhook URL out of the client bundle.
  *
- * Override the destination per-environment with WIYO_LEAD_WEBHOOK_URL.
+ * The destination is configured per-environment via WIYO_LEAD_WEBHOOK_URL and
+ * is deliberately NOT hardcoded — this repository is public, and the webhook
+ * token is a write credential for the CRM. Set it in Vercel (Production and
+ * Preview) and in .env.local for local development.
  */
-const WEBHOOK_URL =
-  process.env.WIYO_LEAD_WEBHOOK_URL ??
-  "https://beta.wiyo.ae/api/lead-sourcing/webhook/6a2ea0e782afe9a58c17f2b1/b1e2fdeca83ed7af5b439b10aab9f766";
+const WEBHOOK_URL = process.env.WIYO_LEAD_WEBHOOK_URL;
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -32,6 +33,18 @@ export async function POST(req: Request) {
     body = await req.json();
   } catch {
     return NextResponse.json({ error: "Invalid JSON body." }, { status: 400 });
+  }
+
+  // A missing webhook silently loses every lead, so fail loudly in the logs
+  // rather than falling back to some other destination.
+  if (!WEBHOOK_URL) {
+    console.error(
+      "WIYO_LEAD_WEBHOOK_URL is not configured — lead dropped. Set it in the Vercel project environment variables.",
+    );
+    return NextResponse.json(
+      { error: "Lead could not be delivered. Please try again." },
+      { status: 500 },
+    );
   }
 
   const email = (body.email ?? "").trim();
