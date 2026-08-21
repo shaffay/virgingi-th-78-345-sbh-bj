@@ -276,7 +276,7 @@ export default function Footer() {
             <br />
             <span className="mono">Trade Licence No. 2649536.01</span>
             <br />
-            <span style={{ opacity: 0.75 }}>
+            <span>
               Licensed by Meydan Free Zone, Government of Dubai
             </span>
           </address>

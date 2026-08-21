@@ -15,7 +15,9 @@ export default function LenisProvider({ children }: { children: React.ReactNode 
   useEffect(() => {
     const reduce =
       typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.matchMedia(
+        "(max-width: 767px), (prefers-reduced-motion: reduce)",
+      ).matches;
     if (reduce) return;
 
     const lenis = new Lenis({

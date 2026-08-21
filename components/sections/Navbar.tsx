@@ -91,11 +91,7 @@ export default function Navbar() {
       }
     >
       <div className="container-x flex items-center justify-between h-24">
-        <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
-        >
+        <div>
           <Link
             href="/"
             aria-label="WIYO home"
@@ -111,7 +107,7 @@ export default function Navbar() {
               className="h-12 md:h-14 w-auto object-contain"
             />
           </Link>
-        </motion.div>
+        </div>
 
         <nav className="hidden md:flex items-center gap-9">
           <motion.a
