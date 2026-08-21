@@ -4,6 +4,8 @@ import { GeistMono } from "geist/font/mono";
 import LenisProvider from "@/components/LenisProvider";
 import { SOCIAL_URLS, X_HANDLE } from "@/lib/social";
 import { ThemeProvider, themeBootstrapScript } from "@/components/ThemeProvider";
+import Analytics from "@/components/Analytics";
+import { WIYO_WHATSAPP_DISPLAY } from "@/lib/contact";
 import "./globals.css";
 
 const SITE_URL = "https://www.wiyo.ae";
@@ -11,12 +13,12 @@ const SITE_URL = "https://www.wiyo.ae";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default:
-      "WIYO | #1 Real Estate CRM UAE — AI-Powered CRM for Dubai Brokerages",
-    template: "%s | WIYO",
+    default: "WIYO — Real Estate CRM for UAE Brokerages",
+    // Existing route titles already include WIYO where useful.
+    template: "%s",
   },
   description:
-    "WIYO is the UAE's most advanced AI-powered Real Estate CRM. Built for Dubai brokerages — manage leads from Bayut, Property Finder & Dubizzle, automate WhatsApp, close more off-plan deals. From AED 2,650/month.",
+    "A real estate CRM for UAE brokerages: bring portal and WhatsApp leads into one pipeline, organise off-plan inventory, and give every agent a clear next action.",
   keywords: [
     "real estate CRM UAE",
     "CRM Dubai real estate",
@@ -40,9 +42,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "WIYO — The Real Estate Operating System for UAE",
+    title: "WIYO — Real Estate CRM for UAE Brokerages",
     description:
-      "Replace 6 tools with one. AI-powered CRM built for UAE real estate agencies. Bayut + Property Finder + WhatsApp + Off-Plan, unified.",
+      "One operating workspace for property leads, conversations, inventory, and the team working every deal.",
     url: SITE_URL,
     siteName: "WIYO",
     // og:image is provided by the file-based convention in app/opengraph-image.tsx,
@@ -52,9 +54,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "WIYO — The Real Estate Operating System for UAE",
+    title: "WIYO — Real Estate CRM for UAE Brokerages",
     description:
-      "AI-powered CRM built for UAE real estate agencies. Bayut + Property Finder + WhatsApp + Off-Plan, unified.",
+      "One operating workspace for property leads, conversations, inventory, and the team working every deal.",
     site: X_HANDLE,
     creator: X_HANDLE,
   },
@@ -112,17 +114,9 @@ const websiteSchema = {
   name: "WIYO",
   alternateName: "WIYO — Real Estate Operating System UAE",
   description:
-    "AI-powered Real Estate CRM built for UAE brokerages. Bayut, Property Finder, Dubizzle, WhatsApp and off-plan in one platform.",
+    "Real estate CRM for UAE brokerages, bringing property leads, conversations, inventory, and sales workflows into one workspace.",
   inLanguage: "en-AE",
   publisher: { "@id": `${SITE_URL}/#organization` },
-  potentialAction: {
-    "@type": "SearchAction",
-    target: {
-      "@type": "EntryPoint",
-      urlTemplate: `${SITE_URL}/blog?q={search_term_string}`,
-    },
-    "query-input": "required name=search_term_string",
-  },
 };
 
 const organizationSchema = {
@@ -130,7 +124,7 @@ const organizationSchema = {
   "@type": "Organization",
   "@id": `${SITE_URL}/#organization`,
   name: "WIYO",
-  legalName: "WIYO Technologies FZ-LLC",
+  legalName: "WIYO L.L.C-FZ",
   url: SITE_URL,
   logo: {
     "@type": "ImageObject",
@@ -140,8 +134,9 @@ const organizationSchema = {
   },
   image: `${SITE_URL}/opengraph-image`,
   description:
-    "WIYO is the Real Estate Operating System for the UAE — an AI-powered CRM built for Dubai brokerages with native Bayut, Property Finder and Dubizzle integration.",
+    "WIYO builds real estate CRM software for UAE brokerages, focused on lead operations, inventory, conversations, and team workflows.",
   email: "hello@wiyo.ae",
+  telephone: WIYO_WHATSAPP_DISPLAY,
   foundingLocation: {
     "@type": "Place",
     address: {
@@ -152,6 +147,7 @@ const organizationSchema = {
   },
   address: {
     "@type": "PostalAddress",
+    streetAddress: "Meydan Grandstand, 6th Floor, Meydan Road, Nad Al Sheba",
     addressLocality: "Dubai",
     addressRegion: "Dubai",
     addressCountry: "AE",
@@ -160,6 +156,7 @@ const organizationSchema = {
     {
       "@type": "ContactPoint",
       email: "hello@wiyo.ae",
+      telephone: WIYO_WHATSAPP_DISPLAY,
       contactType: "sales",
       areaServed: ["AE"],
       availableLanguage: ["English", "Arabic"],
@@ -174,52 +171,25 @@ const organizationSchema = {
   ],
   founder: {
     "@type": "Person",
+    "@id": `${SITE_URL}/author/shaffay-bajwa#person`,
     name: "Shaffay Bajwa",
-    jobTitle: "Founder & CTO",
+    jobTitle: "Founder",
+    url: `${SITE_URL}/author/shaffay-bajwa`,
   },
-  sameAs: SOCIAL_PROFILES,
-};
-
-const localBusinessSchema = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "@id": `${SITE_URL}/#localbusiness`,
-  name: "WIYO",
-  description:
-    "AI-powered Real Estate CRM and Operating System built for UAE brokerages.",
-  url: SITE_URL,
-  email: "hello@wiyo.ae",
-  image: `${SITE_URL}/opengraph-image`,
-  logo: `${SITE_URL}/logo-dark.png`,
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Dubai",
-    addressRegion: "Dubai",
-    addressCountry: "AE",
-  },
-  areaServed: [
-    { "@type": "City", name: "Dubai" },
-    { "@type": "City", name: "Abu Dhabi" },
-    { "@type": "City", name: "Sharjah" },
-    { "@type": "City", name: "Ras Al Khaimah" },
-    { "@type": "AdministrativeArea", name: "United Arab Emirates" },
-  ],
-  priceRange: "AED 1,000 – AED 9,900 per month",
-  currenciesAccepted: "AED",
-  paymentAccepted: "Credit Card, Bank Transfer",
+  identifier: "Trade Licence No. 2649536.01",
   sameAs: SOCIAL_PROFILES,
 };
 
 const softwareApplicationSchema = {
   "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
+  "@type": "WebApplication",
   "@id": `${SITE_URL}/#software`,
   name: "WIYO",
   applicationCategory: "BusinessApplication",
   applicationSubCategory: "CRM Software",
-  operatingSystem: "Web, iOS, Android",
+  operatingSystem: "Any device with a modern web browser",
   description:
-    "AI-powered Real Estate CRM and Operating System built for UAE brokerages. Integrates Bayut, Property Finder, Dubizzle, WhatsApp Business API and off-plan project management.",
+    "Real estate CRM built for UAE brokerage workflows, including lead management, team pipelines, conversations, and off-plan inventory.",
   url: SITE_URL,
   publisher: { "@id": `${SITE_URL}/#organization` },
   offers: [
@@ -256,22 +226,14 @@ const softwareApplicationSchema = {
       availability: "https://schema.org/InStock",
     },
   ],
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "5",
-    reviewCount: "12",
-    bestRating: "5",
-    worstRating: "1",
-  },
   featureList: [
-    "Native Bayut, Property Finder, Dubizzle integration",
-    "GPT-4o AI lead scoring",
-    "WhatsApp Business API",
+    "Portal lead capture workflows",
+    "AI-assisted lead prioritisation and summaries",
+    "WhatsApp conversation workflows",
     "Off-plan project management",
-    "Title Deed OCR",
-    "15-minute SLA enforcement",
-    "RERA-aware document workflows",
-    "UAE data residency",
+    "Listing data extraction",
+    "Lead-response SLA workflows",
+    "UAE real estate workflow support",
   ],
 };
 
@@ -300,7 +262,6 @@ export default function RootLayout({
     "@graph": [
       websiteSchema,
       organizationSchema,
-      localBusinessSchema,
       softwareApplicationSchema,
       siteNavigationSchema,
     ],
@@ -338,9 +299,13 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <a className="skip-link" href="#main-content">
+          Skip to main content
+        </a>
         <ThemeProvider>
           <LenisProvider>{children}</LenisProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );

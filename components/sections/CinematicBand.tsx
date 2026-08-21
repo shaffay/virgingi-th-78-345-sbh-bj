@@ -10,13 +10,13 @@ import Overline from "../ui/Overline";
  * platform's headline facts set over it.
  *
  * The figures repeat claims already made elsewhere on the page (lead sources,
- * SLA, AI model, data residency) rather than introducing new ones.
+ * response workflows and AI assistance) rather than introducing new ones.
  */
 const FACTS = [
   { value: "11", label: "native lead sources" },
   { value: "15 min", label: "SLA enforcement" },
-  { value: "GPT-4o", label: "AI built in" },
-  { value: "UAE", label: "data residency" },
+  { value: "AI", label: "assistance built in" },
+  { value: "UAE", label: "market focus" },
 ];
 
 export default function CinematicBand() {

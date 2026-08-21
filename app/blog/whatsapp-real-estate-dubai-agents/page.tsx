@@ -40,7 +40,7 @@ export default function Page() {
       <BlogLayout post={post} toc={toc}>
         <p>
           In the UAE, WhatsApp isn't a channel. It's <em>the</em> channel.
-          Roughly 90%+ of property buyer conversations happen there. And yet
+          A large share of property buyer conversations happen there. And yet
           most Dubai agencies still manage WhatsApp from agents' personal
           phones — which means lost messages, no audit trail, and a buyer
           experience that depends entirely on whether an agent happens to be

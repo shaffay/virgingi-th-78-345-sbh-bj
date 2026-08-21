@@ -78,8 +78,8 @@ export default function Page() {
             paperwork you'll need if RERA asks.
           </li>
           <li>
-            <strong>UAE data residency</strong> so audit trails stay in
-            jurisdiction.
+            <strong>Documented deployment terms</strong> so hosting, access,
+            retention, and export requirements are clear.
           </li>
         </ul>
 
@@ -144,9 +144,9 @@ export default function Page() {
             in an attachment field with no audit trail.
           </li>
           <li>
-            <strong>Data outside the UAE:</strong> most global CRMs
-            store data in US or EU regions, which means an audit
-            request travels through cross-border data agreements.
+            <strong>Unclear deployment assumptions:</strong> hosting region,
+            subprocessors, retention, and cross-border transfer terms can be
+            overlooked unless they are reviewed during procurement.
           </li>
         </ul>
 
@@ -163,9 +163,9 @@ export default function Page() {
         </p>
         <ul>
           <li>
-            <strong>Title Deed OCR via GPT-4o Vision:</strong> drag
-            the PDF, the AI reads every DLD field and auto-fills the
-            listing. No typing, no typos, no rejected uploads.
+            <strong>Title Deed field extraction:</strong> submit the PDF,
+            review extracted fields, and approve them before using the data in
+            a listing workflow.
           </li>
           <li>
             <strong>Native off-plan reservation lifecycle:</strong>{" "}
@@ -186,9 +186,8 @@ export default function Page() {
             with validation against expected formats.
           </li>
           <li>
-            <strong>UAE data residency:</strong> all customer data
-            hosted in UAE infrastructure. Audit trails stay in
-            jurisdiction.
+            <strong>Deployment review:</strong> confirm the current hosting
+            region, subprocessors, access controls, export, and retention terms.
           </li>
         </ul>
 
@@ -198,14 +197,14 @@ export default function Page() {
           That the software understands RERA's regulatory framework
           natively — broker registration numbers, DLD permit fields,
           NOC tracking, off-plan reservation lifecycle, Oqood and
-          escrow capture, and UAE data residency. Not generic CRM
+          escrow capture, and documented deployment terms. Not generic CRM
           fields awkwardly relabelled.
         </p>
         <h3>Where is WIYO data stored?</h3>
         <p>
-          UAE-based infrastructure. Each brokerage's data is isolated
-          with strict multi-tenant separation. Audit access remains
-          inside the UAE jurisdiction.
+          Hosting and data-residency commitments depend on the deployment and
+          customer agreement. Ask WIYO for the current architecture,
+          tenant-isolation controls, subprocessors, and region details.
         </p>
         <h3>What is Oqood and why does the CRM need to handle it?</h3>
         <p>

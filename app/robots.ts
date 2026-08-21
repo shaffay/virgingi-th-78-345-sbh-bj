@@ -8,7 +8,9 @@ const SITE = "https://www.wiyo.ae";
  * private and infrastructure paths are blocked uniformly.
  */
 export default function robots(): MetadataRoute.Robots {
-  const disallow = ["/admin", "/api/", "/_next/", "/private/"];
+  // Framework assets stay crawlable so search and answer engines can render
+  // the same page a human sees.
+  const disallow = ["/admin", "/api/", "/private/"];
 
   const allowedBots = [
     // Search engines
@@ -29,6 +31,7 @@ export default function robots(): MetadataRoute.Robots {
     // LLM / AI search crawlers
     "GPTBot", // OpenAI
     "OAI-SearchBot",
+    "OAI-AdsBot",
     "ChatGPT-User",
     "ClaudeBot", // Anthropic
     "Claude-Web",

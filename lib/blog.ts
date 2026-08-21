@@ -4,6 +4,8 @@ export interface BlogPost {
   description: string;
   keyword: string;
   date: string;
+  /** ISO date of a substantive revision; defaults to the publication date. */
+  updated?: string;
   readingMins: number;
   category: string;
   /** Full-bleed cover image URL (Unsplash CDN). */
@@ -120,7 +122,7 @@ export const blogPosts: BlogPost[] = [
     slug: "15-minute-rule-dubai-real-estate-leads",
     title: "The 15-Minute Rule in Dubai Real Estate: Why Response Speed Wins More Deals Than Any Script",
     description:
-      "78% of Dubai buyers sign with the first agent who responds. Here's the data, why Dubai is the hardest market to hit a 15-minute SLA, and how to enforce it.",
+      "Why response targets matter in Dubai property sales, how to design a practical SLA, and how managers can prevent new enquiries from stalling.",
     keyword: "response time real estate leads Dubai",
     date: "2026-04-05",
     readingMins: 8,
@@ -132,9 +134,9 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "ai-real-estate-crm-uae",
-    title: "AI Lead Scoring for Real Estate Dubai: How GPT-4o Tells Your Agents Who to Call First",
+    title: "AI Lead Scoring for Real Estate Dubai: How to Prioritise the Right Follow-Up",
     description:
-      "Native GPT-4o lead scoring on every Dubai lead — 5-second briefs, intent scores, recommended actions, and drafted first messages. Practical guide for UAE brokerages.",
+      "A practical guide to AI-assisted lead summaries, intent signals, recommended actions, and drafted first messages for UAE brokerages.",
     keyword: "AI lead scoring real estate Dubai",
     date: "2026-04-01",
     readingMins: 12,

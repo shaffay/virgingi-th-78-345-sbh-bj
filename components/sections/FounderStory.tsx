@@ -7,7 +7,7 @@ import Overline from "../ui/Overline";
 import { Reveal, StaggerGroup, slideInVariant } from "../motion/Reveal";
 
 const credentials = [
-  "UAE Data Residency",
+  "UAE-focused workflows",
   "AED Pricing",
   "UAE Support Team",
   "UAE-first Roadmap",

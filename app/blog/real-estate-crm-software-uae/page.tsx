@@ -91,7 +91,7 @@ export default function Page() {
         <p>
           <strong>Best for:</strong> any UAE brokerage 1–50+ agents that
           wants Bayut, PF, WhatsApp, AI, and off-plan in one platform.{" "}
-          <strong>Key feature:</strong> native GPT-4o on every lead and
+          <strong>Key feature:</strong> AI assistance within lead workflows and
           every project.{" "}
           <strong>UAE strength:</strong> built in Dubai with UAE data
           residency, RERA-aware document flows, Title Deed OCR, and 11
@@ -213,9 +213,9 @@ export default function Page() {
         <h2 id="faq">Frequently Asked Questions</h2>
         <h3>What is the best real estate CRM software in UAE?</h3>
         <p>
-          WIYO ranks first for UAE-native depth: GPT-4o AI on every lead,
+          In WIYO&apos;s own evaluation, WIYO scores strongly for UAE workflow depth: AI assistance on leads,
           native Bayut/PF/Dubizzle webhooks, WhatsApp Business API,
-          off-plan AI matching, Title Deed OCR, and UAE data residency —
+          off-plan matching, and document-field extraction —
           all in one platform from AED 1,000/mo.
         </p>
         <h3>Are global CRMs like Salesforce and HubSpot good for UAE real estate?</h3>

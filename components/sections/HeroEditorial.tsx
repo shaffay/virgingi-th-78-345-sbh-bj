@@ -2,13 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { ArrowRight, ChevronDown, Sparkles } from "lucide-react";
-import FilmShowcase from "./FilmShowcase";
+import ProductPreview from "./ProductPreview";
 
 /**
  * Editorial hero — WIYO dark violet brand. Text on the left (offset display
- * headline with an inline insight "eye" pill + an "Ask WIYO anything"
- * assistant pill), and a 3D iPhone playing a scrollable reels feed on the
- * right. Entrance animations are CSS-driven so the <h1> (LCP) renders without
+ * headline, conversion-intent field, and an illustrative product workflow on
+ * the right. Entrance animations are CSS-driven so the <h1> (LCP) renders without
  * waiting on hydration; the global reduced-motion cap makes them instant.
  */
 
@@ -41,11 +40,14 @@ export default function HeroEditorial() {
       } catch {
         // sessionStorage can throw in private mode — non-critical.
       }
+      window.dispatchEvent(new CustomEvent("wiyo:intent", { detail: q }));
     }
     const cta = document.getElementById("cta");
     if (!cta) return;
     const focusField = () => {
-      cta.querySelector<HTMLElement>("input, textarea")?.focus();
+      cta
+        .querySelector<HTMLElement>(q ? '[name="challenge"]' : "input, textarea")
+        ?.focus();
     };
     const lenis = typeof window !== "undefined" ? window.lenis : undefined;
     if (lenis) {
@@ -88,9 +90,9 @@ export default function HeroEditorial() {
               />
               <span className="mono text-[12px] tracking-[0.12em] text-text-accent">
                 <span className="hidden sm:inline">
-                  WIYO · The Real Estate Operating System for the UAE
+                  WIYO · REAL ESTATE CRM FOR UAE BROKERAGES
                 </span>
-                <span className="sm:hidden">WIYO · Real Estate OS · UAE</span>
+                <span className="sm:hidden">WIYO · REAL ESTATE CRM · UAE</span>
               </span>
             </div>
 
@@ -102,39 +104,23 @@ export default function HeroEditorial() {
                 ...enter("slide-in 0.8s var(--ease-spring)", 0.12),
               }}
             >
-              <span className="text-text-primary">
-                Every lead you{" "}
-                <span className="whitespace-nowrap">
-                  can{" "}
-                  <span className="eye-pill" aria-hidden="true">
-                    <span className="eye-pupil" />
-                  </span>{" "}
-                  see.
-                </span>
-              </span>
-              <br />
-              <span className="text-gradient">Every deal, one pipeline.</span>
+              <span className="text-text-primary">The real estate CRM</span>{" "}
+              <span className="text-gradient">built for UAE brokerages.</span>
             </h1>
 
             <p
               className="body-lg mt-6 max-w-[540px]"
               style={enter("fade-in-up 0.6s var(--ease-out)", 0.28)}
             >
-              Capture every{" "}
-              <span className="text-text-primary">
-                Bayut, Property Finder &amp; WhatsApp
-              </span>{" "}
-              lead, score it with{" "}
-              <span className="text-text-primary">GPT-4o</span>, and reply within{" "}
-              <span className="text-text-primary">15 minutes</span> — off-plan and
-              secondary inventory, AED-native and RERA-aware, with your{" "}
-              <span className="text-text-primary">data resident in the UAE</span>.
+              Bring portal leads, WhatsApp conversations, off-plan inventory,
+              and the team working every deal into{" "}
+              <span className="text-text-primary">one clear operating workspace</span>.
+              AI-assisted prioritisation helps agents see what needs action next.
             </p>
 
             <form
               onSubmit={handleAsk}
-              role="search"
-              aria-label="Ask WIYO"
+              aria-label="Tell WIYO what your agency needs"
               className="mt-9 w-full max-w-[480px]"
               style={enter("fade-in-up 0.6s var(--ease-out)", 0.4)}
             >
@@ -149,19 +135,19 @@ export default function HeroEditorial() {
                   className="ask-pill__input"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
-                  aria-label="Ask WIYO anything"
-                  placeholder="Ask WIYO anything…"
+                  aria-label="Your agency's biggest sales challenge"
+                  placeholder="What slows your sales team down?"
                 />
                 <button
                   type="submit"
                   className="ask-pill__send"
-                  aria-label="Ask WIYO"
+                  aria-label="Continue to the demo request"
                 >
                   <ArrowRight size={18} strokeWidth={1.8} />
                 </button>
               </div>
               <p className="caption mono mt-3 text-text-muted">
-                AI assistant · books you a live demo
+                Add context now · we will tailor your live walkthrough
               </p>
             </form>
 
@@ -186,12 +172,12 @@ export default function HeroEditorial() {
             </div>
           </div>
 
-          {/* Right — 3D iPhone reels */}
+          {/* Right — product-led workflow preview */}
           <div
             className="col-span-12 lg:col-span-6 flex justify-center"
             style={enter("fade-in-up 0.7s var(--ease-spring)", 0.3)}
           >
-            <FilmShowcase />
+            <ProductPreview />
           </div>
         </div>
       </div>

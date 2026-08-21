@@ -9,7 +9,7 @@ const stats = [
   { value: 11, label: "Native Lead Sources", sub: "Bayut, PF, Meta, Google & more" },
   { value: 15, display: "15 min", label: "SLA Enforcement", sub: "No lead goes cold" },
   { value: 2650, display: "AED 2,650", label: "Starting Price", sub: "Per month, all inclusive" },
-  { value: 4, display: "GPT-4o", label: "AI Engine", sub: "Native intelligence" },
+  { value: 4, display: "AI", label: "Assistance", sub: "Embedded in workflows" },
   { value: 0, display: "UAE 🇦🇪", label: "Where We're Built", sub: "And where your data stays" },
 ];
 

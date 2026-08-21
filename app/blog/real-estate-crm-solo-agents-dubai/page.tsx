@@ -156,12 +156,12 @@ export default function Page() {
         </p>
         <ul>
           <li>Bayut, Property Finder, Dubizzle native lead capture</li>
-          <li>GPT-4o lead scoring and 5-second briefs on every lead</li>
+          <li>AI-assisted lead summaries and prioritisation</li>
           <li>WhatsApp Business API access with AI-drafted replies</li>
           <li>Off-plan project access with AI Project Match</li>
           <li>CRM pipeline with the full seven-stage Kanban</li>
           <li>Title Deed OCR for fast secondary listings</li>
-          <li>UAE data residency and AED billing</li>
+          <li>Deployment terms confirmed in procurement and AED billing</li>
         </ul>
         <p>
           Same intelligence layer as the agencies on the AED 9,900

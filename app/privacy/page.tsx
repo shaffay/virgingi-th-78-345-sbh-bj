@@ -73,10 +73,11 @@ export default function PrivacyPage() {
 
       <h2>Where your data is stored</h2>
       <p>
-        WIYO is built for the UAE market and platform customer data is hosted on
-        UAE-based infrastructure. Some website and infrastructure providers may
-        process limited technical data outside the UAE; where they do, we take
-        steps to ensure an appropriate level of protection.
+        Hosting locations, subprocessors, and data-transfer arrangements depend
+        on the service and customer deployment. Current platform details and any
+        contractual residency commitments are provided during procurement. Some
+        website providers may process limited technical data outside the UAE;
+        where they do, we take steps to ensure an appropriate level of protection.
       </p>
 
       <h2>How long we keep it</h2>

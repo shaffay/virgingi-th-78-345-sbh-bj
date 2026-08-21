@@ -1,11 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { ArrowRight, Check } from "lucide-react";
 import Overline from "../ui/Overline";
 import { Reveal, StaggerGroup, slideInVariant } from "../motion/Reveal";
 import { motion } from "framer-motion";
+import {
+  getCampaignContext,
+  trackMarketingEvent,
+} from "@/lib/analytics";
 
 export default function FinalCTA() {
   const [submitted, setSubmitted] = useState(false);
@@ -18,23 +22,55 @@ export default function FinalCTA() {
     agency: "",
     agents: "",
     challenge: "",
+    website: "",
   });
+
+  useEffect(() => {
+    const applyIntent = (event: Event) => {
+      const intent = (event as CustomEvent<string>).detail;
+      if (intent) setForm((current) => ({ ...current, challenge: intent }));
+    };
+    try {
+      const intent = sessionStorage.getItem("wiyo_intent");
+      if (intent) setForm((current) => ({ ...current, challenge: intent }));
+    } catch {
+      // Storage may be unavailable in privacy modes; the form still works.
+    }
+    window.addEventListener("wiyo:intent", applyIntent);
+    return () => window.removeEventListener("wiyo:intent", applyIntent);
+  }, []);
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!form.email || !form.name || sending) return;
+    if (!form.email.trim() || form.name.trim().length < 2 || sending) return;
     setSending(true);
     setError("");
     try {
       const res = await fetch("/api/lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, source: "wiyo.ae demo form" }),
+        body: JSON.stringify({
+          ...form,
+          ...getCampaignContext(),
+          source: "wiyo.ae demo form",
+        }),
       });
-      if (!res.ok) throw new Error("Request failed");
+      const result = (await res.json().catch(() => ({}))) as { error?: string };
+      if (!res.ok) throw new Error(result.error || "Request failed");
       setSubmitted(true);
-    } catch {
-      setError("Something went wrong. Please try again or email us directly.");
+      trackMarketingEvent("generate_lead", {
+        form: "demo",
+        teamSize: form.agents || undefined,
+      });
+      try {
+        sessionStorage.removeItem("wiyo_intent");
+      } catch {}
+    } catch (cause) {
+      setError(
+        cause instanceof Error
+          ? cause.message
+          : "Something went wrong. Please email hello@wiyo.ae.",
+      );
     } finally {
       setSending(false);
     }
@@ -133,7 +169,7 @@ export default function FinalCTA() {
             >
               <span className="pill">
                 <span className="dot" />
-                Same-day onboarding
+                Scoped onboarding plan
               </span>
               <span className="pill">No commitment</span>
               <span className="pill">UAE 🇦🇪</span>
@@ -165,37 +201,49 @@ export default function FinalCTA() {
                   </p>
                 </div>
               ) : (
-                <form onSubmit={onSubmit} className="flex flex-col gap-4">
+                <form onSubmit={onSubmit} className="flex flex-col gap-4" noValidate={false}>
                   <h3 className="text-[22px] font-semibold tracking-tight">
                     Book Your Live Demo
                   </h3>
                   <div className="grid md:grid-cols-2 gap-4">
                     <Field
                       label="Name"
+                      name="name"
+                      autoComplete="name"
                       value={form.name}
                       required
                       onChange={(v) => setForm({ ...form, name: v })}
                     />
                     <Field
                       label="Email"
+                      name="email"
                       type="email"
+                      autoComplete="email"
                       value={form.email}
                       required
                       onChange={(v) => setForm({ ...form, email: v })}
                     />
                     <Field
                       label="Phone (UAE)"
+                      name="phone"
+                      type="tel"
+                      autoComplete="tel"
+                      inputMode="tel"
                       value={form.phone}
                       placeholder="+971 ..."
                       onChange={(v) => setForm({ ...form, phone: v })}
                     />
                     <Field
                       label="Agency Name"
+                      name="agency"
+                      autoComplete="organization"
                       value={form.agency}
                       onChange={(v) => setForm({ ...form, agency: v })}
                     />
                     <Field
                       label="Number of Agents"
+                      name="agents"
+                      inputMode="numeric"
                       value={form.agents}
                       placeholder="e.g. 8"
                       onChange={(v) => setForm({ ...form, agents: v })}
@@ -203,10 +251,23 @@ export default function FinalCTA() {
                   </div>
                   <Field
                     label="What's your biggest challenge right now? (optional)"
+                    name="challenge"
                     value={form.challenge}
                     textarea
                     onChange={(v) => setForm({ ...form, challenge: v })}
                   />
+                  <label className="absolute -left-[9999px]" aria-hidden="true">
+                    Website
+                    <input
+                      name="website"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={form.website}
+                      onChange={(event) =>
+                        setForm({ ...form, website: event.target.value })
+                      }
+                    />
+                  </label>
                   <button
                     type="submit"
                     disabled={sending}
@@ -220,6 +281,7 @@ export default function FinalCTA() {
                       className="caption text-center"
                       style={{ color: "var(--text-accent)" }}
                       role="alert"
+                      aria-live="assertive"
                     >
                       {error}
                     </p>
@@ -243,23 +305,30 @@ export default function FinalCTA() {
 
 function Field({
   label,
+  name,
   value,
   onChange,
   required,
   type,
   placeholder,
   textarea,
+  autoComplete,
+  inputMode,
 }: {
   label: string;
+  name: string;
   value: string;
   onChange: (v: string) => void;
   required?: boolean;
   type?: string;
   placeholder?: string;
   textarea?: boolean;
+  autoComplete?: string;
+  inputMode?: React.HTMLAttributes<HTMLInputElement>["inputMode"];
 }) {
+  const id = `demo-${name}`;
   return (
-    <label className="flex flex-col gap-1.5 min-w-0">
+    <label htmlFor={id} className="flex flex-col gap-1.5 min-w-0">
       <span className="caption uppercase tracking-[0.12em] font-semibold leading-snug">
         {label}
         {required && (
@@ -268,6 +337,9 @@ function Field({
       </span>
       {textarea ? (
         <textarea
+          id={id}
+          name={name}
+          autoComplete={autoComplete}
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}
@@ -281,7 +353,11 @@ function Field({
         />
       ) : (
         <input
+          id={id}
+          name={name}
           type={type ?? "text"}
+          autoComplete={autoComplete}
+          inputMode={inputMode}
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}

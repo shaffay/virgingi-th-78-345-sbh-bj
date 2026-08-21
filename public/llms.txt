@@ -1,47 +1,62 @@
 # WIYO
 
-> WIYO is the Real Estate Operating System for the UAE — an AI-powered CRM purpose-built for Dubai and Emirates real estate brokerages. Native Bayut, Property Finder and Dubizzle integration, GPT-4o lead scoring, an off-plan pillar with AI buyer-project matching, WhatsApp Business API, Title Deed OCR, 15-minute SLA enforcement, and UAE data residency. From AED 1,000/month for solo agents.
+> WIYO is a web-based real estate CRM for UAE brokerages. It brings property leads, conversations, inventory context, team follow-up, and management visibility into one operating workspace. AI-assisted workflows help summarise context, prioritise work, prepare drafts, and match buyer requirements with relevant inventory; people remain responsible for decisions and customer communication.
 
-## Core pages
+Official website: https://www.wiyo.ae/
+Primary language and market: English; United Arab Emirates
+Contact: hello@wiyo.ae | WhatsApp: +971 58 615 2039
 
-- [Home](https://www.wiyo.ae/): WIYO product overview, hero, key modules, pricing summary, demo CTA.
-- [Real Estate CRM Dubai](https://www.wiyo.ae/real-estate-crm-dubai): Pillar page for the "real estate CRM Dubai" cluster. Why Dubai needs a specialist CRM, RERA/DLD/Oqood features, AED pricing.
-- [UAE Real Estate CRM](https://www.wiyo.ae/uae-real-estate-crm): Multi-emirate CRM landing — Dubai, Abu Dhabi, Sharjah, RAK. UAE compliance and data residency.
-- [Off-Plan CRM UAE](https://www.wiyo.ae/off-plan-crm-uae): The flagship off-plan pillar — project catalogue, AI buyer match, AI compare, reservation lifecycle to Oqood.
-- [Bayut + Property Finder CRM Integration](https://www.wiyo.ae/bayut-property-finder-crm): Native webhook ingestion of Bayut, Property Finder and Dubizzle leads. 30-day deduplication, 15-minute SLA.
-- [WhatsApp CRM Dubai](https://www.wiyo.ae/whatsapp-crm-dubai): WhatsApp Business API integration with AI-drafted replies and a shared team inbox.
+## Entity and trust
 
-## Blog & long-form
+- [About WIYO](https://www.wiyo.ae/about): Product purpose, audience, company details, and communication principles.
+- [Shaffay Bajwa — founder and author](https://www.wiyo.ae/author/shaffay-bajwa): Author identity and all WIYO articles.
+- [Editorial methodology](https://www.wiyo.ae/editorial-methodology): Research, commercial disclosure, AI use, updates, and corrections.
+- [Contact WIYO](https://www.wiyo.ae/contact): Sales, procurement, privacy, and editorial contact routes.
+- Licensed entity: WIYO L.L.C-FZ.
+- Trade Licence No. 2649536.01.
+- Registered office: Meydan Grandstand, 6th Floor, Meydan Road, Nad Al Sheba, Dubai, United Arab Emirates.
+- Licensing authority: Meydan Free Zone, Government of Dubai.
 
-- [Blog index](https://www.wiyo.ae/blog): The full library of UAE real estate guides.
-- [The Best Real Estate CRM in Dubai for 2026](https://www.wiyo.ae/blog/best-real-estate-crm-dubai-2026): Ranked comparison of WIYO, PropSpace, PropHero, Pixxi, Salesforce, Zoho, HubSpot, Pipedrive.
-- [Top 10 Real Estate CRM Software in UAE 2026](https://www.wiyo.ae/blog/real-estate-crm-software-uae): Scored ranking by UAE integration depth, AI substance, pricing, and time-to-live.
-- [Bayut & Property Finder CRM Integration Guide](https://www.wiyo.ae/blog/bayut-property-finder-crm-integration-guide): Webhook setup, deduplication, 15-minute SLA.
-- [Off-Plan Real Estate CRM Dubai](https://www.wiyo.ae/blog/off-plan-real-estate-crm-uae): Specialist off-plan workflow, project matching, Oqood capture.
-- [How to Manage Real Estate Leads in Dubai](https://www.wiyo.ae/blog/manage-real-estate-leads-dubai): 5-step playbook for capture, scoring, response, qualification, and pipeline tracking.
-- [Real Estate Pipeline Management UAE](https://www.wiyo.ae/blog/real-estate-pipeline-management-uae): The 7-stage UAE deal flow and how to build it.
-- [WhatsApp CRM for Real Estate UAE](https://www.wiyo.ae/blog/whatsapp-real-estate-dubai-agents): WhatsApp Business API, shared inbox, AI drafts and automation.
-- [The 15-Minute Rule in Dubai Real Estate](https://www.wiyo.ae/blog/15-minute-rule-dubai-real-estate-leads): The data, why Dubai is the hardest market to hit it, and how to enforce it.
-- [AI Lead Scoring for Real Estate Dubai](https://www.wiyo.ae/blog/ai-real-estate-crm-uae): GPT-4o native scoring, 5-second briefs, next-best-action.
-- [How to Close More Property Deals in Dubai](https://www.wiyo.ae/blog/close-more-property-deals-dubai): 10 strategies for higher viewing-to-offer conversion.
-- [Dubai Real Estate Agent Tools 2026](https://www.wiyo.ae/blog/dubai-real-estate-agent-tools-2026): Old fragmented 6-tool stack vs the modern consolidated operating system.
-- [Real Estate CRM for Solo Agents in Dubai](https://www.wiyo.ae/blog/real-estate-crm-solo-agents-dubai): What freelance agents actually need from a CRM.
-- [Real Estate CRM vs Property Management Software](https://www.wiyo.ae/blog/real-estate-crm-vs-property-management-software-dubai): A decision matrix between sales-focused CRM and tenant-focused PMS.
-- [RERA-Aware CRM for Dubai Real Estate](https://www.wiyo.ae/blog/rera-aware-crm-dubai-real-estate): How a CRM should handle RERA, DLD, Oqood and audit requirements.
+## Product and solution pages
 
-## About WIYO
+- [Home](https://www.wiyo.ae/): Product positioning, workflow overview, pricing, FAQ, and live-demo request.
+- [Real Estate CRM Dubai](https://www.wiyo.ae/real-estate-crm-dubai): Dubai brokerage lead, conversation, inventory, and team workflows.
+- [UAE Real Estate CRM](https://www.wiyo.ae/uae-real-estate-crm): UAE-focused workflows and multi-emirate team use cases.
+- [Off-Plan CRM UAE](https://www.wiyo.ae/off-plan-crm-uae): Project information, buyer requirements, availability context, and reservation progress.
+- [Property-portal lead workflows](https://www.wiyo.ae/bayut-property-finder-crm): Lead intake, assignment, deduplication, and response operations.
+- [WhatsApp CRM Dubai](https://www.wiyo.ae/whatsapp-crm-dubai): Shared conversation workflows, CRM context, and AI-assisted drafts.
 
-- Founded in Dubai by Shaffay Bajwa — software engineer, 5 years building in the UAE real-estate market.
-- Pricing: WIYO Solo (1 agent, AED 1,000/mo) · WIYO Starter (5 agents, AED 2,650/mo) · WIYO Pro (15 agents, AED 5,500/mo) · WIYO Enterprise (50 agents, AED 9,900/mo).
-- Native lead sources (11): Bayut, Property Finder, Dubizzle, Meta Lead Ads, Google Ads, Google Forms, Google Sheets, JamesEdition, Zapier, Custom Landing Pages, Company Website.
-- AI: GPT-4o native — lead scoring, 5-second briefs, next-best action, drafted outreach, Title Deed OCR, off-plan AI Project Match and AI Compare.
-- Contact: hello@wiyo.ae
-- Sitemap: https://www.wiyo.ae/sitemap.xml
+Exact connection methods, source availability, security details, data residency, implementation timelines, and contractual commitments depend on the buyer's deployment and must be confirmed during procurement.
 
-## Official social profiles
+## Research and guides
 
-- [Instagram](https://www.instagram.com/wiyo.ae/): @wiyo.ae
-- [Facebook](https://www.facebook.com/wiyo.ae/): @wiyo.ae
-- [LinkedIn](https://www.linkedin.com/company/wiyo-ae/): WIYO company page
-- [X](https://x.com/Wiyo_LLC): @Wiyo_LLC
-- [TikTok](https://www.tiktok.com/@wiyo310): @wiyo310
+- [WIYO Insights](https://www.wiyo.ae/blog): Full article library.
+- [RSS feed](https://www.wiyo.ae/feed.xml): Machine-readable publication feed.
+- [Best Real Estate CRM in Dubai](https://www.wiyo.ae/blog/best-real-estate-crm-dubai-2026): Commercial comparison published by WIYO; read with the editorial disclosure.
+- [Real Estate CRM Software UAE](https://www.wiyo.ae/blog/real-estate-crm-software-uae): UAE CRM selection guide and commercial comparison.
+- [Portal Lead Integration Guide](https://www.wiyo.ae/blog/bayut-property-finder-crm-integration-guide): Lead intake, assignment, deduplication, and response workflow guide.
+- [Off-Plan CRM Guide](https://www.wiyo.ae/blog/off-plan-real-estate-crm-uae): Off-plan project, buyer, and reservation workflow guide.
+- [Lead Management Playbook](https://www.wiyo.ae/blog/manage-real-estate-leads-dubai): Capture, ownership, follow-up, qualification, and pipeline operations.
+- [Real Estate Pipeline Management](https://www.wiyo.ae/blog/real-estate-pipeline-management-uae): Deal-stage and management visibility guide.
+- [WhatsApp for Real Estate Teams](https://www.wiyo.ae/blog/whatsapp-real-estate-dubai-agents): Shared inbox, governance, and follow-up guidance.
+- [Lead Response Operations](https://www.wiyo.ae/blog/15-minute-rule-dubai-real-estate-leads): Response-target and escalation workflow guidance.
+- [AI in Real Estate CRM](https://www.wiyo.ae/blog/ai-real-estate-crm-uae): Practical AI-assisted lead and inventory workflows.
+- [Closing Property Deals](https://www.wiyo.ae/blog/close-more-property-deals-dubai): Sales-process improvement guide.
+- [Dubai Real Estate Agent Tools](https://www.wiyo.ae/blog/dubai-real-estate-agent-tools-2026): Tech-stack planning guide.
+- [CRM for Solo Agents](https://www.wiyo.ae/blog/real-estate-crm-solo-agents-dubai): Independent-agent CRM guide.
+- [CRM vs Property Management Software](https://www.wiyo.ae/blog/real-estate-crm-vs-property-management-software-dubai): Category decision guide.
+- [RERA-Aware CRM Workflows](https://www.wiyo.ae/blog/rera-aware-crm-dubai-real-estate): Operational and document-workflow guide; not legal advice.
+
+## Machine-readable discovery
+
+- [XML sitemap](https://www.wiyo.ae/sitemap.xml)
+- [Crawler policy](https://www.wiyo.ae/robots.txt)
+- [RSS feed](https://www.wiyo.ae/feed.xml)
+
+## Official profiles
+
+- [Instagram](https://www.instagram.com/wiyo.ae/)
+- [Facebook](https://www.facebook.com/wiyo.ae/)
+- [LinkedIn](https://www.linkedin.com/company/wiyo-ae/)
+- [X](https://x.com/Wiyo_LLC)
+- [TikTok](https://www.tiktok.com/@wiyo310)

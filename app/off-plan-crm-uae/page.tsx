@@ -8,12 +8,12 @@ const URL = "https://www.wiyo.ae/off-plan-crm-uae";
 export const metadata: Metadata = {
   title: "Off-Plan CRM UAE | AI-Powered Off-Plan Sales Management | WIYO",
   description:
-    "Manage your off-plan portfolio with AI. WIYO's Off-Plan Pillar gives Dubai agents AI project matching, live unit availability, reservation tracking, and Oqood capture. The only CRM built for off-plan.",
+    "Organise off-plan projects, buyer requirements, availability context, and reservation progress in a UAE-focused real estate CRM.",
   alternates: { canonical: URL },
   openGraph: {
     title: "Off-Plan CRM UAE | WIYO",
     description:
-      "AI project matching, live availability, reservation lifecycle, Oqood capture. The only CRM built for off-plan.",
+      "AI-assisted project matching, availability context, and reservation workflows for UAE off-plan sales teams.",
     url: URL,
     type: "website",
   },
@@ -39,20 +39,19 @@ export default function Page() {
         relatedPosts={getPostsForPillar("/off-plan-crm-uae")}
         h1={
           <>
-            The Only CRM Built for{" "}
-            <span className="text-gradient">UAE Off-Plan Sales.</span>
+            Off-Plan CRM for{" "}
+            <span className="text-gradient">UAE Property Sales Teams.</span>
           </>
         }
         intro={
           <>
-            Map view, grid view, live availability board, and a GPT-4o AI that
-            tells your agents exactly which project to pitch a buyer. Full
-            reservation lifecycle — inquiry to completed — with Oqood and
-            escrow capture built in.
+            Organise projects, availability context, buyer briefs, and
+            reservation progress in one workspace. AI-assisted matching helps
+            agents review which projects fit a buyer and why.
           </>
         }
         proofPoints={[
-          "AI Project Match in seconds (GPT-4o)",
+          "AI-assisted matching against buyer requirements",
           "AI Compare: 2–4 projects, side-by-side verdict",
           "Live availability board per project",
           "Oqood + escrow capture, document vault",
@@ -64,8 +63,8 @@ export default function Page() {
             body: (
               <>
                 <p>
-                  Off-plan is the biggest commission segment in Dubai and
-                  across the UAE. Developers pay 4–6% on every booking.
+                  Off-plan is an important commission segment in Dubai and
+                  across the UAE, with multi-stage buyer and developer workflows.
                   Multiple buyers per project. Layered handover schedules.
                   Reservation deadlines. Oqood paperwork. Escrow workflows.
                 </p>
@@ -130,7 +129,7 @@ export default function Page() {
               "Map + grid view of every project in your catalogue",
               "Developer brochures, unit breakdowns, price ranges",
               "Availability heatmaps by floor and unit type",
-              "GPT-4o ranks every project per buyer brief",
+              "AI-assisted ranking for review against each buyer brief",
               "Side-by-side AI verdict on 2–4 chosen projects",
               "Command Center: live KPIs across all projects",
             ],

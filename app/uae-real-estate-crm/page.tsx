@@ -8,12 +8,12 @@ const URL = "https://www.wiyo.ae/uae-real-estate-crm";
 export const metadata: Metadata = {
   title: "UAE Real Estate CRM | WIYO — CRM for Agents Across the Emirates",
   description:
-    "WIYO is the leading AI-powered CRM for UAE real estate agencies. Works across Dubai, Abu Dhabi, Sharjah and all Emirates. Bayut, Property Finder integration. AED pricing. Book a free demo.",
+    "A UAE-focused real estate CRM for lead operations, team follow-up, property inventory, and off-plan sales workflows. AED pricing.",
   alternates: { canonical: URL },
   openGraph: {
     title: "UAE Real Estate CRM | WIYO",
     description:
-      "AI-powered CRM for UAE real estate. Dubai, Abu Dhabi, Sharjah, RAK. Bayut + PF native. AED pricing.",
+      "A UAE-focused CRM for property leads, team pipelines, conversations, and inventory. AED pricing.",
     url: URL,
     type: "website",
   },
@@ -39,22 +39,22 @@ export default function Page() {
         relatedPosts={getPostsForPillar("/uae-real-estate-crm")}
         h1={
           <>
-            UAE's First Real Estate{" "}
-            <span className="text-gradient">Operating System.</span>
+            Real Estate CRM for{" "}
+            <span className="text-gradient">Teams Across the UAE.</span>
           </>
         }
         intro={
           <>
-            Built for agencies across Dubai, Abu Dhabi, Sharjah, RAK, and the
-            Emirates. UAE data residency. AED pricing. UAE support team.
-            UAE-first product roadmap. Everything generic CRMs aren't.
+            Built around the property-sales workflows used by agencies across
+            Dubai, Abu Dhabi, Sharjah, Ras Al Khaimah, and the wider Emirates.
+            AED pricing and a UAE-focused product roadmap.
           </>
         }
         proofPoints={[
-          "UAE-based data hosting — your data stays in UAE",
+          "Deployment and data terms confirmed during procurement",
           "AED pricing — no USD conversion surprises",
           "RERA + Oqood + Emirates ID OCR built in",
-          "Live across Dubai, Abu Dhabi, Sharjah, RAK",
+          "Workflows designed for multi-emirate teams",
         ]}
         cta={{ label: "Start UAE Trial", href: "/#cta" }}
         sections={[
@@ -65,8 +65,8 @@ export default function Page() {
                 <p>
                   The UAE property market is unique in the world. Off-plan
                   represents a huge share of commissions. Bayut and Property
-                  Finder dominate buyer discovery. WhatsApp is how 90% of
-                  conversations happen. RERA, DLD, and Oqood are non-negotiable
+                  Finder are important buyer-discovery channels. WhatsApp is a
+                  central conversation channel. RERA, DLD, and Oqood are important
                   compliance layers — not optional extras.
                 </p>
                 <p className="mt-4">
@@ -91,7 +91,7 @@ export default function Page() {
               "Oqood capture for off-plan reservations",
               "Emirates ID OCR for owner verification",
               "Passport OCR for international buyers",
-              "DLD Title Deed OCR via GPT-4o Vision",
+              "Title Deed field extraction for review",
               "Audit trail on every lead and document",
             ],
           },
@@ -115,13 +115,13 @@ export default function Page() {
             ],
           },
           {
-            heading: "UAE Data Residency — Your Data Stays Here",
+            heading: "Data Handling and Deployment Review",
             body: (
               <p>
-                WIYO uses a strict multi-tenant architecture with data hosted
-                in the UAE. Your brokerage's data is completely isolated from
-                every other agency on the platform. You own your data. You can
-                export it any time. We don't sell it. We don't share it.
+                Security, access controls, isolation, hosting location,
+                subprocessors, export, and retention requirements are reviewed
+                during procurement. Any specific residency or contractual
+                commitment should be recorded in your agreement.
               </p>
             ),
           },

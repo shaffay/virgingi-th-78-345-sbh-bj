@@ -10,6 +10,7 @@ import { Reveal } from "../motion/Reveal";
 import WhatsAppButton from "../cro/WhatsAppButton";
 import MobileCTABar from "../cro/MobileCTABar";
 import { getRelatedPosts, getPillarFor, type BlogPost } from "@/lib/blog";
+import { breadcrumbJsonLd } from "@/lib/seo";
 
 interface TocItem {
   id: string;
@@ -66,7 +67,19 @@ export default function BlogLayout({ post, toc, children }: Props) {
   }, [toc]);
 
   return (
-    <main className="relative">
+    <main id="main-content" className="relative">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            breadcrumbJsonLd([
+              { name: "Home", href: "/" },
+              { name: "Blog", href: "/blog" },
+              { name: post.title, href: `/blog/${post.slug}` },
+            ]),
+          ),
+        }}
+      />
       <Navbar />
 
       {/* Reading progress bar */}
@@ -131,9 +144,9 @@ export default function BlogLayout({ post, toc, children }: Props) {
               >
                 SB
               </span>
-              <span style={{ color: "var(--text-secondary)" }}>
+              <Link href="/author/shaffay-bajwa" style={{ color: "var(--text-secondary)" }} className="hover:underline">
                 Shaffay Bajwa, Founder
-              </span>
+              </Link>
             </span>
             <span style={{ color: "var(--text-muted)" }}>·</span>
             <span className="flex items-center gap-1.5">
@@ -187,7 +200,35 @@ export default function BlogLayout({ post, toc, children }: Props) {
         <div className="container-x max-w-[1180px]">
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-14">
             <article className="lg:col-span-8">
+              <aside className="mb-8 rounded-xl border p-5 text-[14px] leading-relaxed" style={{ borderColor: "var(--border-accent)", background: "rgba(var(--spotlight),.08)", color: "var(--text-secondary)" }}>
+                <strong className="text-text-primary">Editorial disclosure:</strong>{" "}
+                WIYO publishes this article and sells WIYO software. Product details and prices can change; verify material claims with the vendor before buying. See our{" "}
+                <Link href="/editorial-methodology" className="text-text-accent hover:underline">editorial methodology and corrections policy</Link>.
+              </aside>
               <div className="prose-wiyo">{children}</div>
+
+              <aside className="mt-12 rounded-2xl border p-6 md:p-7" style={{ borderColor: "var(--border-subtle)", background: "var(--bg-elevated)" }} aria-labelledby="primary-reference-heading">
+                <p id="primary-reference-heading" className="mono text-[11px] uppercase tracking-[.16em] text-text-accent">Primary reference library</p>
+                <p className="body-md mt-3">
+                  Use these official sources to verify market data, privacy obligations,
+                  communications-platform requirements, and responsible AI guidance.
+                  Product capabilities and pricing should also be checked in each vendor&apos;s current documentation.
+                </p>
+                <ul className="mt-5 grid gap-3 text-[14px] sm:grid-cols-2">
+                  {[
+                    ["Dubai Land Department — Open Data", "https://dubailand.gov.ae/en/open-data/"],
+                    ["UAE Government — Data Protection Laws", "https://u.ae/en/about-the-uae/digital-uae/data/data-protection-laws."],
+                    ["Meta — WhatsApp Cloud API", "https://developers.facebook.com/docs/whatsapp/cloud-api/overview"],
+                    ["NIST — AI Risk Management Framework", "https://www.nist.gov/itl/ai-risk-management-framework"],
+                  ].map(([label, href]) => (
+                    <li key={href}>
+                      <a href={href} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center text-text-accent hover:underline">
+                        {label} <ArrowUpRight size={13} className="ml-1.5" />
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </aside>
 
               {/* CONTEXTUAL PILLAR LINK — strengthens the blog → landing crawl path */}
               <div

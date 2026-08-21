@@ -77,7 +77,7 @@ export default function Page() {
 
         <h2 id="s3">3. Use AI to Match Buyers to Projects Before the First Call</h2>
         <p>
-          When a new off-plan lead arrives, feed the brief to GPT-4o
+          When a new off-plan lead arrives, use AI-assisted matching on the brief
           before you dial. WIYO ranks every project in your catalogue
           against the buyer's budget and area — best match first, with
           written reasoning. You walk into the call with the right
@@ -144,7 +144,7 @@ export default function Page() {
         <h2 id="s9">9. Use Title Deed OCR to Speed Up Due Diligence</h2>
         <p>
           The 15 minutes per listing that used to go into manually
-          typing DLD fields are now 60 seconds with GPT-4o Vision.
+          retyping DLD fields can be reduced with document-field extraction and review.
           Compounded across hundreds of secondary listings a year,
           that's days of agent time returned to selling. WIYO's
           Add Listing wizard does this on every Title Deed PDF.

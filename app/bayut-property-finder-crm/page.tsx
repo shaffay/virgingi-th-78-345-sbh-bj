@@ -8,12 +8,12 @@ const URL = "https://www.wiyo.ae/bayut-property-finder-crm";
 export const metadata: Metadata = {
   title: "Bayut & Property Finder CRM Integration | WIYO",
   description:
-    "WIYO connects your Bayut and Property Finder leads directly into your CRM pipeline. Real-time sync, no manual uploads, automatic deduplication. The best CRM for Bayut and Property Finder users in UAE.",
+    "Organise Bayut, Property Finder, and other property leads in one CRM pipeline with assignment, deduplication, and response workflows.",
   alternates: { canonical: URL },
   openGraph: {
     title: "Bayut & Property Finder CRM Integration | WIYO",
     description:
-      "Real-time webhook sync. No Zapier, no manual uploads. 11 lead sources, deduplicated, in one pipeline.",
+      "Bring property-portal leads into one pipeline with assignment, deduplication, and response workflows.",
     url: URL,
     type: "website",
   },
@@ -45,17 +45,16 @@ export default function Page() {
         }
         intro={
           <>
-            Real-time webhooks. Zero manual uploads. Automatic deduplication
-            across all 11 lead sources. The moment a buyer fills a form on
-            Bayut, Property Finder, or Dubizzle — it's in your pipeline,
-            scored, and assigned.
+            Configure property-portal lead delivery into one pipeline, then
+            apply assignment, deduplication, and response rules. Exact source
+            availability is confirmed for your accounts during the demo.
           </>
         }
         proofPoints={[
-          "Bayut webhook — real-time, no polling",
-          "Property Finder webhook — instant pipeline drop",
-          "Dubizzle webhook — supported out of the box",
-          "30-day deduplication window across all sources",
+          "Portal lead intake workflows",
+          "Assignment rules by source and team",
+          "Duplicate-contact handling",
+          "Visible response targets and escalation",
         ]}
         cta={{ label: "Connect Your Portals", href: "/#cta" }}
         sections={[
@@ -64,8 +63,8 @@ export default function Page() {
             body: (
               <>
                 <p>
-                  In Dubai's market, 78% of buyers sign with the first agent
-                  who responds. The window is roughly 15 minutes. If your
+                  Buyers often contact several agencies while actively
+                  searching. If your
                   Bayut leads land in an email inbox and a manager forwards
                   them to an agent who's currently on a viewing — your buyer
                   is already calling your competitor.

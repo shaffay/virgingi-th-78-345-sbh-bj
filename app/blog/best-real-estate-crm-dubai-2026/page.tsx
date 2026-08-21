@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 
 const toc = [
   { id: "criteria", text: "The criteria — what actually matters" },
-  { id: "wiyo", text: "#1 WIYO — best overall" },
+  { id: "wiyo", text: "WIYO — publisher perspective" },
   { id: "pixxi", text: "#2 Pixxi" },
   { id: "leadrat", text: "#3 LeadRat" },
   { id: "salesforce", text: "#4 Salesforce" },
@@ -83,8 +83,8 @@ export default function Page() {
             surprises, no hidden per-lead fees.
           </li>
           <li>
-            <strong>Time to live:</strong> Same-day onboarding vs weeks of
-            consultant-led setup.
+            <strong>Implementation:</strong> Scope, migration effort, integration
+            dependencies, training, and the vendor&apos;s stated timeline.
           </li>
         </ul>
 
@@ -94,21 +94,22 @@ export default function Page() {
           caption="A modern UAE brokerage runs on three things: portal leads, WhatsApp, and a CRM that connects them"
         />
 
-        <h2 id="wiyo">#1 — WIYO (Best Overall for UAE Real Estate)</h2>
+        <h2 id="wiyo">WIYO — The Publisher&apos;s Product Perspective</h2>
         <p>
-          WIYO is the only CRM on this list that was designed from the first
-          line of code for UAE real estate. It connects natively to Bayut,
+          WIYO publishes this comparison and sells WIYO, so this section is not
+          independent third-party validation. The product is designed around
+          UAE real estate workflows and can be configured around leads from Bayut,
           Property Finder, Dubizzle, Meta, Google, and JamesEdition. The
           Off-Plan Pillar handles project catalogues, AI buyer matching, AI
           comparison, and full reservation lifecycle with Oqood capture.
           WhatsApp is integrated via the Business API with a shared inbox and
           AI-drafted replies. Lead scoring, 5-second briefs, and next-best
-          action are powered by GPT-4o on every lead.
+          action are supported by embedded AI-assisted workflows.
         </p>
         <p>
           Pricing starts at AED 1,000/mo for solo agents and AED 2,650/mo for
           the 5-agent Starter plan. Most agencies are live the same day. UAE
-          data residency. Built in Dubai.
+          deployment and residency terms should be verified during procurement. Built in Dubai.
         </p>
         <p>
           <strong>Best for:</strong> any UAE brokerage from 1 to 50+ agents
@@ -209,7 +210,7 @@ export default function Page() {
         </p>
         <p>
           WIYO is the only platform on this list that ships all of that
-          natively, in AED, with same-day onboarding.{" "}
+          in one workspace, priced in AED, with implementation scoped to the buyer.{" "}
           <Link href="/#cta">Book a live demo here</Link> and we'll show you
           your own Bayut leads flowing into a WIYO pipeline in under 30
           minutes.

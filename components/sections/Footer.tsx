@@ -8,6 +8,10 @@ import Divider from "../ui/Divider";
 import { useTheme } from "../ThemeProvider";
 import { XIcon, TikTokIcon } from "../ui/SocialIcons";
 import { SOCIAL_PROFILES } from "@/lib/social";
+import {
+  getCampaignContext,
+  trackMarketingEvent,
+} from "@/lib/analytics";
 
 /** Glyph per profile name — lucide where it exists, brand SVG otherwise. */
 const SOCIAL_ICONS: Record<string, (size: number) => React.ReactNode> = {
@@ -52,9 +56,11 @@ const columns = [
   {
     title: "Company",
     links: [
-      { label: "About", href: "/#built-for-uae" },
+      { label: "About", href: "/about" },
+      { label: "Founder & Author", href: "/author/shaffay-bajwa" },
       { label: "Blog", href: "/blog" },
-      { label: "Contact", href: "mailto:hello@wiyo.ae" },
+      { label: "Editorial Standards", href: "/editorial-methodology" },
+      { label: "Contact", href: "/contact" },
       { label: "Privacy Policy", href: "/privacy" },
       { label: "Terms of Service", href: "/terms" },
     ],
@@ -65,27 +71,43 @@ export default function Footer() {
   const { theme } = useTheme();
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
+  const [website, setWebsite] = useState("");
   const logoSrc = theme === "light" ? "/logo-dark.png" : "/logo-light.png";
 
   async function onSubscribe(e: React.FormEvent) {
     e.preventDefault();
-    if (!email) return;
+    if (!email || sending) return;
     const submittedEmail = email;
-    setSubmitted(true);
-    setEmail("");
-    setTimeout(() => setSubmitted(false), 4000);
+    setSending(true);
+    setError("");
     try {
-      await fetch("/api/lead", {
+      const response = await fetch("/api/lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email: submittedEmail,
+          website,
+          ...getCampaignContext(),
           source: "wiyo.ae newsletter",
         }),
       });
-    } catch {
-      // Optimistic UI: the confirmation already showed. A failed insight
-      // signup shouldn't surface a scary error on a low-stakes form.
+      const result = (await response.json().catch(() => ({}))) as {
+        error?: string;
+      };
+      if (!response.ok) throw new Error(result.error || "Subscription failed.");
+      setSubmitted(true);
+      setEmail("");
+      trackMarketingEvent("sign_up", { form: "newsletter" });
+    } catch (cause) {
+      setError(
+        cause instanceof Error
+          ? cause.message
+          : "Subscription failed. Please try again.",
+      );
+    } finally {
+      setSending(false);
     }
   }
 
@@ -113,7 +135,7 @@ export default function Footer() {
 
           <form onSubmit={onSubscribe} className="mt-7 relative max-w-[400px]">
             <label
-              htmlFor="email"
+              htmlFor="newsletter-email"
               className="caption uppercase tracking-[0.18em] mb-3 block font-semibold"
             >
               Get UAE real estate insights
@@ -131,8 +153,10 @@ export default function Footer() {
                 className="ml-3 text-text-muted flex-shrink-0"
               />
               <input
-                id="email"
+                id="newsletter-email"
+                name="email"
                 type="email"
+                autoComplete="email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -141,19 +165,35 @@ export default function Footer() {
               />
               <button
                 type="submit"
+                disabled={sending || submitted}
                 className="btn-primary text-[13px] py-2 px-4"
                 aria-label="Subscribe"
               >
-                {submitted ? "Sent" : "Subscribe"}
+                {submitted ? "Subscribed" : sending ? "Sending…" : "Subscribe"}
                 <ArrowRight size={14} strokeWidth={1.8} />
               </button>
             </div>
+            <label className="absolute -left-[9999px]" aria-hidden="true">
+              Website
+              <input
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                value={website}
+                onChange={(event) => setWebsite(event.target.value)}
+              />
+            </label>
             {submitted && (
               <p
                 className="caption mt-3"
                 style={{ color: "var(--text-accent)" }}
               >
-                Thanks — you're on the list.
+                Thanks — your subscription was received.
+              </p>
+            )}
+            {error && (
+              <p className="caption mt-3" role="alert" aria-live="assertive">
+                {error}
               </p>
             )}
           </form>
@@ -162,7 +202,7 @@ export default function Footer() {
             <span className="pill">Built in UAE 🇦🇪</span>
             <span className="pill">
               <span className="dot" />
-              GPT-4o Powered
+              AI-assisted workflows
             </span>
             <span className="pill">RERA-Aware</span>
           </div>

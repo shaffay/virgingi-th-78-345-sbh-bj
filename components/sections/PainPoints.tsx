@@ -12,7 +12,7 @@ const items = [
     icon: Clock,
     title: "The 15-Minute Rule",
     body:
-      "78% of buyers sign with the first agent who responds. In Dubai's market, that window is 15 minutes — not hours. WIYO's pipeline puts a red SLA alert on every lead that hasn't been contacted in 15 minutes. No lead goes cold on your watch.",
+      "Fast follow-up matters in a competitive property market. WIYO gives teams a visible response target and flags leads that still need action, so managers can spot delays before the opportunity goes cold.",
   },
   {
     n: "02",

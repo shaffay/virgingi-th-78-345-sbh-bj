@@ -116,7 +116,7 @@ export default function HowItWorks() {
             <div className="relative">
               <p className="text-[26px] md:text-[34px] font-semibold leading-tight tracking-tight">
                 <span className="text-gradient">
-                  Same-day onboarding. No consultants required.
+                  Implementation scoped to your data, sources, and team workflow.
                 </span>
               </p>
               <p className="body-md mt-2">

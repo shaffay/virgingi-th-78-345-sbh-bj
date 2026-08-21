@@ -21,16 +21,23 @@ export function breadcrumbJsonLd(breadcrumbs: Breadcrumb[]) {
 export function articleJsonLd(post: BlogPost) {
   return {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
+    "@id": `https://www.wiyo.ae/blog/${post.slug}#article`,
     headline: post.title,
     description: post.description,
+    image: [post.coverImage],
+    inLanguage: "en-AE",
+    keywords: [post.keyword, post.category, "UAE real estate", "WIYO"],
     author: {
       "@type": "Person",
+      "@id": "https://www.wiyo.ae/author/shaffay-bajwa#person",
       name: "Shaffay Bajwa",
-      jobTitle: "Founder & CTO, WIYO",
+      jobTitle: "Founder",
+      url: "https://www.wiyo.ae/author/shaffay-bajwa",
     },
     publisher: {
       "@type": "Organization",
+      "@id": "https://www.wiyo.ae/#organization",
       name: "WIYO",
       logo: {
         "@type": "ImageObject",
@@ -38,10 +45,11 @@ export function articleJsonLd(post: BlogPost) {
       },
     },
     datePublished: post.date,
-    dateModified: post.date,
+    dateModified: post.updated ?? post.date,
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": `https://www.wiyo.ae/blog/${post.slug}`,
     },
+    isPartOf: { "@id": "https://www.wiyo.ae/#website" },
   };
 }

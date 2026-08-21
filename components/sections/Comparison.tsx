@@ -24,7 +24,7 @@ const rows: { feature: string; wiyo: Cell; generic: Cell; niche: Cell }[] = [
     niche: { kind: "partial", text: "Limited" },
   },
   {
-    feature: "AI Lead Scoring (GPT-4o)",
+    feature: "AI-assisted lead prioritisation",
     wiyo: { kind: "yes", text: "Native, every lead" },
     generic: { kind: "partial", text: "Add-on / extra cost" },
     niche: { kind: "no", text: "Not available" },
@@ -54,7 +54,7 @@ const rows: { feature: string; wiyo: Cell; generic: Cell; niche: Cell }[] = [
     niche: { kind: "partial", text: "Fewer sources" },
   },
   {
-    feature: "UAE Data Residency",
+    feature: "Deployment terms reviewed in procurement",
     wiyo: { kind: "yes", text: "Data stays in UAE" },
     generic: { kind: "no", text: "Usually US / EU" },
     niche: { kind: "partial", text: "Unknown" },

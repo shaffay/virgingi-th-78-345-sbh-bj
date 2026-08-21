@@ -137,7 +137,7 @@ export default function Page() {
           </li>
           <li>
             <strong>AI Project Match:</strong> feed a buyer's brief (budget,
-            area, lifestyle, unit type). GPT-4o ranks every project in your
+            area, lifestyle, unit type). AI-assisted matching ranks projects in your
             catalogue, best fit first, with written reasoning.
           </li>
           <li>

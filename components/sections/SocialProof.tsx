@@ -1,104 +1,70 @@
-"use client";
-
-import { Quote } from "lucide-react";
-import { motion } from "framer-motion";
+import { Building2, Eye, FileCheck2, UserRoundCheck } from "lucide-react";
 import Overline from "../ui/Overline";
-import { Reveal, StaggerGroup, slideInVariant } from "../motion/Reveal";
 
-const testimonials = [
+const proof = [
   {
-    quote:
-      "Finally a CRM that actually knows how Dubai real estate works. Bayut and Property Finder leads in one place, AI that tells my agents what to do next — this is what we've been waiting for.",
-    role: "Real Estate Agency",
-    location: "Dubai Marina",
+    icon: Eye,
+    title: "A product walkthrough, not a pitch deck",
+    description:
+      "The demo follows a lead from arrival to assignment, follow-up, inventory match, and management visibility.",
   },
   {
-    quote:
-      "We used to juggle five tools and still lose leads. WIYO consolidated everything and the 15-minute SLA has genuinely changed how our team operates.",
-    role: "Property Broker",
-    location: "Downtown Dubai",
+    icon: UserRoundCheck,
+    title: "Your workflow becomes the test case",
+    description:
+      "Tell us where leads stall today. We will use that operating problem to structure the walkthrough.",
   },
   {
-    quote:
-      "The off-plan AI match is a game-changer. When a buyer asks which project is right for them, my agents have an AI-backed answer in 10 seconds.",
-    role: "Agency Director",
-    location: "Dubai",
+    icon: FileCheck2,
+    title: "Claims you can verify",
+    description:
+      "Capabilities, pricing, and implementation assumptions are reviewed with your team before a buying decision.",
   },
 ];
 
 export default function SocialProof() {
   return (
-    <section
-      id="testimonials"
-      className="section-y relative overflow-hidden"
-    >
-      <div className="absolute inset-0 pointer-events-none" aria-hidden>
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[700px] rounded-full"
-          style={{
-            background:
-              "radial-gradient(closest-side, rgba(var(--spotlight),0.14), transparent)",
-            filter: "blur(40px)",
-          }}
-        />
-      </div>
-
+    <section id="proof" className="section-y relative overflow-hidden">
       <div className="container-x relative">
-        <div className="text-center max-w-[860px] mx-auto">
-          <Reveal variant="fade">
-            <Overline>Testimonials</Overline>
-          </Reveal>
-          <Reveal>
+        <div className="grid gap-10 lg:grid-cols-[.85fr_1.15fr] lg:items-end">
+          <div>
+            <Overline>Proof Before Promises</Overline>
             <h2 className="h2 mt-6">
-              What UAE Real Estate{" "}
-              <span className="text-gradient">Professionals Are Saying.</span>
+              Evaluate WIYO against{" "}
+              <span className="text-gradient">the way your agency works.</span>
             </h2>
-          </Reveal>
-          <Reveal variant="fade" delay={0.1}>
-            <p className="body-lg mt-6 max-w-[680px] mx-auto">
-              From solo agents to established Dubai brokerages — built by
-              people who understand the UAE market.
+            <p className="body-lg mt-6 max-w-[600px]">
+              We removed anonymous testimonials and unverifiable performance
+              claims. The standard is simpler: inspect the workflow, challenge
+              the assumptions, and decide with evidence.
             </p>
-          </Reveal>
+          </div>
+          <div className="rounded-2xl border p-5 sm:p-7" style={{ borderColor: "var(--border-accent)", background: "linear-gradient(135deg,rgba(var(--spotlight),.14),var(--bg-elevated))" }}>
+            <div className="flex items-start gap-4">
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl" style={{ background: "var(--cta-gradient)", color: "white" }}>
+                <Building2 size={20} />
+              </span>
+              <div>
+                <p className="mono text-[11px] tracking-[.14em] text-text-accent">REGISTERED UAE ENTITY</p>
+                <h3 className="mt-2 text-[19px] font-semibold text-text-primary">WIYO L.L.C-FZ</h3>
+                <p className="body-md mt-2">
+                  Trade Licence No. 2649536.01 · Meydan Free Zone, Dubai.
+                  Full registered details appear in the footer and company page.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <StaggerGroup className="mt-16 grid md:grid-cols-3 gap-5 items-stretch">
-          {testimonials.map((t, i) => (
-            <motion.figure
-              key={i}
-              variants={slideInVariant}
-              className="card flex flex-col gap-6"
-            >
-              <Quote
-                size={28}
-                strokeWidth={1.4}
-                style={{ color: "var(--text-accent)" }}
-              />
-              <blockquote className="text-[16px] md:text-[17px] leading-[1.6] text-text-primary flex-1">
-                "{t.quote}"
-              </blockquote>
-              <figcaption
-                className="pt-5"
-                style={{ borderTop: "1px solid var(--border-subtle)" }}
-              >
-                <p className="text-[14.5px] font-semibold text-text-primary">
-                  — {t.role}
-                </p>
-                <p className="caption mt-1">{t.location}</p>
-              </figcaption>
-            </motion.figure>
+        <div className="mt-12 grid gap-4 md:grid-cols-3">
+          {proof.map(({ icon: Icon, title, description }) => (
+            <article key={title} className="card h-full">
+              <Icon size={24} strokeWidth={1.5} className="text-text-accent" />
+              <h3 className="mt-5 text-[18px] font-semibold text-text-primary">{title}</h3>
+              <p className="body-md mt-3">{description}</p>
+            </article>
           ))}
-        </StaggerGroup>
-
-        <Reveal variant="fade" delay={0.3}>
-          <p
-            className="mt-10 text-center text-[13px] mono"
-            style={{ color: "var(--text-muted)" }}
-          >
-            Trusted by UAE real estate professionals · Live and active across
-            the Emirates
-          </p>
-        </Reveal>
+        </div>
       </div>
     </section>
   );

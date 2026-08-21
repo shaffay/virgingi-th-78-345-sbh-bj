@@ -179,7 +179,7 @@ export default function Page() {
         <p>
           This isn't a soft suggestion. It's a visible, public-to-the-team
           accountability layer. Most WIYO brokerages see SLA compliance hit
-          90%+ within two weeks of activating it — and contact rates climb
+          consistently after teams begin measuring it — and contact rates can climb
           accordingly.
         </p>
 

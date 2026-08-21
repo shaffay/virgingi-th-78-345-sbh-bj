@@ -38,7 +38,7 @@ export default function Page() {
       />
       <BlogLayout post={post} toc={toc}>
         <p>
-          78% of buyers sign with the first agent who responds. In Dubai,
+          Buyers often contact several agencies in the same search session. In Dubai,
           that window is roughly fifteen minutes. Past that point, your
           competitor has already returned the call. This one number — 15
           — is the single highest-leverage rule in UAE real estate sales.

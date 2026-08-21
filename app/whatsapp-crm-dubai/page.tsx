@@ -53,7 +53,7 @@ export default function Page() {
         }
         proofPoints={[
           "WhatsApp Business API — official, compliant",
-          "AI drafts replies from lead history (GPT-4o)",
+          "AI-assisted drafts from approved lead context",
           "Every message syncs to the lead's CRM timeline",
           "Shared team inbox — no personal phones",
         ]}
@@ -64,8 +64,8 @@ export default function Page() {
             body: (
               <>
                 <p>
-                  In the UAE, 90%+ of buyer conversations happen on WhatsApp.
-                  But most agencies manage WhatsApp from agents' personal
+                  WhatsApp is a central buyer-conversation channel in the UAE.
+                  Many agencies still manage messages from agents' personal
                   phones — which means: no audit trail, messages lost when
                   agents leave, no team visibility, no professionalism, and
                   zero way to enforce response SLAs.

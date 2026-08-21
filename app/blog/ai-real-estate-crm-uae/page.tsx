@@ -27,7 +27,7 @@ const toc = [
   { id: "lead-scoring", text: "Lead scoring explained" },
   { id: "project-match", text: "Off-plan AI matching" },
   { id: "title-deed", text: "Title Deed OCR" },
-  { id: "gpt-4o", text: "GPT-4o vs older AI" },
+  { id: "gpt-4o", text: "Modern multimodal AI" },
   { id: "native", text: "Native AI, not bolted-on" },
   { id: "future", text: "Where this is heading" },
 ];
@@ -50,7 +50,7 @@ export default function Page() {
 
         <h2 id="revolution">The AI Revolution in UAE Property Sales</h2>
         <p>
-          The arrival of GPT-4o changed what's possible in a CRM. Three
+          Modern multimodal AI changed what's possible in a CRM. Three
           things matter for UAE real estate specifically:
         </p>
         <ul>
@@ -71,7 +71,7 @@ export default function Page() {
         <Figure
           src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=2000&q=80"
           alt="Abstract visualization of an AI neural network"
-          caption="GPT-4o is the first model genuinely good enough to embed natively in a working CRM"
+          caption="Modern multimodal models can assist with text, image, and document workflows inside a CRM"
         />
 
         <h2 id="can-cannot">What AI Can — and Cannot — Do for Real Estate Agents</h2>
@@ -113,7 +113,7 @@ export default function Page() {
         </p>
         <p>
           WIYO's AI Project Match feeds the buyer brief and the entire
-          catalogue to GPT-4o. In 5 seconds, you get a ranked list:
+          catalogue to an AI-assisted matcher. You get a ranked list for review:
           project A (89% match, here's why), project B (84%, here's why),
           project C (76%, here's why). Your agent has a sharp,
           AI-supported pitch ready before the buyer even arrives at the
@@ -133,7 +133,7 @@ export default function Page() {
           unit, BUA, area, floor — one typo and the upload to DLD bounces.
         </p>
         <p>
-          WIYO's Title Deed OCR uses GPT-4o Vision. You drag the Title
+          WIYO's document workflow uses multimodal extraction. You drag the Title
           Deed PDF onto the wizard. The AI reads every field and auto-fills
           the listing form. You glance, confirm, and submit. What used to
           take 15 minutes now takes 60 seconds. Compounded across hundreds
@@ -141,9 +141,9 @@ export default function Page() {
           actually selling.
         </p>
 
-        <h2 id="gpt-4o">GPT-4o vs Older AI Tools — What's Different</h2>
+        <h2 id="gpt-4o">Modern Multimodal AI — What&apos;s Different</h2>
         <p>
-          GPT-4o is multimodal. It reads images, PDFs, voice, and text in
+          Modern multimodal models can work across images, PDFs, voice, and text in
           one pass. It's faster than GPT-4 and substantially smarter than
           GPT-3.5. For real estate specifically, that means:
         </p>

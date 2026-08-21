@@ -1,19 +1,15 @@
 "use client";
 
-const WA_NUMBER = "971500000000";
-const WA_MESSAGE =
-  "Hi WIYO team, I'd like to see a demo for my real estate agency.";
+import { WIYO_WHATSAPP_URL } from "@/lib/contact";
 
 export default function WhatsAppButton() {
-  const href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(WA_MESSAGE)}`;
-
   return (
     <a
-      href={href}
+      href={WIYO_WHATSAPP_URL}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with WIYO on WhatsApp"
-      className="fixed z-40 hidden md:flex items-center justify-center rounded-full transition-transform hover:scale-105"
+      className="fixed z-40 hidden md:flex items-center justify-center rounded-full transition-transform hover:scale-105 focus-visible:scale-105"
       style={{
         right: "24px",
         bottom: "24px",

@@ -62,7 +62,7 @@ const sections: SitemapSection[] = [
     title: "Resources",
     description: "Crawlable resources for users and machines.",
     links: [
-      { label: "XML Sitemap", href: "/sitemap.xml", description: "Machine-readable sitemap index." },
+      { label: "XML Sitemap", href: "/sitemap.xml", description: "Machine-readable URL set." },
       { label: "robots.txt", href: "/robots.txt", description: "Crawler policy." },
       { label: "llms.txt", href: "/llms.txt", description: "Curated map for LLM crawlers." },
     ],
@@ -71,7 +71,10 @@ const sections: SitemapSection[] = [
     title: "Company",
     description: "About WIYO and how to get in touch.",
     links: [
-      { label: "Contact", href: "mailto:hello@wiyo.ae", description: "hello@wiyo.ae" },
+      { label: "About WIYO", href: "/about", description: "Company and registered entity details." },
+      { label: "Founder & Author", href: "/author/shaffay-bajwa", description: "Shaffay Bajwa's profile and articles." },
+      { label: "Editorial Methodology", href: "/editorial-methodology", description: "Research, disclosure, and corrections." },
+      { label: "Contact", href: "/contact", description: "Sales, privacy, procurement, and editorial contact." },
       { label: "Privacy Policy", href: "/privacy", description: "How WIYO handles your data." },
       { label: "Terms of Service", href: "/terms", description: "Terms governing use of WIYO." },
       { label: "Data Deletion", href: "/data-deletion", description: "Request deletion of your data." },

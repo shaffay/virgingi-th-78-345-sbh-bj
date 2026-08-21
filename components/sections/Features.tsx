@@ -55,7 +55,7 @@ const modules: Module[] = [
       "Every off-plan project your brokerage sells, on one intelligent screen — map view, grid view, live availability board, and an AI that tells your agents exactly which project to pitch. Full reservation lifecycle from inquiry to completed.",
     features: [
       "Project Catalogue: map + grid, brochures, unit breakdown, prices",
-      "AI Project Match: GPT-4o ranks projects against the buyer's brief",
+      "AI-assisted project matching against the buyer's brief",
       "AI Compare: 2–4 projects side-by-side with AI verdict",
       "Command Center: live KPIs, commission projections, availability",
       "Reservation lifecycle: inquiry → holding → reserved → booked",
@@ -102,9 +102,9 @@ const modules: Module[] = [
     title: "Listings & Inventory",
     headline: "Add a Listing in Minutes, Not Hours",
     description:
-      "Uploading a listing used to mean manually typing every detail from a Title Deed — one typo and your DLD submission bounces. WIYO's Add Listing wizard changes that with GPT-4o Vision and an AI-generated description engine.",
+      "Uploading a listing can mean retyping details from source documents. WIYO's listing workflow is designed to extract structured fields for review and help draft a property description.",
     features: [
-      "Drop the Title Deed PDF — GPT-4o Vision auto-fills every DLD field",
+      "Extract listing fields from a source document for human review",
       "Passport / Emirates ID OCR for RERA-compliant owner verification",
       "AI-generated titles + descriptions tuned to vibe (luxury, family, etc.)",
       "Live completion meter guides agents through all 9 steps",
@@ -132,11 +132,11 @@ const modules: Module[] = [
   {
     id: "ai-copilot",
     icon: Brain,
-    badge: "GPT-4o",
+    badge: "AI-assisted",
     title: "AI Co-pilot",
     headline: "Every Agent Gets a Personal AI Strategist",
     description:
-      "WIYO's AI Co-pilot is powered by GPT-4o and embedded directly in the platform — not a separate tab, not a chatbot, not an add-on. Native intelligence on every lead, every project, every action.",
+      "WIYO's AI Co-pilot is embedded into lead and inventory workflows. It helps summarise context, prioritise work, suggest next actions, and prepare drafts while the agent stays in control.",
     features: [
       "Lead Score (0–100) — is this buyer serious?",
       "5-Second Brief — everything an agent needs before calling",

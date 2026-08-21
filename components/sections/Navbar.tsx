@@ -238,7 +238,7 @@ export default function Navbar() {
         <button
           onClick={() => setOpen((v) => !v)}
           aria-label="Toggle menu"
-          className="md:hidden w-10 h-10 rounded-pill border flex items-center justify-center text-text-secondary"
+          className="md:hidden w-11 h-11 rounded-pill border flex items-center justify-center text-text-secondary"
           style={{ borderColor: "var(--border-subtle)", background: "var(--bg-subtle)" }}
         >
           {open ? <X size={18} strokeWidth={1.8} /> : <Menu size={18} strokeWidth={1.8} />}

@@ -8,12 +8,12 @@ const URL = "https://www.wiyo.ae/real-estate-crm-dubai";
 export const metadata: Metadata = {
   title: "Real Estate CRM Dubai | WIYO — Built for Dubai Brokerages",
   description:
-    "The best real estate CRM for Dubai agents and brokers. Native Bayut, Property Finder & Dubizzle integration. AI lead scoring, off-plan management, WhatsApp automation. From AED 2,650/month.",
+    "A real estate CRM for Dubai brokerages: organise portal leads, team follow-up, WhatsApp conversations, and off-plan sales workflows.",
   alternates: { canonical: URL },
   openGraph: {
     title: "Real Estate CRM Dubai | WIYO",
     description:
-      "Native Bayut, Property Finder & Dubizzle integration. AI lead scoring, off-plan, WhatsApp. From AED 2,650/month.",
+      "Portal lead workflows, AI-assisted prioritisation, off-plan sales, and WhatsApp conversations in one Dubai-focused CRM.",
     url: URL,
     type: "website",
   },
@@ -39,23 +39,22 @@ export default function Page() {
         relatedPosts={getPostsForPillar("/real-estate-crm-dubai")}
         h1={
           <>
-            The Real Estate CRM Dubai's{" "}
-            <span className="text-gradient">Top Agencies Actually Use.</span>
+            A Real Estate CRM Built Around{" "}
+            <span className="text-gradient">Dubai Brokerage Workflows.</span>
           </>
         }
         intro={
           <>
-            WIYO is the only CRM built from the ground up in Dubai, for Dubai
-            real estate. Native Bayut, Property Finder, and Dubizzle. Off-plan
-            AI Match. Title Deed OCR. WhatsApp Business API. One platform.
-            One login. From AED 2,650/month.
+            Bring property-portal leads, off-plan workflows, listing context,
+            WhatsApp conversations, and team follow-up into one operating
+            workspace. Plans are priced in AED.
           </>
         }
         proofPoints={[
-          "Bayut + Property Finder + Dubizzle, native webhooks",
-          "GPT-4o Off-Plan Project Match in seconds",
-          "Title Deed OCR auto-fills every DLD field",
-          "WhatsApp Business API — shared, audited inbox",
+          "Portal lead capture and assignment workflows",
+          "AI-assisted off-plan project matching",
+          "Document field extraction for human review",
+          "Shared WhatsApp conversation workflows",
         ]}
         cta={{ label: "Book a Dubai-Specific Demo", href: "/#cta" }}
         sections={[
@@ -89,7 +88,7 @@ export default function Page() {
             ),
             bullets: [
               "RERA-aware document workflows (passport, Emirates ID, Title Deed)",
-              "DLD Title Deed OCR powered by GPT-4o Vision",
+              "Title Deed field extraction for review",
               "Oqood capture for off-plan reservations",
               "Multi-language buyer profiles (EN / AR / RU / CN)",
               "Dubai-specific lead source connectors (Bayut, PF, Dubizzle)",
@@ -128,7 +127,7 @@ export default function Page() {
             ),
             bullets: [
               "Project Catalogue: map + grid view of every off-plan project",
-              "AI Project Match: GPT-4o ranks projects per buyer brief",
+              "AI-assisted project matching per buyer brief",
               "AI Compare: 2–4 projects side-by-side with verdict",
               "Reservation lifecycle: inquiry → holding → booked → completed",
               "Oqood + escrow document capture",
@@ -143,7 +142,7 @@ export default function Page() {
                 5,500/month for 15 agents (with Marketing Hub). Enterprise at
                 AED 9,900/month for 50 agents. Solo agent plan at AED
                 1,000/month. All AED. All inclusive. No per-lead fees, no
-                hidden WhatsApp API charges.
+                implementation scope is confirmed before purchase.
               </p>
             ),
           },
