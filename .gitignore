@@ -6,3 +6,6 @@ out
 *.log
 _legacy
 tsconfig.tsbuildinfo
+
+# Local Claude Code settings (machine-specific permissions)
+.claude/
